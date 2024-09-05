@@ -6,7 +6,7 @@ title: Create Streams
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Macrometa GDN offers numerous ways to allow you to create a Macrometa Stream. 
+Macrometa GDN offers numerous ways to allow you to create a Stream. 
 
 - Web console
 - SDKs

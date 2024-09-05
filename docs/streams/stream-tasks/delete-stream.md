@@ -129,7 +129,7 @@ print("\nStream Deleted: ", resp.text)
 </TabItem>
 <TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Remove a stream](https://www.macrometa.com/docs/api#/operations/DeleteStream).
+[Remove a stream](https://www.macrometa.com/docs/api#/operations/DeleteStream).
 
 ```js
 class APIRequest {

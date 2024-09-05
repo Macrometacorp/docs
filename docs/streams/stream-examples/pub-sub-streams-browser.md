@@ -3,7 +3,15 @@ sidebar_position: 110
 title: Pub-Sub with Streams in Browser Example
 ---
 
+## Overview
+
+This tutorial walks you through the steps to integrating the Macrometa Streams with a simple HTML application. 
 This example shows how to use the GDN console to publish messages on a stream and subscribe to receive messages.
+
+## Steps
+
+1. Create a new HTML file in your preferred IDE.
+1. Copy the following HTML code into your new file. 
 
 ```html
 <!DOCTYPE html>
@@ -71,7 +79,14 @@ This example shows how to use the GDN console to publish messages on a stream an
       ></div>
     </div>
   </body>
-  <script type="text/javascript">
+<script type="text/javascript"></script>
+</html>
+```
+## Step 2: Create API middleware to manage API calls
+
+Add the following script to the script tag in your html code. This adds an API middleware to manage your API calls.
+
+```js
     /* ------------------- API MIDDLEWARE TO MANAGE API CALLS ------------------- */
 
     class APIRequest {
@@ -124,8 +139,19 @@ This example shows how to use the GDN console to publish messages on a stream an
         });
       }
     }
+```
 
-    /* ---------------------------- PUB-SUB TUTORIAL ---------------------------- */
+## Step 3: Working with pub-sub
+
+This step involves sub steps.
+
+### Step 3a: Define your constants and other helpful parameters and variables
+
+Before connecting and creating a pub-sub connection to Macrometa streams, you need to define the following:
+
+```js
+
+    /*Define your stream connection details*/
 
     const EMAIL = "your@email.com";
     const PASSWORD = "password";
@@ -370,6 +396,5 @@ This example shows how to use the GDN console to publish messages on a stream an
 
       print(`${CONSUMER_NAME} UNSUBSCRIBED SUCCESSFULLY`);
     }
-  </script>
-</html>
+
 ```

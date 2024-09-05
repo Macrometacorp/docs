@@ -1,6 +1,10 @@
 ---
 sidebar_position: 1
-title: Stream Examples
+title: Build with Streams
 ---
 
-This section shows some examples of how to use streams.
+The pub-sub messaging model of Macrometa streams allows you to build and integrate real-time messaging applications. 
+
+Let's go over some tasks you can perform with Macrometa streams.
+
+<DocCardList/>

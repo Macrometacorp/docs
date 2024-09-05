@@ -20,7 +20,7 @@ faas <COMMAND>
 
 ### `faas new [flags]`
 
-The `new` command initializes a new function project in a specified language or framework. The available options are JavaScript, Rust, and Next.js, with Rust as the default. This command generates a project directory pre-configured with example functions to help you get started. For detailed information on each language, see [Using Functions](./03-using-functions/index.md).
+The `new` command initializes a new function project in a specified language or framework. The available options are JavaScript, Rust, and Next.js, with Rust as the default. This command generates a project directory pre-configured with example functions to help you get started. 
 
 ```bash
 faas new <function-name> 

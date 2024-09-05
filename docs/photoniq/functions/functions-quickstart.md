@@ -167,7 +167,7 @@ Configuration can be modified in the file: functions/testFunction/photoniq.toml
 
 :::note
 
-This command generates a new `functions/testFunction` directory with the default template files. While the default function template is created in `Rust`, PhotonIQ Functions also support `Javascript`.  Refer to the [**Using Functions**](./03-using-functions/index.md) to create a Javascript function.
+This command generates a new `functions/testFunction` directory with the default template files. While the default function template is created in `Rust`, PhotonIQ Functions also support `Javascript`.  Refer to the Using Functions to create a Javascript function.
 
 :::
 
@@ -224,7 +224,7 @@ level = "INFO"
 MESSAGE = "Hello 👋! This message comes from an environment variable"
 ```
 
-These files are prefilled with a template you can use for testing. The `src/main.rs` file contains the function code, and the `photoniq.toml` file contains the configuration settings. Refer to the [Using Functions](./03-using-functions/index.md) to learn more about functions file structure in Rust and Javascript.
+These files are prefilled with a template you can use for testing. The `src/main.rs` file contains the function code, and the `photoniq.toml` file contains the configuration settings. Refer to the using Functions to learn more about functions file structure in Rust and Javascript.
 
 When this test function is [executed](#testing-the-function-locally), it should return the following response as defined in the function handler:
 

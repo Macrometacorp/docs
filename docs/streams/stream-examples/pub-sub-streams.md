@@ -1,24 +1,27 @@
 ---
 sidebar_position: 100
-title: Pub-Sub with Streams
+title: Create a Pub-Sub model with Streams
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Overview 
+This tutorial walks you through the steps to create a pub-sub messaging model with local latencies globally using Macrometa SDKs. It achieves this through the following steps:
 
-This tutorial walks you through the steps to creating a pub-sub messaging model with local latencies across the globe using Macrometa SDKs. It achieves this through the following steps:
-
-1. Establishing a connection to GDN by and creating an authenticated instance with an API key. 
+1. Establishing a connection to GDN by creating an authenticated instance with an API key. 
 1. Creating a stream
-1. Asking a user for input. These input values affect the streaming value in the following ways:
+1. Asking a user for input. These input values affect the streaming behavior in the following ways:
     - An input value of 'w' lets you publish messages to the stream. 
     - An input value of 'r' allows you to read messages from the stream
     - A '0' input value closes the consumer connection.
-    - Any other input values returns an invalid user input response. 
+    - Any other input values return an invalid user input response. 
+1. Testing the pub-sub model on the terminal.
+
+:::info
 
 After writing to a stream, you can log in to your Macrometa acount and view the streamed messages in the terminal in real time. 
+
+:::
 
 ## Prerequisites
 
@@ -199,7 +202,11 @@ async function selectAction () {
 ```
 ## Step 4: Test pub-sub messaging
 
-Open your terminal and run `node {filename}`. This asks for an input. 
+1. Open two terminals.
+1. Run `node {filename.js}` in each terminal.
+1. Enter an input value.
+    - On one terminal use 'r' to start the subscriber to read data
+    - Then on another terminal use 'w' to start the producer and publish message
 
 </TabItem>
 
@@ -296,8 +303,9 @@ else:
 
 ## Step 6: Test stream messaging.
 
-1. Run `node {filename.js}` 
-1. User enters choice.
+1. Open two terminals.
+1. Run `node {filename.js}` in each terminal.
+1. Enter an input value.
     - On one terminal use 'r' to start the subscriber to read data
     - Then on another terminal use 'w' to start the producer and publish message
 
