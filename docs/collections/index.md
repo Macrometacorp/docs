@@ -5,6 +5,38 @@ title: Collections
 
 A collection is a group of documents with a unique name and identifier. These collections can be empty or contain documents. Macrometa GDN is _schemaless_, hence removing the need to define a structure when storing valid document attributes. Documents with completely different structures can be stored in the same collection.
 
+
+## Create a collection
+
+<grid cols={3}>
+  <card
+    heading="Create a Document Collections"
+    description="NoSQL document collections with flexible indexing and modeling."
+    href="/collections/documents"
+  />
+  <card
+    heading="Key-Value Collections"
+    description="High-throughput KV collections powering a wide range of use cases."
+    href="/collections/keyvalue"
+  />
+  <card
+    heading="Graph Edge Collection"
+    description="Document type used by Graphs to model relationships between nodes."
+    href="/collections/graph-edge"
+  />
+  <card
+    heading="Dynamo-mode Collections"
+    description="Full-featured compatibility with AWS DynamoDB SDKs and CLI."
+    href="/collections/dynamo/create-dynamo-table"
+  />
+  <card
+    heading="Redis-mode Collections"
+    description="Full-featured Redis-compatible collection and API."
+    href="/collections/redis-mode/"
+  />
+</grid>
+
+
 ## Local and Global Collections
 
 GDN allows you to create _local_ or _global_ collections.

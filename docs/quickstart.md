@@ -1,5 +1,5 @@
 ---
-sidebar_position: 10
+sidebar_position: 5
 title: Quickstart
 ---
 
@@ -86,7 +86,7 @@ Macrometa returns all records in the collection. You can view it as a **Table** 
 
 ## Step 5: Save the query as an API endpoint
 
-Macrometa allows you to save a query as a [Query Worker](queryworkers/index.md).
+Macrometa allows you to save a query as a [Query Worker](compute/queryworkers/index.md).
 
 1. Click **Save Query**.
 1. Name the query **getAddresses** and click **Save**. This saves the query so you can use it again.
