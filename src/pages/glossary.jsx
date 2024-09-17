@@ -1,6 +1,5 @@
 import Layout from "@theme/Layout";
 import { useState, useEffect } from "react";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoBookOutline } from "react-icons/io5";
 import React from "react";
 import glossarys from "./glossaryData";
@@ -73,7 +72,7 @@ return (
       </div>
 
       <nav
-        className={`overflow-x-auto py-2 ${isFixed ? "fixed top-0 left-0 right-0 bg-white shadow-md z-10" : ""
+        className={`overflow-x-auto py-2 ${isFixed ? "fixed top-[7%] left-0 right-0 bg-white shadow-lg z-10" : ""
           }`}
       >
         <ul className="flex gap-2 lg:justify-center justify-start text-[14px] whitespace-nowrap">
@@ -87,7 +86,7 @@ return (
                   : "text-gray-700"
                   } ${usedLetters.includes(letter)
                     ? "cursor-pointer"
-                    : "text-gray-200 cursor-not-allowed"
+                    : "text-gray-400 cursor-not-allowed"
                   }`}
                 onClick={() =>
                   usedLetters.includes(letter) && scrollToLetter(letter)
@@ -100,17 +99,18 @@ return (
         </ul>
       </nav>
 
-      <div className="my-2 mb-10">
-        <div className="mb-2 flex items-center justify-between gap-36">
+      <div className="my-10 mb-20">
+        <div className="mb-4 flex items-center justify-between ">
           <div className="lg:flex hidden flex-col gap-1 text-nowrap">
-            <p className="flex inline text-nowrap items-center gap-1 font-semibold text-indigo-500">
-              <span className="mt-1"> 
-                <IoBookOutline />
+            <h1 className="flex text-nowrap items-center w-full text-[17px] gap-1 font-semibold text-gray-700">
+              <span>
+                <IoBookOutline size={18} />
               </span>
-              Glossary
-            </p>
+              All glossary terms
+            </h1>
+            <div className="w-5 h-[1px] bg-gray-400"></div>
           </div>
-          <div className="sm:mx-16 mx-0 w-full h-[1px] bg-gray-500"></div>
+          <div className="sm:mx-16 mx-0 w-[900px] h-[1px] bg-gray-500"></div>
         </div>
         <div className="flex lg:gap-36 gap-0">
           <div>
