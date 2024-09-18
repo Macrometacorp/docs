@@ -1,4 +1,6 @@
 ---
-title: Implementing the right Prerender strategy for your business
+title: Implement a click synthetic interaction for your e-commerce app
 ---
+
+
 
