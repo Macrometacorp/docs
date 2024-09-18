@@ -9,7 +9,7 @@ const glossaryData = [
     id: 2,
     title: "collection",
     content:
-      "A collection consists of documents and is uniquely identified by its collection identifier. A collection also has a unique name that clients should use to identify and access it. Collections can be renamed, but the collection identifier remains the same. Collections contain documents of a specific type. There are two types: document (default) and edge. The type is specified by the user when the collection is created and cannot be changed later.",
+      "A [collection](/docs/collections) consists of documents and is uniquely identified by its collection identifier. A collection also has a unique name that clients should use to identify and access it. Collections can be renamed, but the collection identifier remains the same. Collections contain documents of a specific type. There are two types: document (default) and edge. The type is specified by the user when the collection is created and cannot be changed later.",
   },
   {
     id: 3,

@@ -1031,3 +1031,6 @@ html[data-theme="dark"] .submitted-message {
 .submitted-message {
   color: #000000;
 }
+.text-disable{
+  @apply !text-gray-400;
+}

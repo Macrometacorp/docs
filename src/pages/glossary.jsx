@@ -2,6 +2,8 @@ import Layout from "@theme/Layout";
 import React, { useEffect, useState } from "react";
 import { IoBookOutline } from "react-icons/io5";
 import glossaryData from "../data/glossaryData";
+import Markdown from 'react-markdown';
+
 
 const glossarys = glossaryData.sort((a, b) => a.title.localeCompare(b.title));
 
@@ -95,7 +97,7 @@ const App = () => {
                 } ${
                   usedLetters.includes(letter)
                     ? "cursor-pointer"
-                    : "text-gray-400 cursor-not-allowed"
+                    : "text-disable cursor-not-allowed"
                 }`}
                 onClick={() =>
                   usedLetters.includes(letter) && scrollToLetter(letter)
@@ -146,7 +148,8 @@ const App = () => {
                       {capitalizeFirstLetter(title)}
                     </h1>
                     <p className="md:text-[17px] text-[19px] text-gray-700">
-                      {content.substring(0, 200)}
+                    <Markdown>{content.substring(0, 200)}</Markdown>
+                      
                     </p>
                   </div>
                 );
