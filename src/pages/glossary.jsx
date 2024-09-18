@@ -148,8 +148,8 @@ const App = () => {
                       {capitalizeFirstLetter(title)}
                     </h1>
                     <p className="md:text-[17px] text-[19px] text-gray-700">
-                    <Markdown>{content.substring(0, 200)}</Markdown>
-                      
+                    <Markdown>{content}</Markdown>
+
                     </p>
                   </div>
                 );

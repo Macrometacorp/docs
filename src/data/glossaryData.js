@@ -9,7 +9,7 @@ const glossaryData = [
     id: 2,
     title: "collection",
     content:
-      "A [collection](/docs/collections) consists of documents and is uniquely identified by its collection identifier. A collection also has a unique name that clients should use to identify and access it. Collections can be renamed, but the collection identifier remains the same. Collections contain documents of a specific type. There are two types: document (default) and edge. The type is specified by the user when the collection is created and cannot be changed later.",
+      "A collection consists of documents and is uniquely identified by its collection identifier. A collection also has a unique name that clients should use to identify and access it. Collections can be renamed, but the collection identifier remains the same. Collections contain documents of a specific type. There are two types: document (default) and edge. The type is specified by the user when the collection is created and cannot be changed later.",
   },
   {
     id: 3,
@@ -21,7 +21,7 @@ const glossaryData = [
     id: 4,
     title: "collection name",
     content:
-      "A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](../references/naming-conventions.md) for more information on valid collection names.",
+      "A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](/docs/references/naming-conventions) for more information on valid collection names.",
   },
   {
     id: 5,
@@ -51,7 +51,7 @@ const glossaryData = [
     id: 9,
     title: "document key",
     content:
-      "A document key is a string that uniquely identifies a document in a given collection. Clients can use document keys when specific documents are searched. Document keys are stored in the `_key` attribute of documents. The key values are automatically indexed by Macrometa [GDNDB](#gdndb) in a collection's primary index, enabling fast retrieval of documents by finding their keys. The `_key` value of a document is permanent once the document has been created.\n\nIf you do not specify a `_key` value, Macrometa GDN auto-generates a document key. You can change this default behavior on a per-collection basis by creating collections with the `keyOptions` attribute. You can also use `keyOptions` to disallow user-specified keys completely or enforce a standard for auto-generating the `_key` values.\n\nThere are some restrictions for user-defined keys. For more information, see [Naming Conventions for document keys](../references/naming-conventions#document-keys).",
+      "A document key is a string that uniquely identifies a document in a given collection. Clients can use document keys when specific documents are searched. Document keys are stored in the `_key` attribute of documents. The key values are automatically indexed by Macrometa GDNDB in a collection's primary index, enabling fast retrieval of documents by finding their keys. The `_key` value of a document is permanent once the document has been created.\n\nIf you do not specify a `_key` value, Macrometa GDN auto-generates a document key. You can change this default behavior on a per-collection basis by creating collections with the `keyOptions` attribute. You can also use `keyOptions` to disallow user-specified keys completely or enforce a standard for auto-generating the `_key` values.\n\nThere are some restrictions for user-defined keys. For more information, see [Naming Conventions for document keys](/docs/references/naming-conventions#document-keys).",
   },
   {
     id: 10,
@@ -121,7 +121,7 @@ const glossaryData = [
     id: 21,
     title: "geo-replication",
     content:
-      "Replication of messages and documents across Macrometa GDN [clusters](#cluster), potentially in different datacenters or geographical regions.",
+      "Replication of messages and documents across Macrometa GDN clusters, potentially in different datacenters or geographical regions.",
   },
   {
     id: 22,
@@ -187,48 +187,48 @@ const glossaryData = [
     id: 32,
     title: "message",
     content:
-      "Messages are the basic unit of Macrometa GDN Streams. They're what [producers](#stream-producer) publish to a [stream](#stream) and what [consumers](#stream-consumer) then consume from the stream.",
+      "Messages are the basic unit of Macrometa GDN Streams. They're what producers publish to a stream and what consumers then consume from the stream.",
   },
   {
     id: 33,
     title: "message dispatcher",
     content:
-      "An asynchronous TCP server used for all data transfers into and out of a Macrometa GDN [broker](#broker). The GDN dispatcher uses a custom binary protocol for all communications.",
+      "An asynchronous TCP server used for all data transfers into and out of a Macrometa GDN broker. The GDN dispatcher uses a custom binary protocol for all communications.",
   },
   {
     id: 34,
     title: "multi-tenancy",
     content:
-      "The ability to isolate a fabric, specify quotas, and configure authentication and authorization on a per-[tenant](#tenant) basis.",
+      "The ability to isolate a fabric, specify quotas, and configure authentication and authorization on a per-tenant basis.",
   },
   {
     id: 35,
     title: "stream",
     content:
-      "A named channel used to pass messages published by [producers](#stream-producer) to [consumers](#stream-consumer) who process those [messages](#message). Streams are grouped by [database](#database).",
+      "A named channel used to pass messages published by producers to consumers who process those messages. Streams are grouped by database.",
   },
   {
     id: 36,
     title: "stream broker",
     content:
-      "A stateless component of Macrometa GDN [clusters](#cluster) that runs two other components: an HTTP server exposing a REST interface for administration and stream lookup, and a [dispatcher](#dispatcher) that handles all message transfers. Macrometa GDN clusters typically consist of multiple brokers.",
+      "A stateless component of Macrometa GDN clusters that runs two other components: an HTTP server exposing a REST interface for administration and stream lookup, and a dispatcher that handles all message transfers. Macrometa GDN clusters typically consist of multiple brokers.",
   },
   {
     id: 37,
     title: "stream consumer",
     content:
-      "A process that establishes a subscription to a Macrometa GDN [stream](#stream) and processes messages published to that stream by [producers](#stream-producer).",
+      "A process that establishes a subscription to a Macrometa GDN stream and processes messages published to that stream by producers.",
   },
   {
     id: 38,
     title: "stream cursor",
-    content: "The subscription position for a [consumer](#stream-consumer).",
+    content: "The subscription position for a consumer.",
   },
   {
     id: 39,
     title: "stream lookup",
     content:
-      "A service provided by Macrometa GDN that enables connecting clients to automatically determine which Macrometa GDN [cluster](#cluster) is responsible for a [stream](#stream) (and thus where message traffic for the stream needs to be routed).",
+      "A service provided by Macrometa GDN that enables connecting clients to automatically determine which Macrometa GDN cluster is responsible for a stream (and thus where message traffic for the stream needs to be routed).",
   },
   {
     id: 40,
@@ -240,31 +240,31 @@ const glossaryData = [
     id: 41,
     title: "stream producer",
     content:
-      "A process that publishes [messages](#message) to a [stream](#stream).",
+      "A process that publishes messages to a stream.",
   },
   {
     id: 42,
     title: "stream pub-sub",
     content:
-      "A messaging pattern in which [producer](#stream-producer) proccesses published messages on [streams](#stream) that are then consumed by [consumer](#stream-consumer) processes.",
+      "A messaging pattern in which producer proccesses published messages on streams that are then consumed by consumer processes.",
   },
   {
     id: 43,
     title: "stream reader",
     content:
-      "Macrometa GDN readers are message processors much like GDN [consumers](#stream-consumer) but with two major differences:\n\n- You can specify *where* on a stream readers begin processing messages (consumers always begin with the latest available unacknowledged message).\n- Readers don't retain data or acknowledge messages.",
+      "Macrometa GDN readers are message processors much like GDN consumers but with two major differences:\n\n- You can specify *where* on a stream readers begin processing messages (consumers always begin with the latest available unacknowledged message).\n- Readers don't retain data or acknowledge messages.",
   },
   {
     id: 44,
     title: "stream retention policy",
     content:
-      "Size and time limits that you can set on a [database](#database) to configure retention of [messages](#message) that have already been [acknowledged](#acknowledgement-ack).",
+      "Size and time limits that you can set on a database to configure retention of messages that have already been acknowledged.",
   },
   {
     id: 45,
     title: "stream subscription",
     content:
-      "A lease on a [stream](#stream) established by a group of [consumers](#stream-consumer). Macrometa GDN streams have three subscription modes (exclusive, shared, and failover).",
+      "A lease on a stream established by a group of consumers. Macrometa GDN streams have three subscription modes (exclusive, shared, and failover).",
   },
   {
     id: 46,
