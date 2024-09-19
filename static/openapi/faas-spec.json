@@ -896,7 +896,123 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved the usage metrics."
+            "description": "Successfully retrieved the usage metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "timestamp": {
+                            "type": "integer"
+                          },
+                          "period": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "metrics": {
+                            "type": "object",
+                            "properties": {
+                              "bytes_downloaded": {
+                                "type": "integer"
+                              },
+                              "bytes_downloaded_per_second": {
+                                "type": "integer"
+                              },
+                              "bytes_uploaded": {
+                                "type": "integer"
+                              },
+                              "bytes_uploaded_per_second": {
+                                "type": "integer"
+                              },
+                              "errors_count": {
+                                "type": "integer"
+                              },
+                              "errors_count_per_second": {
+                                "type": "integer"
+                              },
+                              "requests_count_per_second": {
+                                "type": "integer"
+                              },
+                              "requests_count": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Usage Metrics": {
+                    "value": {
+                      "code": 200,
+                      "error": false,
+                      "result": [
+                        {
+                          "timestamp": 1726714740,
+                          "period": "min",
+                          "type": "metric",
+                          "metrics": {
+                            "bytes_downloaded": 70,
+                            "bytes_downloaded_per_second": 1,
+                            "bytes_uploaded": 2,
+                            "bytes_uploaded_per_second": 0,
+                            "errors_count": 0,
+                            "errors_count_per_second": 0,
+                            "requests_count_per_second": 0,
+                            "requests_count": 1
+                          }
+                        },
+                        {
+                          "timestamp": 1726715100,
+                          "period": "min",
+                          "type": "metric",
+                          "metrics": {
+                            "bytes_downloaded": 70,
+                            "bytes_downloaded_per_second": 1,
+                            "bytes_uploaded": 2,
+                            "bytes_uploaded_per_second": 0,
+                            "errors_count": 0,
+                            "errors_count_per_second": 0,
+                            "requests_count_per_second": 0,
+                            "requests_count": 1
+                          }
+                        },
+                        {
+                          "timestamp": 1726716360,
+                          "period": "min",
+                          "type": "metric",
+                          "metrics": {
+                            "bytes_downloaded": 70,
+                            "bytes_downloaded_per_second": 1,
+                            "bytes_uploaded": 2,
+                            "bytes_uploaded_per_second": 0,
+                            "errors_count": 0,
+                            "errors_count_per_second": 0,
+                            "requests_count_per_second": 0,
+                            "requests_count": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
             "description": "Internal server error."
