@@ -69,18 +69,18 @@ const App = () => {
           <h1 className="md:text-5xl mb-4 font-bold text-4xl text-indigo-500">
             Macrometa Glossary
           </h1>
-          <p className="md:text-center md:w-[700px] w-full text-gray-700 md:text-[20px] text-[22px]">
+          <p className="md:text-center md:w-[700px] w-full md:text-[20px] text-[22px]">
             Essential terminologies for understanding and working with
             Macrometa's services. Let this be your guide to the edge computing
             world.
           </p>
         </div>
 
-        <nav
-          className={`overflow-x-auto py-2 ${
-            isFixed
-              ? "fixed top-[7%] left-0 right-0 bg-white shadow-lg z-10"
-              : ""
+        <nav 
+          className={`custom-nav overflow-x-auto py-2 ${
+          isFixed
+          ? "fixed top-14 md:py-4 mt-0 py-2 left-0 right-0 bg-white shadow-lg z-10"
+          : ""
           }`}
         >
           <ul className="flex gap-2 lg:justify-center justify-start text-[14px] whitespace-nowrap">
@@ -93,7 +93,7 @@ const App = () => {
                 className={`rounded-full p-4 w-8 h-8 flex items-center justify-center cursor-pointer ${
                   activeLetter === letter
                     ? "border border-indigo-500 bg-indigo-500 text-white"
-                    : "text-gray-700"
+                    : ""
                 } ${
                   usedLetters.includes(letter)
                     ? "cursor-pointer"
@@ -112,7 +112,7 @@ const App = () => {
         <div className="my-10 mb-20">
           <div className="mb-4 flex items-center justify-between ">
             <div className="lg:flex hidden flex-col gap-1 text-nowrap">
-              <h1 className="flex text-nowrap items-center w-full text-[17px] gap-1 font-semibold text-gray-700">
+              <h1 className="flex text-nowrap items-center w-full text-[17px] gap-1 font-semibold text-indigo-500">
                 <span>
                   <IoBookOutline size={18} />
                 </span>
@@ -128,7 +128,7 @@ const App = () => {
                 const { title, id } = glossary;
                 return (
                   <div key={id} className="mt-2">
-                    <p className="lg:inline hidden text-nowrap text-gray-700">
+                    <p className="lg:inline hidden text-nowrap">
                       {capitalizeFirstLetter(title)}
                     </p>
                   </div>
@@ -140,14 +140,14 @@ const App = () => {
                 const { content, title, id } = glossary;
                 const firstLetter = title[0].toUpperCase(); // Get the first letter of the title
                 return (
-                  <div key={id} className="flex flex-col gap-1 mb-4 p-3">
+                  <div key={id} className="flex flex-col gap-1 mb-2 p-3">
                     <h1
                       id={`glossary-${firstLetter}`} // Assign an id to the element
-                      className="md:text-3xl text-2xl font-bold mb-2"
+                      className="md:text-3xl text-2xl font-bold mb-1"
                     >
                       {capitalizeFirstLetter(title)}
                     </h1>
-                    <p className="md:text-[17px] text-[19px] text-gray-700">
+                    <p className="md:text-[17px] text-[19px]">
                     <Markdown>{content}</Markdown>
 
                     </p>
