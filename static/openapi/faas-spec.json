@@ -832,6 +832,85 @@
           }
         ]
       }
+    },
+    "/api/faas/v1/usage/{aggregationType}": {
+      "get": {
+        "tags": [
+          "Usage Metrics"
+        ],
+        "summary": "Retrieve the usage metrics",
+        "description": "Retrieve the usage metrics for the period request in an aggregated way.",
+        "operationId": "handle_mm_metrics",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start of the period requested. Example: \"2024-01-01T00:00:00\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end of the period requested. Example: \"2024-01-02T00:00:00\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "aggregationType",
+            "in": "path",
+            "description": "The aggregation interval for the metric counters",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MetricPeriod"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the usage metrics."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -946,6 +1025,18 @@
             }
           }
         }
+      },
+      "MetricPeriod": {
+        "type": "string",
+        "enum": [
+          "min",
+          "hour",
+          "day",
+          "week",
+          "month",
+          "year"
+        ],
+        "example": "min"
       },
       "PeriodFilterQuery": {
         "type": "object",
