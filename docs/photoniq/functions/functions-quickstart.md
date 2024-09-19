@@ -95,17 +95,20 @@ export function GET(req) {
 ```
 ## Test the function locally
 
-1. Navigate back to the initial directory where you created the function and use the `faas build` command to install the required dependencies and build the Next.js app with the function:
+1. Use the `faas build` command to install the required dependencies and build the Next.js app with the function:
 
 ```bash
-faas build <projectName>
+faas build 
 ```
-To verify you're in the correct directory, use the `ls` command, which should list the `functions` and `photoniq-faas-sdk` directories.
+
+:::tip
+Be sure to run this command in the `functions/<projectName>` directory.
+:::
 
 2. After the build is successful, start the local development server using the `faas run` command:
 
 ```bash
-faas run <projectName> 
+faas run  
 ```
 
 It is served on `http://localhost:8080`  by default. Open `http://localhost:8080` in your browser and test the routes you created in the function.
@@ -179,10 +182,10 @@ This command creates a `functions` and `photoniq-faas-sdk` directory. The `funct
 
 2. Go to the `functions/<projectName>` directory in your project. This folder contains:
 
-  - index.js: The template code for your function.
-  - photoniq.toml: The configuration file for PhotonIQ Functions.
+  - `index.js`: The template code for your function.
+  - `photoniq.toml`: The configuration file for PhotonIQ Functions.
 
-  These files are prefilled with a template you can use for testing. The `index.js` file contains the function code, and the `photoniq.toml` file contains the configuration settings. Refer to the [Using Functions](03-developing-functions/index.md) to learn more about functions file structure in Javascript.
+  These files are prefilled with a template you can use for testing. The `index.js` file contains the function code, and the `photoniq.toml` file contains the [configuration settings](configuring-functions.md). Refer to the [Developing functions guide](03-developing-functions/index.md) to learn more about the Javascript functions file structure.
 
 3. Open the `index.js` file. This file currently has a POST request example for advanced learning. However, for this quickstart guide, we’ll replace it with a simple GET request. Replace the existing content of the `index.js` file with the following code:
 
@@ -201,9 +204,9 @@ addEventListener("handler", (event) => {
 
 1. To test the function, use `faas run` to start the local test server:
 
-```bash
-faas run <projectName>
-```
+:::tip
+Be sure to run this command in the `functions/<projectName>` directory.
+:::
 
 By default, the function can be accessed locally on `http://127.0.0.1:8080/<projectName>`.
 

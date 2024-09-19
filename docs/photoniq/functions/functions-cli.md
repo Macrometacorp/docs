@@ -10,6 +10,32 @@ The PhotonIQ Functions CLI tool is divided into two main command sets:
 - **Local commands**: Interact with a local instance of the PhotonIQ Functions service running on your machine. These commands are ideal for developing, testing, and debugging functions.
 - **Remote commands**: Manage and interact with functions deployed on the PhotonIQ Functions remote server.
 
+
+:::important
+### Rule of Thumb
+
+For commands that accept `<function-name>`, follow these guidelines:
+
+- **When inside the function’s directory or if you only have one function**, you can simply run:
+  ```bash
+  faas <command>
+  
+  # Example:
+  faas build
+  ```
+
+- **When outside the function’s directory or if you have multiple functions**, specify the function name:
+  ```bash
+  faas <command> <function-name>
+
+  # Example:
+  faas build <function-name>
+  ```
+
+:::
+
+
+
 ## Local CLI Commands
 
 To use local commands, run:
@@ -106,6 +132,16 @@ Removes a function from the local server.
 
 ```bash
 faas delete <function-name> 
+```
+
+```
+
+### `faas login`
+
+Log in to the PhotonIQ Functions service with the approprate credentials for your server (API_URL and API_KEY).
+
+```bash
+faas login 
 ```
 
 **Flags**
