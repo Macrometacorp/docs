@@ -836,7 +836,7 @@
     "/api/faas/v1/usage/{aggregationType}": {
       "get": {
         "tags": [
-          "Usage Metrics"
+          "Health & Metrics"
         ],
         "summary": "Retrieve the usage metrics",
         "description": "Retrieve the usage metrics for the period request in an aggregated way.",
