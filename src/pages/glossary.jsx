@@ -27,7 +27,7 @@ const App = () => {
     if (element) {
       // Calculate the offset to account for the fixed header height
       const headerHeight = document.querySelector("nav").offsetHeight; // or use a fixed value if the height is known
-      const offset = headerHeight + 20; // 20px for some additional spacing, adjust as needed
+      const offset = headerHeight + 70; // 20px for some additional spacing, adjust as needed
 
       window.scrollTo({
         top: element.offsetTop - offset, // Adjust scroll position
@@ -79,7 +79,7 @@ const App = () => {
         <nav 
           className={`custom-nav overflow-x-auto py-2 ${
           isFixed
-          ? "fixed top-14 md:py-4 mt-0 py-2 left-0 right-0 bg-white shadow-lg z-10"
+          ? "fixed top-14  mt-0  left-0 right-0 bg-white shadow-lg z-10"
           : ""
           }`}
         >
