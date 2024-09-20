@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Functions Quickstart
+sidebar_label: Quickstart
 ---
 
 import Tabs from '@theme/Tabs';
