@@ -1,7 +1,6 @@
 ---
 sidebar_position: 6
 title: Functions CLI Commands
-sidebar_label: CLI Commands
 ---
 
 PhotonIQ Functions provides a powerful [CLI tool](https://www.npmjs.com/package/@macrometa/faas) that enables you to develop, manage, and execute functions both locally and on remote servers from your terminal. This CLI streamlines the process of creating, testing, debugging, and deploying functions, providing an efficient and integrated workflow for developers.

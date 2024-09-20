@@ -1,7 +1,6 @@
 ---
 sidebar_position: 7
 title: Functions Logs and Metrics
-sidebar_label: Log and Metrics
 ---
 
 ## Logs
