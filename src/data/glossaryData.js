@@ -3,14 +3,13 @@ const glossaryData = [
     id: 1,
     title: "acknowledgment (ack)",
     content:
-      "A message sent to a Macrometa GDN broker by a consumer that a message has successfully finished processing. An acknowledgement (ack) is Macrometa GDN's way of knowing that the message can be deleted from the system. If no acknowledgement, the message is retained until finished processing.",
+      "A message sent to a Macrometa GDN broker by a consumer indicating complete and successful message processing. Macrometa uses acknowledgments to decide whether to delete messages from the system and retains unacknowledged messages until they are completely processed.",
   },
   {
     id: 2,
     title: "collection",
     content:
-      "A collection consists of documents and is uniquely identified by its collection identifier. A collection also has a unique name that clients should use to identify and access it. Collections can be renamed, but the collection identifier remains the same. Collections contain documents of a specific type. There are two types: document (default) and edge. The type is specified by the user when the collection is created and cannot be changed later.",
-  },
+      "A collection of documents of a specific type identified by its unique collection identifier. A collection also has a unique name that clients use to identify and access. Although you can rename collections, the collection identifier and type remain the same." },
   {
     id: 3,
     title: "collection identifier",
@@ -21,8 +20,7 @@ const glossaryData = [
     id: 4,
     title: "collection name",
     content:
-      "A collection name is a unique string value that identifies a collection in a database. Unlike the collection identifier it is supplied by the creator of the collection. The collection name must consist of letters, digits, and `_` (underscore) or `-` (dash) characters only. Refer to [Naming Conventions](/docs/references/naming-conventions) for more information on valid collection names.",
-  },
+      "A unique string value that identifies a collection in a database. Unlike the collection identifier that receives its value dynamically, the user provides the name when creating the collection. The collection name must only consist of letters, digits, and _ (underscore) or - (dash) characters. "},
   {
     id: 5,
     title: "confirm all writes",
@@ -33,7 +31,7 @@ const glossaryData = [
     id: 6,
     title: "document",
     content:
-      "Documents in Macrometa GDN are JSON objects. These objects can be nested to any depth and might contain arrays. Each document is uniquely identified by its document handle.",
+      "Documents in Macrometa GDN are JSON objects uniquely identified by their document handle. They can be nested to any depth and might contain arrays.",
   },
   {
     id: 7,
@@ -63,8 +61,7 @@ const glossaryData = [
     id: 11,
     title: "edge",
     content:
-      "Edges are special documents used for connecting other documents into a graph. An edge describes the connection between two documents using the internal attributes `_from` and `_to`. These contain document handles such as the start-point and end-point of the edge.",
-  },
+      "Edges are special documents used to connect other documents into a graph. An edge describes the connection between two documents using the internal attributes _from and _to. These attributes contain document handles, such as the start point and end point of the edge."},
   {
     id: 12,
     title: "edge collection",
@@ -91,14 +88,12 @@ const glossaryData = [
     id: 16,
     title: "Fabric",
     content:
-      "Macrometa GDN can handle multiple fabrics in the same server instance. GDN fabrics can be used to logically group and separate data. A fabric consists of collections and dedicated worker processes within each region the fabric is present.\n\nA fabric contains its own collections which cannot be accessed from other fabrics. Each Macrometa GDN fabric contains its own system collections (e.g. `_users`, `_replication`, ...).\n\nBy default, there is always at least one fabric in Macrometa GDN named `_system`. This fabric cannot be dropped, and provides special operations for creating, dropping, and enumerating fabrics. You can create fabrics and give them unique names to access them later. fabric management operations can only be performed in the `_system` fabric.\n\nFor more information about fabrics, refer to our blog post [Introducing GeoFabrics](https://www.macrometa.com/blog/introducing-geofabrics).",
-  },
+      "A fabric consists of collections and dedicated worker processes within the region of each fabric. They help group and separate data as the collections in fabrics exist in isolation and cannot be accessed by other fabrics. By default, there is always at least one fabric in Macrometa GDN (_system), even though the GDN can handle multiple fabrics in the same server instance. This _system fabric cannot be dropped, and performs special operations for creating, dropping, and enumerating fabrics. You can create fabrics and give them unique names for later access. Fabric management operations can only be performed  in the _system fabric. Each Macrometa GDN fabric contains its own system collections (e.g. _users, _replication, ...)."},
   {
     id: 17,
     title: "Fabric name",
     content:
-      "A single Macrometa GDN instance can handle multiple fabrics in parallel. When multiple fabrics are used, each fabric must have a unique name used to identify the database. The default fabric in Macrometa GDN is named `_system`.\n\nThe fabric name is a string consisting of letters, digits, and `-` (dash) characters. User-defined fabric names must always start with a letter. fabric names are case-sensitive.",
-  },
+      "The fabric name is a string consisting of letters, digits, and—(dash) characters. It is case-sensitive, and any user-defined fabric names must always start with a letter. "},
   {
     id: 18,
     title: "Fingerprint Agent",
@@ -121,7 +116,7 @@ const glossaryData = [
     id: 21,
     title: "geo-replication",
     content:
-      "Replication of messages and documents across Macrometa GDN clusters, potentially in different datacenters or geographical regions.",
+      "The replication of messages and documents across Macrometa GDN clusters, potentially in different datacenters or geographical regions.",
   },
   {
     id: 22,
@@ -145,8 +140,7 @@ const glossaryData = [
     id: 25,
     title: "index",
     content:
-      "Indexes can allow fast access to documents in a collection. All collections have a primary index, which is the document's `_key` attribute. This index cannot be dropped or changed.\n\nEdge collections also have an automatically created edges index that cannot be modified. This index provides quick access to documents via the `_from` and `_to` attributes.\n\nYou can create a user-defined index by defining the names of the attributes which should be indexed. Some index types allow indexing just one attribute (e.g. full-text indexes) whereas other index types allow indexing multiple attributes.\n\nAll index types do not support indexing the system attribute `_id` in user-defined indexes.",
-  },
+     "Indexes can allow fast access to documents in a collection. All collections have a primary index, the document's _key attribute, which cannot be dropped or changed. Edge collections also have an automatically created edges index that cannot be modified. This index provides quick access to documents via the _from and _to attributes. You can create a user-defined index by defining the names of the attributes which should be indexed. Some index types allow indexing just one attribute (e.g. full-text indexes) whereas other index types allow indexing multiple attributes. All index types do not support indexing the system attribute _id in user-defined indexes."},
   {
     id: 26,
     title: "index, edges",
@@ -181,13 +175,13 @@ const glossaryData = [
     id: 31,
     title: "index handle",
     content:
-      "An index handle uniquely identifies an index in the database. It is a string and consists of a collection name and an index identifier separated by slashes (`/`).",
+      "A string that uniquely identifies an index in the database. It consists of a collection name and an index identifier separated by slashes (/).",
   },
   {
     id: 32,
     title: "message",
     content:
-      "Messages are the basic unit of Macrometa GDN Streams. They're what producers publish to a stream and what consumers then consume from the stream.",
+      "Messages are the basic unit of Macrometa GDN Streams, which producers publish to streams for consumers to consume. ",
   },
   {
     id: 33,
@@ -205,7 +199,7 @@ const glossaryData = [
     id: 35,
     title: "stream",
     content:
-      "A named channel used to pass messages published by producers to consumers who process those messages. Streams are grouped by database.",
+      "A named channel used by producers to publish messages to consumers  for processing. Streams are grouped by database.",
   },
   {
     id: 36,
@@ -217,7 +211,7 @@ const glossaryData = [
     id: 37,
     title: "stream consumer",
     content:
-      "A process that establishes a subscription to a Macrometa GDN stream and processes messages published to that stream by producers.",
+      "A process that establishes a subscription to a Macrometa GDN stream and processes messages published to that stream by producers.",
   },
   {
     id: 38,
@@ -252,8 +246,7 @@ const glossaryData = [
     id: 43,
     title: "stream reader",
     content:
-      "Macrometa GDN readers are message processors much like GDN consumers but with two major differences:\n\n- You can specify *where* on a stream readers begin processing messages (consumers always begin with the latest available unacknowledged message).\n- Readers don't retain data or acknowledge messages.",
-  },
+      "GDN stream readers are message processors that don't retain data or acknowledge messages. They are similar to GDN consumers but allow you to specify where messages begin processing. "},
   {
     id: 44,
     title: "stream retention policy",
@@ -276,7 +269,7 @@ const glossaryData = [
     id: 47,
     title: "unacknowledged",
     content:
-      "A message that has been delivered to a consumer for processing but not yet confirmed as processed by the consumer.",
+      "An unacknowledged message indicates successful delivery to a consumer for processing but without confirmation of processing​ by the consumer.",
   },
   {
     id: 48,
