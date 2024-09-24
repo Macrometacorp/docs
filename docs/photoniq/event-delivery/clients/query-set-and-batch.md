@@ -25,8 +25,8 @@ querySet.retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event
 |--------------|------------|----------|------------------------|
 | `query` | `string` | Yes | SQL query to retrieve/listen  |
 | `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
-| `errorListener`| `function` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) |
-| `compress` | `boolean` | No | Compress incoming initial data.  |
+| `errorListenerOrOptions`| `function `\|` QueryOptions` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) or set query options |
+| `options` | `QueryOptions` | No | Set query options.  |
 
 ### retrieveAndSubscribe
 
@@ -41,8 +41,8 @@ querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-K
 |--------------|------------|----------|-------------------|
 | `query` | `string` | Yes | SQL query to retrieve/listen  |
 | `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
-| `errorListener`| `function` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) |
-| `compress` | `boolean` | No | Compress incoming initial data.  |
+| `errorListenerOrOptions`| `function `\|` QueryOptions` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) or set query options |
+| `options` | `QueryOptions` | No | Set query options.  |
 
 ### subscribe
 
@@ -57,7 +57,8 @@ querySet.subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (even
 |--------------|------------|----------|-------------------|
 | `query` | `string` | Yes | SQL query to retrieve/listen  |
 | `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
-| `errorListener`| `function` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) |
+| `errorListenerOrOptions`| `function `\|` QueryOptions` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) or set query options |
+| `options` | `QueryOptions` | No | Set query options.  |
 
 ### unubscribe
 
@@ -92,3 +93,10 @@ Removes all subscriptions in the `QuerySet`:
 ```js
 querySet.unsubscribeAll();
 ```
+
+
+#### `QueryOptions` instance schema:
+
+| **Property** | **Type** | **Requred** | **Description** |
+|--------------|----------|-------------|-----------------|
+| `compress` | `bolean` | No | compress response data  |

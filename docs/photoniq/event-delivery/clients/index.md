@@ -115,11 +115,20 @@ let connection = PhotoniqEdsSdk.create(config);
 
 | **Property** | **Type** | **Requred** | **Description** |
 |----------------------|-----------|-----------|-----------------------------------|
-| `host` | `string` | Yes | Host of the connectionn   |
+| `host` | `string` | Yes | Host of the connection   |
 | `customerId` | `string` | Yes | Customer ID credentails    |
 | `apiKey` | `string` | Yes | ApiKey credentails    |
 | `fabric` | `string` | No | Fabric to be used. Default is `_system`   |
-| `connectionTypes` | `string[]` | No | Use type of connection and priority. Default is `["ws"]`. Types: `ws`, `sse`    |
-| `queryType` | `string` | No | Type of query to use. Types: `"SQL"`   |
+| `connectionTypes` | `(string `\|` SubConfig)[]` | No | Use type of connection and priority. Default is `["ws"]`. Types: `ws`, `sse`    |
 | `autoReconnect` | `boolean` | No | Automatically reconnect in case of network issues. Default is `true`    |
-| `pingSeconds` | `number` | No | Seconds between ping-pong messages to the WebSocket server. Default is `29`   |
+
+#### `SubConfig` instance schema:
+
+| **Property** | **Type** | **Requred** | **Description** |
+|----------------------|-----------|-----------|-----------------------------------|
+| `type` | `string` | Yes | Type of the connection. Value: `ws` or `sse`   |
+| `customerId` | `string` | No | Customer ID credentails. Default set from `Config`     |
+| `apiKey` | `string` | No | ApiKey credentails. Default set from `Config`   |
+| `fabric` | `string` | No | Fabric to be used. Default set from `Config`  |
+| `pingSeconds` | `number` | No | Seconds between ping-pong messages to the WebSocket server. Default is `29`. Acceptable only for `ws` connection.   |
+| `flushTimeoutMs` | `number` | No | Seconds between ping-pong messages to the WebSocket server. Default is `20`. Acceptable only for `sse` connection.   |
