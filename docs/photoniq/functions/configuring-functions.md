@@ -6,7 +6,7 @@ title: Configuring Functions
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Depending on the language/framework used, all PhotonIQ functions come with a `photoniq.toml` file when they are created. The `photoniq.toml` file allows you to customize the behavior of your functions by configuring settings such as CORS, logging,  metadata, resource limits, and environment variables.
+When creating a function, a `photoniq.toml` file is created in your project directory. This file allows you to customize the behavior of your functions by configuring settings such as CORS, logging,  metadata, resource limits, and environment variables.
 
 The following table provides a detailed explanation of the fields available in the `photoniq.toml` file for configuring Rust, JavaScript and Next.js functions:
 
