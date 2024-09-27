@@ -51,7 +51,8 @@ The table below describes the configuration options in the the `photoniq.toml`:
 | `cors_settings.allowed_hosts`  | Hosts allowed to access the function.                                      |
 | `cors_settings.allow_http`     | Boolean indicating if HTTP is allowed.                                     |
 | **`[log_settings]`**           | **Configuration settings for logging.**                                    |
-| `log_settings.enabled`         | Boolean indicating if logging is enabled.  Refer to [Log levels](#log-levels)|
+| `log_settings.enabled`         | Boolean indicating if logging is enabled.                                  |
+| `log_settings.level`           | Refer to [Log levels](#log-levels)                                         |
 | **`[env_vars]`**               | **Environment variables used by the function.**                            |
 | `env_vars.MESSAGE`             | An environment variable containing a message.                              |
 
