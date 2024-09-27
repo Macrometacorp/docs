@@ -39,7 +39,7 @@ PhotonIQ Functions leverages the  [CLI tool](functions-cli.md) and [API](https:/
  </grid>
 
 ## How PhotonIQ Functions work
-![How it works](/img/functions/how-it-works.png)
+![How it works](/img/functions/functions-architecture.png)
 
 PhotonIQ Functions operates within a serverless architecture, designed to deploy high-performance functions in response to HTTP requests. This approach ensures that resources are consumed only when functions are triggered, optimizing efficiency. The system supports an on-demand execution model that can handle large volumes of parallel requests, all while remaining stateless between invocations.
 
