@@ -31,7 +31,7 @@ The log level you select determines what messages will be shown. If you set the 
 
 ## Usage metrics
 
-Monitoring usage metrics is vital for tracking performance and resource utilization of your functions. This data helps you understand how your functions are performing, optimize their efficiency, and troubleshoot potential bottlenecks.
+Monitoring usage metrics is vital for tracking performance and resource utilization of your functions. This data helps you to understand how your functions are performing, to optimize their efficiency, and to troubleshoot potential bottlenecks.
 
 Metrics are currently available for Rust and JS functions via the [Usage Metrics API](https://www.macrometa.com/docs/apiFaas#/operations/handle_mm_metrics), providing detailed statistics such as:
 
