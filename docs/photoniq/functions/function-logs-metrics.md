@@ -33,7 +33,7 @@ The log level you select determines what messages will be shown. If you set the 
 
 Monitoring usage metrics is vital for tracking performance and resource utilization of your functions. This data helps you to understand how your functions are performing, to optimize their efficiency, and to troubleshoot potential bottlenecks.
 
-Metrics are currently available for Rust and JS functions via the [Usage Metrics API](https://www.macrometa.com/docs/apiFaas#/operations/handle_mm_metrics), providing detailed statistics such as:
+Metrics are currently available for Rust and JavaScript functions via the [Usage Metrics API](https://www.macrometa.com/docs/apiFaas#/operations/handle_mm_metrics), providing detailed statistics such as:
 
 - **`bytes_downloaded`**: The amount of data downloaded by the function.
 - **`bytes_uploaded`**: The amount of data uploaded.
