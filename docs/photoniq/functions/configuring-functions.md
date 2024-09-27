@@ -19,7 +19,7 @@ The following table provides a detailed explanation of the fields available in t
 ```toml title='photoniq.toml'
 name = "{{function_name}}"
 version = "0.0.1"
-description = "Description for function {{function_name}}"
+description = "A description for your function"
 lang = "rust"
 #execute_url_suffix = "optional_url_suffix_to_execute_function"
 
