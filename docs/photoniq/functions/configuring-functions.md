@@ -14,7 +14,7 @@ The following table provides a detailed explanation of the fields available in t
 
 <Tabs groupId="languages">
 
-<TabItem value="rust/js" label="Rust/Javascript">
+<TabItem value="rust/js" label="Rust/JavaScript">
 
 ```toml title='photoniq.toml'
 name = "TheFunctionName"
