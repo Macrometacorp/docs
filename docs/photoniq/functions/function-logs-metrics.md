@@ -11,7 +11,10 @@ Logs are a key resource for monitoring, debugging, and optimizing your functions
 You can access logs through the CLI using:
 
 ```bash
-faas remote logs <function-name> <function-version>
+faas remote logs <function-name>
+or
+faas remote logs <function-version>
+
 ```
 
 For more granular control, the [Retrieve Function Log API](https://www.macrometa.com/docs/apiFaas#/operations/handle_mm_logs) allows you to filter logs by time period, log level, region, and other parameters, giving you flexibility to focus on the data that matters most.
