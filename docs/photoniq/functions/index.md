@@ -41,7 +41,7 @@ PhotonIQ Functions leverages the  [CLI tool](functions-cli.md) and [API](https:/
 ## How PhotonIQ Functions work
 ![How it works](/img/functions/how-it-works.png)
 
-PhotonIQ Functions operates within a serverless architecture, designed to deploy high-performance functions in response to HTTP requests. This approach ensures that resources are consumed only when functions are triggered, optimizing efficiency. The system supports an on-demand, event-driven execution model that can handle large volumes of parallel requests, all while remaining stateless between invocations.
+PhotonIQ Functions operates within a serverless architecture, designed to deploy high-performance functions in response to HTTP requests. This approach ensures that resources are consumed only when functions are triggered, optimizing efficiency. The system supports an on-demand execution model that can handle large volumes of parallel requests, all while remaining stateless between invocations.
 
 Once functions are deployed, their information is stored in the Geo Distributed Network (GDN) database, enabling geo-replication. This ensures that functions are available from multiple locations, improving both speed and reliability for users across the globe.
 
