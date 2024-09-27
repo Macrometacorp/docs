@@ -17,7 +17,7 @@ The following table provides a detailed explanation of the fields available in t
 <TabItem value="rust/js" label="Rust/Javascript">
 
 ```toml title='photoniq.toml'
-name = "{{function_name}}"
+name = "TheFunctionName"
 version = "0.0.1"
 description = "A description for your function"
 lang = "rust"
