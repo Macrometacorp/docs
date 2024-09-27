@@ -185,7 +185,7 @@ This command creates a `functions` and `photoniq-faas-sdk` directory. The `funct
   - `index.js`: The template code for your function.
   - `photoniq.toml`: The configuration file for PhotonIQ Functions.
 
-  These files are prefilled with a template you can use for testing. The `index.js` file contains the function code, and the `photoniq.toml` file contains the [configuration settings](configuring-functions.md). Refer to the [Developing functions guide](03-developing-functions/index.md) to learn more about the Javascript functions file structure.
+  These files are prefilled with a template you can use for testing. The `index.js` file contains the function code, and the `photoniq.toml` file contains the [configuration settings](configuring-functions.md). Refer to the [Developing functions guide](03-developing-functions/index.md) to learn more about the JavaScript functions file structure.
 
 3. Open the `index.js` file. This file currently has a POST request example for advanced learning. However, for this quickstart guide, we’ll replace it with a simple GET request. Replace the existing content of the `index.js` file with the following code:
 
