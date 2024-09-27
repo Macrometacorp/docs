@@ -138,7 +138,7 @@ faas delete <function-name>
 
 ### `faas login`
 
-Log in to the PhotonIQ Functions service with the approprate credentials for your server (API_URL and API_KEY).
+Log in to the PhotonIQ Functions service with the appropriate credentials for your server (API_URL and API_KEY).
 
 ```bash
 faas login 
