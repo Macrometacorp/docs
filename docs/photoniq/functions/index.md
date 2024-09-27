@@ -27,7 +27,7 @@ PhotonIQ Functions is an edge-computing service that allows you to run your serv
 
 PhotonIQ Functions leverages the  [CLI tool](functions-cli.md) and [API](https://www.macrometa.com/docs/apiFaas#/) to facilitate serverless applications, offering the following key features:
 
-- **Multi-language support**: PhotonQ Functions offers the flexibility to write functions in popular languages/frameworks like Javascript, Rust and Next.js.
+- **Multi-language support**: PhotonQ Functions offers the flexibility to write functions in popular languages/frameworks like JavaScript, Rust and Next.js.
 
 - **Local to regional to global auto-scaling**: Automatically scales function instances based on workload demands, supporting both zero-to-N and 1-to-N scaling modes. This ensures optimal resource utilization and responsiveness to user and traffic pattern changes.
 
