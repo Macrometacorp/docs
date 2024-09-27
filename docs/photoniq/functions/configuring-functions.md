@@ -45,7 +45,7 @@ The table below describes the configuration options in the the `photoniq.toml`:
 | `version`                      | The version of the function.                                               |
 | `description`                  | A brief description of the function.                                       |
 | `lang`                         | The programming language used for the function, in this case, `rust` or `js`.     |
-| `execute_url_suffix`           | Customizes the [function execution endpoint](https://www.macrometa.com/docs/apiFaas#/operations/handle_latest_mm_execute). For example, setting `execute_url_suffix = "my/prefix"` allows the function to be executed via `/my/prefix/myFunction` instead of the default `/api/faas/v1/execute/myFunction`.                      |
+| `execute_url_suffix`           | Customizes the [function execution endpoint](https://www.macrometa.com/docs/apiFaas#/operations/handle_latest_mm_execute). For example, setting `execute_url_suffix = "/my/path/suffix"` allows the function to be executed via `/my/path/suffix/myFunction` instead of the default `/api/faas/v1/execute/myFunction`, like an alias.                      |
 | **`[cors_settings]`**          | **Configuration settings for Cross-Origin Resource Sharing (CORS).**       |
 | `cors_settings.allowed_methods`| HTTP methods allowed for CORS.                                             |
 | `cors_settings.allowed_hosts`  | Hosts allowed to access the function.                                      |
