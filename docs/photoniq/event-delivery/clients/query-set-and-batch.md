@@ -21,6 +21,13 @@ querySet.retrieve("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (event
 })
 ```
 
+| **Argument** | **Type** | **Requred** | **Description** |
+|--------------|------------|----------|------------------------|
+| `query` | `string` | Yes | SQL query to retrieve/listen  |
+| `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
+| `errorListenerOrOptions`| `function `\|` QueryOptions` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) or set query options |
+| `options` | `QueryOptions` | No | Set query options.  |
+
 ### retrieveAndSubscribe
 
 Retrieves initial data and subscribes to changes in the query:
@@ -30,6 +37,13 @@ querySet.retrieveAndSubscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-K
 })
 ```
 
+| **Argument** | **Type** | **Requred** | **Description** |
+|--------------|------------|----------|-------------------|
+| `query` | `string` | Yes | SQL query to retrieve/listen  |
+| `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
+| `errorListenerOrOptions`| `function `\|` QueryOptions` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) or set query options |
+| `options` | `QueryOptions` | No | Set query options.  |
+
 ### subscribe
 
 Only subscribes to changes in the query:
@@ -38,6 +52,13 @@ querySet.subscribe("SELECT * FROM <YOUR-COLLECTION> WHERE key=<YOUR-KEY>", (even
     console.log(`Message event: `, event);
 })
 ```
+
+| **Argument** | **Type** | **Requred** | **Description** |
+|--------------|------------|----------|-------------------|
+| `query` | `string` | Yes | SQL query to retrieve/listen  |
+| `resultListener`| `function` | Yes |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#result-listener) |
+| `errorListenerOrOptions`| `function `\|` QueryOptions` | No |  [Info](/photoniq/event-delivery/clients/listeners-and-errors#error-listener) or set query options |
+| `options` | `QueryOptions` | No | Set query options.  |
 
 ### unubscribe
 
@@ -72,3 +93,10 @@ Removes all subscriptions in the `QuerySet`:
 ```js
 querySet.unsubscribeAll();
 ```
+
+
+#### `QueryOptions` instance schema:
+
+| **Property** | **Type** | **Requred** | **Description** |
+|--------------|----------|-------------|-----------------|
+| `compress` | `bolean` | No | compress response data  |
