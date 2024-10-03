@@ -1031,3 +1031,14 @@ html[data-theme="dark"] .submitted-message {
 .submitted-message {
   color: #000000;
 }
+.text-disable{
+  @apply !text-gray-400;
+}
+html[data-theme="dark"] .text-disable{
+  @apply !text-gray-600;
+}
+
+html[data-theme="dark"] .custom-nav{
+  background-color: var(--color-neutral-800);
+
+}

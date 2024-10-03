@@ -5,13 +5,13 @@ const a = [
   {
     title: "Get started with PhotonIQ",
     subtitle: `Improve website SEO, search engine rankings, and many more with PhotonIQ.`,
-    href: "https://macrometa.com/docs/photoniq/",
+    href: "/docs/photoniq/",
     icon: "/docs/img/Icon-PhotonIQ.svg",
   },
   {
     title: "Build and deploy with Macrometa GDN",
     subtitle: `Build and deploy globally available applications with our edge network.`,
-    href: "https://www.macrometa.com/docs/gdn/",
+    href: "/docs/gdn/",
     icon: "/docs/img/Icon-GDN.svg",
   },
 ];
@@ -19,13 +19,13 @@ const b = [
   {
     title: "Tutorials",
     subtitle: "Learn from our tutorials and start building.",
-    href: "https://www.macrometa.com/docs/tutorials",
+    href: "/docs/tutorials",
     icon: "/docs/img/Icon-Tutorials.svg",
   },
   {
     title: "Glossary",
     subtitle: "Master our product language for seamless use.",
-    href: "https://macrometa.com/docs/references/glossary",
+    href: "/docs/glossary",
     icon: "/docs/img/Icon-Glossary.svg",
   },
   {
@@ -37,7 +37,7 @@ const b = [
   {
     title: "Release notes",
     subtitle: "Get all the information on our latest releases.",
-    href: "https://macrometa.com/docs/release-notes",
+    href: "/docs/release-notes",
     icon: "/docs/img/Icon-Notes.svg",
   },
 ];

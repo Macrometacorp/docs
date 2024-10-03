@@ -28,6 +28,7 @@
     "@mdx-js/react": "^1.6.21",
     "@stoplight/elements": "7.7.17",
     "@types/react": "^17.0.1",
+    "@types/react-icons": "^3.0.0",
     "@vercel/analytics": "^0.1.8",
     "algoliasearch": "^4.24.0",
     "clsx": "^1.1.1",
@@ -39,6 +40,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-instantsearch": "^7.12.2",
+    "react-markdown": "^9.0.1",
     "url": "^0.11.3",
     "web-vitals": "^3.1.1"
   },
