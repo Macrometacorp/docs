@@ -72,7 +72,7 @@ export default function Hello() {
                 alt={item.title}
                 className="text-purple-700 sm:text-2xl text-1xl"
               />
-              <h2 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-700 text-lg">
+              <h2 className="landing-text font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-700 text-lg">
                 <a className="text-gray-700" href={item.href}>
                   {item.title}
                 </a>
@@ -95,7 +95,7 @@ export default function Hello() {
                 alt={item.title}
                 className="sm:text-2xl text-1xl"
               />
-              <h2 className="font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-600 text-lg">
+              <h2 className="landing-text font-semibold sm:text-[18px] text-[13px] mt-[20px] mb-[4px] text-gray-600 text-lg">
                 <a className="text-gray-700" href={item.href}>
                   {item.title}
                 </a>
