@@ -28,7 +28,7 @@ GDN provides the following index types:
 
 ## Primary Index
 
-Each collection has a _primary index_ that stores the [document keys](../../references/glossary.md#document-key) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`.
+Each collection has a _primary index_ that stores the [document keys](/glossary) (`_key` attribute) for all documents in the collection. The primary index allows you to quickly select documents using the `_key` or `_id` attributes. C8QL queries automatically use primary indexes for equality lookups on `_key` or `_id`.
 
 You can use a dedicated function to find a document with its `_key` or `_id` using the primary index:
 
@@ -41,7 +41,7 @@ The primary index is an unsorted hash index, so it cannot be used for sorting or
 
 ## Edge Index
 
-Each [edge collection](../../references/glossary.md#edge-collection) automatically creates an _edge index_. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
+Each [edge collection](/glossary) automatically creates an _edge index_. The edge index provides quick access to documents by either their `_from` or `_to` attributes. You can use an edge index to quickly find connections between vertex documents. Queries use edge indexes when referring to the connecting edges of a vertex.
 
 C8QL uses edge indexes when performing equality lookups on `_from` or `_to` values in an edge collection. You can use a dedicated function to find edges with their `_from` or `_to` values using the edge index:
 
