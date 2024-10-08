@@ -40,7 +40,7 @@ Topics in [Redis](../../queries/redis) were updated as a result of this change.
 ### Akamai EdgeWorker Support Updates - Preview
 
 - Delete functionality improved. Refer to the [Function API](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType) for more information.
-- You can now invoke EdgeWorkers with stream workers. [Edge Functions](../../cep/query-guide/functions/edge-functions) was added as a result of this change.
+- You can now invoke EdgeWorkers with stream workers. [Edge Functions](../../compute/cep/query-guide/functions/edge-functions) was added as a result of this change.
   - In the Stream Workers Samples tab in the Macrometa web console, Sample-Function-Worker was added.
 - Added API error response codes. [Functions API](https://macrometa.com/docs/api#/operations/ListAllFunctionWorkerByType) were updated as a result of this change.
 - `groupIdWithPrefix` has been added to EdgeWorker metadata. You should delete your existing metadata and create new metadata through APIs before creating new EdgeWorkers.
@@ -60,7 +60,7 @@ Screenshots and instructions were updated as a result of this change.
 
 You can now run multiple stream worker instances with the same query.
 
-[Stream Worker Metadata](../../cep/metadata) has been updated as a result of this change.
+[Stream Worker Metadata](../../compute/cep/metadata) has been updated as a result of this change.
 
 ### New Parameters for Stream Source and Stream Sink
 
@@ -79,7 +79,7 @@ The following parameters were added to stream source:
 - auth.plugin
 - auth.params
 
-[Stream Source](../../cep/source/stream-source.md) was updated as a result of this change.
+[Stream Source](../../compute/cep/source/stream-source.md) was updated as a result of this change.
 
 The following parameters were added to stream sink:
 
@@ -90,7 +90,7 @@ The following parameters were added to stream sink:
 - auth.plugin
 - auth.params
 
-[Stream Sink](../../cep/sink/stream-sink.md) was updated as a result of this change.
+[Stream Sink](../../compute/cep/sink/stream-sink.md) was updated as a result of this change.
 
 ### Streams Process Messages with _delete Fields in Database Extension (CEP-440)
 

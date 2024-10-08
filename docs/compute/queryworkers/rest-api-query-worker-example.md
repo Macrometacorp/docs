@@ -10,7 +10,7 @@ import Steps from '../../_partials/_api-example-steps.md';
 
 This page shows you how to use the Macrometa API and query workers to perform basic CRUD operations on documents stored in a document collection.
 
-For more information about using Macrometa APIs, refer to [APIs](../../api-docs/index.md).
+For more information about using Macrometa APIs, refer to [APIs](../../developer-hub/api-docs/index.md).
 
 ## Prerequisites
 

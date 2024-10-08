@@ -3,36 +3,50 @@ sidebar_position: 5
 title: Quickstart
 ---
 
-Let's get started with Macrometa by creating a global address book. In this tutorial, you will be creating a document [collection](collections/), inserting and querying some user data, and finally creating a fully operational API via [Query Workers](queryworkers/). This tutorial is Macrometa's version of "Hello, world!", is simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms.
+Collections are the fundamental unit of Macrometa GDN, allowing you to create a globally distributed database for your business needs. This tutorial is Macrometa's version of "Hello, world!", simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms. 
 
 If you've already completed this tutorial, then you can [add search to your application](search-views/fulltext-search/getting-started-search).
+
+## Objectives
+
+This tutorial walks you through the following tasks:
+
+- Creating a global address book via document [collection](collections/)
+- Inserting and querying user data from the new collection
+- Creating a fully operational API via [Query Workers](compute/queryworkers/)
 
 ## Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create collections.
 
-## Step 1: Create a collection
+## Follow these steps
 
-A _collection_ is a group of documents with a unique name and identifier. For the address book, you will create a document collection that contains names and addresses.
+### Step 1: Create a document collection
 
+A _collection_ is a group of documents with a unique name and identifier. For this tutorial, we will create an address book document collection that contains names and addresses.
+
+1. Log into your Macrometa account
 1. On the side menu, click **Data > Collections**.
 1. Click **New Collection**.
-1. Click **Document**.
-1. In **Collection Name**, enter `addresses`.
-1. Click **Create**.
+1. Click **Document**
+1. Enter `addresses` as the **Collection Name**. You can also do the following after entering a collection name:
+    - Enable the collection to act as streams 
+    - Ensure the collection has strong consistency
+    - Enable sharding
+    - Indicate the distribution level for your collection (global or local). This tutorial will create a global collection.
 
-![Create a collection](/img/quickstart/create-doc-view.png)
+![Create a collection](/img/collections/create-collection.png)
 
 Macrometa distributes this collection to every location in the global fabrics. If you're curious about the locations, click **Dashboard** to see the default [fabric](geofabrics/index.md) locations.
 
 Our collection is now accessible worldwide! However, it's empty. Let's fix that.
 
-## Step 2: Add data to your new collection with a query
+### Step 2: Add data to your new collection with a query
 
 There are several ways to add data to a collection, including importing CSV or JSON files. For this quickstart, we'll use a query to insert records.
 
-1. On the side menu, click **Compute > Query Workers**.
-2. The code block below contains six names and email addresses. Copy and paste it in the code editor on line 1.
+1. Click **Compute > Query Workers** from the side menu of your dashboard.
+2. Copy and paste the code block below into the query editor. This code block contains six names and email addresses.
 
   ```sql
   // Query to insert addresses
@@ -47,20 +61,20 @@ There are several ways to add data to a collection, including importing CSV or J
     INSERT persons INTO addresses
   ```
 
-3. Click **Run Query**. This inserts the records into the `addresses` collection you made earlier and returns a query result. The result will be empty brackets because we're inserting data, not reading anything back.
-4. (Optional) Click **Query Info** in the Query Result to see what the query did and how long each step took. Pretty cool if you're into performance metrics.
-5. Click **Run Query** two more times. Every click adds the six records again so the collection has more records to work with. You can keep clicking if you want more records or change values in the code block if you want different records.
+3. Click **Run Query**. This inserts the records into the `addresses` collection you made earlier and returns a query result. It returns empty brackets as we're inserting data, not reading anything back.
+4. (Optional) Click **Query Info** in the Query Result to get info on every step in the query, which is useful for tracking performance.
+5. Click **Run Query** two more times. Every click adds the six records again so the collection has more records. Keep clicking to add more records or change values in the code block for different records.
 
-## Step 3: View the documents in the collection
+### Step 3: View the documents in the collection
 
-Return to the collection and see what the query did.
+Return to the collection and view the new records added by the query.
 
-1. click **Data > Collections**.
+1. Click **Data > Collections**.
 2. Click **addresses**.
 
-Macrometa displays a list of keys and content for each record in the collection. Now you can:
+Macrometa displays a list of keys and values for every record in the collection. Now you can:
 
-- Click a record to view it. While viewing a record, edit it by typing changes and then click **Save**.
+- Click a record to view it. While viewing, you can edit it by typing changes and click **Save**.
 - Click the red circle next to a record to delete it.
 - Click the funnel at the top to filter records. Try entering the following (case-sensitive):
   - **Attribute name:** firstname
@@ -68,7 +82,7 @@ Macrometa displays a list of keys and content for each record in the collection.
 
 When you are done experimenting with records, continue to the next step.
 
-## Step 4: Query the documents in the collection
+### Step 4: Query the documents in the collection
 
 Now, let's query the data you just added to your collection.
 
@@ -84,7 +98,7 @@ Now, let's query the data you just added to your collection.
 
 Macrometa returns all records in the collection. You can view it as a **Table** or **JSON**. You can also click **Query Info** to see detailed performance metrics.
 
-## Step 5: Save the query as an API endpoint
+### Step 5: Save the query as an API endpoint
 
 Macrometa allows you to save a query as a [Query Worker](compute/queryworkers/index.md).
 
@@ -97,9 +111,9 @@ Macrometa displays a `curl` command you can use to access this endpoint from any
 
 ![Create a Query Worker](/img/quickstart/create-query-worker.png)
 
-## Step 6: Finish the API
+### Step 6: Finish the API
 
-In the previous step, you created the `getAddresses` Query Worker, which is basically the READ in a CRUD API (Create, Read, Update, Delete). Build the rest of the API by creating a Query Worker for each of the following queries.
+In the previous step, you created the `getAddresses` Query Worker, which is basically the READ operation in a CRUD API (Create, Read, Update, Delete). Build the rest of the API by creating a Query Worker for each of the following queries.
 
 1. In **Query Workers**, click **New Query**.
 1. Copy and paste a code block.
@@ -115,7 +129,11 @@ To test a query, enter any necessary information in the [bind parameters](querie
 If a query requires a key, you must enter one in the bind parameters or else the query will fail with an error.
 :::
 
-### Create a new record
+### Working with Query Workers
+
+Here are more examples of manipulating your collections with the Macrometa query editor.
+
+#### Create a new record
 
 **Name:** saveContact
 
@@ -126,7 +144,7 @@ INSERT {firstname:@firstName,
 INTO addresses
 ```
 
-### Update a record
+#### Update a record
 
 **Name:** updateContact
 
@@ -137,7 +155,7 @@ UPDATE @_key WITH { firstname:@firstName,
 IN addresses
 ```
 
-### Delete a record
+#### Delete a record
 
 **Name:** removeContact
 
@@ -145,6 +163,10 @@ IN addresses
 REMOVE @_key 
 IN addresses
 ```
+
+:::info
+Name used in these queries refer to the query name
+:::
 
 You have a fully-functional API for your application. [We made a front-end for you to take your new back-end for a spin](https://github.com/Macrometacorp/tutorial-addressbook-streams).
 

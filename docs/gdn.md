@@ -9,7 +9,7 @@ title: Overview
 Macrometa's Global Data Network (GDN) is a distributed backend for building global applications. The GDN offers different classes of services:
 
 - Storage: The GDN offers collections as a distributed backend DB, allowing you to store, retrieve, update, and delete data for powering your applications.
-- Compute: These comprise powerful workers at the edge for powering high-processing workloads.
+- Compute: These comprise powerful workers at the edge for powering processing-intensive workloads at ultra high performance and low latency.
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ Macrometa's Global Data Network (GDN) is a distributed backend for building glob
   <card
     heading="Deploy with Compute"
     description="Build and deploy compute-intensive workloads at the edge with workers and functions"
-    href="/queryworkers"
+    href="/compute"
   />
 <card
     heading="Manage User Access"

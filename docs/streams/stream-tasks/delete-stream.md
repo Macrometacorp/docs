@@ -26,7 +26,7 @@ Delete a stream.
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../../sdks/install-sdks.md).
+You must [Install the Python SDK](../../developer-hub/sdks/install-sdks.md).
 
 ```py
 from operator import concat
@@ -62,7 +62,7 @@ deleteStream()
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the JavaScript SDK](../../developer-hub/sdks/install-sdks.md) before you can run this code.
 
 ```js
 // Connect to GDN.
@@ -201,7 +201,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams delete](../../cli/streams-cli#gdnsl-streams-delete) CLI commands to delete existing streams.
+Use the [gdnsl streams delete](../../developer-hub/cli/streams-cli#gdnsl-streams-delete) CLI commands to delete existing streams.
 
 </TabItem>
 </Tabs>

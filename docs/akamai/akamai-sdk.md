@@ -16,7 +16,7 @@ You can also check if there is existing metadata set up, update metadata, and de
 <Tabs groupId="modify-single">
 <TabItem value="javascript" label=" JavaScript SDK">
 
-- Step 1. [Install the SDK](../../docs/sdks/install-sdks.md).
+- Step 1. [Install the SDK](../../docs/developer-hub/sdks/install-sdks.md).
 - Step 2. Create an instance of the jsC8.
 - Step 3. Access Function commands `client.function.<function method>`.
 

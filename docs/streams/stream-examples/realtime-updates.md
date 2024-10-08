@@ -84,7 +84,7 @@ const sleep = (milliseconds) => {
 
 Add code to perform the following actions:
 
-1. Create a [document collection](../../collections/index.md) called `ddos` to which you subscribe. If a collection by that name already exists, the existing collection is used instead.
+1. Create a [document collection](../../database/collections/index.md) called `ddos` to which you subscribe. If a collection by that name already exists, the existing collection is used instead.
 1. Add `data` to the collection, then subscribe to the collection. In this example, we are adding IP addresses to block.
 1. Delete the collection.
 

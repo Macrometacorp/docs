@@ -11,7 +11,7 @@ The first step in using GDN is to establish a connection to a local region. When
 The code example below shows how you might use authentication in your code.
 
 :::note
-The example below assumes you have already installed one or more Macrometa SDKs. For instructions, refer to [Install SDKs](../../sdks/install-sdks.md).
+The example below assumes you have already installed one or more Macrometa SDKs. For instructions, refer to [Install SDKs](../../developer-hub/sdks/install-sdks.md).
 :::
 
 <Tabs groupId="operating-systems">

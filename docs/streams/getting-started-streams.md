@@ -16,7 +16,7 @@ Before working with streams, you need to know the following concepts:
 - **Messages:** GDN streams retain all messages after creating a subscription, even after the consumer disconnects from the server. Retained messages are only discarded when a consumer acknowledges successful processing.
 - **Streams:** A stream is a named channel for sending messages. A distributed append-only log backs each stream and can be local (at one edge location only) or global (across all edge locations in the fabric).
 
-This guide demonstrates how to get started using Streams with the [pyC8](https://github.com/Macrometacorp/pyC8) and [jsC8](https://github.com/Macrometacorp/jsC8) SDKs and [GDN CLI](../cli/index.md).
+This guide demonstrates how to get started using Streams with the [pyC8](https://github.com/Macrometacorp/pyC8) and [jsC8](https://github.com/Macrometacorp/jsC8) SDKs and [GDN CLI](../developer-hub/cli/index.md).
 
 ## Objectives
 
@@ -500,9 +500,9 @@ async function selectAction () {
 
 <TabItem value="gdn-cli" label="GDN CLI">
 
-To start creating, subscribing and receiving streams with the CLI, you need to [install the gdn CLI](../cli/index.md).
+To start creating, subscribing and receiving streams with the CLI, you need to [install the gdn CLI](../developer-hub/cli/index.md).
 
-After installing the CLI, you can then [use any of the gdnsl stream commands to create, subscribe, and publish messages](../cli/streams-cli.md). 
+After installing the CLI, you can then [use any of the gdnsl stream commands to create, subscribe, and publish messages](../developer-hub/cli/streams-cli.md). 
 
 
 </TabItem>
