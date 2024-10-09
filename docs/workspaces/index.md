@@ -24,12 +24,12 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
    <card
     heading="Peripherals Validator"
     description="Validate your peripheral devices for a better Cloud Workspaces experience"
-    href="/peripheral-validator"
+    href="/workspaces/peripheral-validator"
   />
    <card
     heading="Remote Desktop Environments"
     description="Access a remote desktop environment for your daily tasks"
-    href="/remote-desktop-enviroment"
+    href="/workspaces/remote-desktop-enviroment"
   />
  </grid>
 

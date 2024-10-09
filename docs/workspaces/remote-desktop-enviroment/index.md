@@ -4,7 +4,10 @@ title: Remote Desktop Enviroments
 ---
 
 
-Cloud Workspaces extends its capabilities by offering Virtual Desktop Infrastructure (VDI), providing users with remote access to Windows 10 and Linux Ubuntu desktop environments directly through their web browsers.
+Cloud Workspaces extends its capabilities by offering Virtual Desktop Infrastructure (VDI), providing users with remote access to Windows 10 and Linux Ubuntu desktop environments directly through their web browsers. The VDI has two types:
+
+- **Persistent VDI:** With a persistent VDI, your desktop session persists even after exiting the browser, ensuring that every subsequent login resumes from your previous session, preserving work progress and improving productivity and efficiency. 
+- **Non-persistent VDI:** Every new login to this type starts a fresh user session. This type works best for concise tasks. 
 
 ## Accessing your remote desktop environment
 
@@ -24,7 +27,7 @@ While your virtual desktop is running on remote hardware, performance remains co
 
 As you use the virtual desktop, keep in mind that any changes or files you create are saved within the virtual environment. Depending on your configuration, these changes may persist between sessions, allowing you to pick up right where you left off.
 
-## Windows remote desktop menu
+### Windows remote desktop menu
 
 The Windows remote desktop interface in Cloud Workspaces provides essential control options to enhance your user experience and manage your session effectively:
 
