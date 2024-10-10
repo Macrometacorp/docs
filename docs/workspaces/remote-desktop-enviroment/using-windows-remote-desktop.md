@@ -3,7 +3,7 @@ sidebar_position: 5
 title: Using the Windows desktop
 ---
 
-After successfully [running the VDI installer](index.md), you can now access  your remote Windows desktop. This environment offers a complete Windows experience in a controlled and consistent setting. This guide outlines the steps to connect to your remote Windows desktop, utilize it for your  tasks, and properly disconnect when finished.
+After successfully [running the VDI installer](index.md#download-the-vdi-installer), you can now access  your remote Windows desktop. This environment offers a complete Windows experience in a controlled and consistent setting. This guide outlines the steps to connect to your remote Windows desktop, utilize it for your  tasks, and properly disconnect when finished.
 
 ![Cloud Workspace interface](/img/workspaces/homepage.jpeg)
 

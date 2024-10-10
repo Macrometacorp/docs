@@ -23,12 +23,15 @@ The remote desktop environment supports the following peripheral devices:
 - Camera
 - Speaker
 
-### Download the VDI Installer
+### Download the VDI installer
 
 Before accessing the remote desktops, you're required to run the VDI installer to configure the necessary prerequisites on your device. Follow these steps to download and install the VDI components:
 
 1. Navigate to **Download Package** from the left-hand sidebar.
-2. Click the **Download VDI Installer** to download the installer file.
+2. Click the **Download VDI Installer** button to download the installer file.
+
+   ![onboarding](/img/workspaces/onboarding.png)
+
 3. Run the installer and follow the on-screen instructions to complete the setup.
 
 Once the installation is complete, return to the Workspaces homepage to begin using the [Windows](using-windows-remote-desktop.md) or [Linux](using-linux-remote-desktop.md) remote desktops.
