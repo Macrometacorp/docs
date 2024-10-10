@@ -39,6 +39,8 @@ Once your browser is installed on your device,
     ![onboarding-screen](/img/workspaces/onboarding-screen.png)
 
 - Returning users are redirected to the homepage.
+
+    ![Cloud Workspace interface](/img/workspaces/homepage.jpeg)
     
 Once connected, you'll see the specific web applications deployed for your business use case under Workspaces, along with the virtual Linux and Windows desktops. Additionally you have VS Code, a remote IDE for developers. Refer to the [RBA](./remote-browser-accelerator/index.md) and [RDE](./remote-desktop-enviroment/index.md) documentation for more details on how to use these workspaces.
 

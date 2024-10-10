@@ -6,7 +6,7 @@ This section is designed to help you quickly resolve common issues that you migh
 
 - [Login and authentication](#login-and-authentication)
 - [Issues accessing Workspaces?](#problems-accessing-workspaces)
-- [Slow performance](*slow-performance)
+- [Slow performance](#slow-performance)
 - [Error creating a remote VDI connection](#creating-a-remote-vdi-connection)
 - [Browser compatibility](#browser-compatibility)
 - [Error validating peripherals](#error-validating-peripherals)
