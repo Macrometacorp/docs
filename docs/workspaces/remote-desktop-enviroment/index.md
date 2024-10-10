@@ -4,7 +4,7 @@ title: Remote Desktop Enviroments
 ---
 
 
-Cloud Workspaces extends its capabilities by offering Virtual Desktop Infrastructure (VDI), giving users remote access to Windows and Linux desktops. These virtual desktops run on remote servers, ensuring consistent performance regardless of the power or specifications of your local device. This enables you to handle resource-heavy tasks even on less powerful machines. Any changes or files created within the virtual desktop are saved in the virtual environment, and depending on your configuration, these changes can persist between sessions, allowing you to resume your work seamlessly.
+Cloud Workspaces extends its capabilities by offering Virtual Desktop Infrastructure (VDI), giving users remote access to Windows and Linux desktop enviroments. These virtual desktops run on remote servers, ensuring consistent performance regardless of the power or specifications of your local device. They enable you handle resource-heavy tasks even on less powerful machines. Any changes or files created within the virtual desktop are saved in the virtual environment, and depending on your configuration, these changes can persist between sessions, allowing you to resume your work seamlessly.
 
 Cloud Workspaces provides two distinct types of Virtual Desktop Infrastructure (VDI):
 
@@ -31,4 +31,4 @@ Before accessing the remote desktops, you're required to run the VDI installer t
 2. Click the **Download VDI Installer** to download the installer file.
 3. Run the installer and follow the on-screen instructions to complete the setup.
 
-Once the installation is complete, return to the Workspaces homepage to begin using the Windows or Linux remote desktop.
+Once the installation is complete, return to the Workspaces homepage to begin using the [Windows](using-windows-remote-desktop.md) or [Linux](using-linux-remote-desktop.md) remote desktops.
