@@ -3,11 +3,11 @@ title: Quickstart
 sidebar_position: 1
 ---
 
-Cloud Workspaces is deployed and managed by Macrometa's engineering team based on your product needs, ensuring optimal performance and security. 
+Cloud Workspaces is deployed and managed by Macrometa's engineering team based on your product needs, ensuring optimal performance and security. This short guide walks you through getting started with the service. 
 
 ## Prerequisites
 
-Ensure to have the following installed before using Cloud Workspaces:
+Before you can start using Workspaces, ensure to have the following installed:
 
 1. For **Windows 10**, download the latest stable **Chrome** browser.
 
@@ -32,9 +32,9 @@ Once your browser is installed on your device,
 1. Contact Macrometa support to receive your unique URL for accessing your Cloud Workspace environment.
 1. Open your local browser and enter the provided URL in the address bar. Enter your login details.
 
-![login-screen](/img/workspaces/login-screen.png)
+    ![login-screen](/img/workspaces/login-screen.png)
 
-- For first-time users, the onboarding screen is displayed so you can download the appropriate installer based on your specific requirements. Refer to the respective guides for detailed instructions on how to set up the [VDI](./remote-desktop-enviroment/index.md) and [RBA](./remote-browser-accelerator/getting-started.md) installers.
+- After login, first-time users are taken to the onboarding screen. The onboarding screen contains different installers for using Cloud Workspaces tools. Download the appropriate installer based on your specific requirements and refer to the respective guides for detailed instructions on how to set up the [VDI](./remote-desktop-enviroment/index.md) and [RBA](./remote-browser-accelerator/getting-started.md) installers.
     
     ![onboarding-screen](/img/workspaces/onboarding-screen.png)
 
@@ -42,7 +42,7 @@ Once your browser is installed on your device,
 
     ![Cloud Workspace interface](/img/workspaces/homepage.jpeg)
     
-Once connected, you'll see the specific web applications deployed for your business use case under Workspaces, along with the virtual Linux and Windows desktops. Additionally you have VS Code, a remote IDE for developers. Refer to the [RBA](./remote-browser-accelerator/index.md) and [RDE](./remote-desktop-enviroment/index.md) documentation for more details on how to use these workspaces.
+The Workspaces homepage displays the different tools available in the service, and allows you to navigate between these tools.
 
 
 ## Validating Peripheral Devices

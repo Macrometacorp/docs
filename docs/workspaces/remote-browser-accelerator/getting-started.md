@@ -2,7 +2,13 @@
 title: Getting started
 ---
 
-RBA allows you access your work applications and tools at the edge, thus reducing latency and improving performance. 
+RBA allows you access your work applications and tools at the edge, thus reducing latency and improving performance. This guide walks you through the necessary steps to using the service. 
+
+At the end of this guide, you will be able to:
+
+- Download and install the RBA installer
+- Get RBA started and launch your necessary work applications.
+- Use the RBA control bar for a better experience
 
 ## Prerequisites
 
@@ -18,17 +24,17 @@ The RBA installer is a driver that enables you to launch your applications with 
 1. Launch your provided Workspace URL in your preferred browser to access the Workspaces homepage.
 1. Follow one of these steps based on your usage level:
     - For first-time users, you are directed to an onboarding screen that displays various installers for different needs. Click **Download RBA Installer**
-    - For returning users, click **Download Package** from the bottom of the left-side menu on the homepage. This takes you to the onboarding page with the various installation drivers. Click **Download RBA Installer**.
-1. Run the installer and enter your **Email** and **RBA Installer Token**. Copy the RBA Installer Token from the onboarding screen. 
+    - For returning users, click **Download Package** from the bottom of the left-side menu on the homepage. This takes you to the onboarding page with the various installers. Click **Download RBA Installer**.
+    
+    ![onboarding-screen](/img/workspaces/onboarding-screen.png)
+1. Run the installer and enter your **Email** and **RBA Installer Token**. You can find and copy the RBA Installer Token from the onboarding screen.
 
 ## Step 2: Launch your web apps
 
 With the installer now successfully installed:
 
 1. Navigate to the Workspaces homepage
-1. Click on the web app you wish to use. By default, the selected application or service will open in a tab within the remote browser. A control bar icon ![Control Bar Icon](/img/workspaces/control-bar-icon.png) appears on the left side of the screen, allowing you to easily manage and interact with the remote browser.
-
-This action will display the web applications deployed for your specific business needs, along with virtual Linux and Windows desktops. Additionally you have VS Code, a remote IDE for developers.
+1. Click on the web app you wish to use. By default, the selected application or service will open in a tab within the remote browser. A control bar icon `>` appears on the left side of the screen, allowing you to easily manage and interact with the remote browser.
 
 ## Optimize RBA with the RBA control bar
 
@@ -36,7 +42,7 @@ The Remote Browser Acceleration (RBA) control bar provides a comprehensive inter
 
 To access the RBA control bar,
 
-- Click the control bar icon ![Control Bar Icon](/img/workspaces/control-bar-icon.png) on the left side of the browser to access the menu.
+- Click the control bar icon on the left side of the browser to access the menu.
 
 ![RBA Control Bar](/img/workspaces/control-bar.png)
 
