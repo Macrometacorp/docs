@@ -11,7 +11,7 @@ title: Cloud Workspaces
 
 # Macrometa Cloud Workspaces
 
-Macrometa Cloud Workspaces redefines the digital workplace by delivering secure, high-performance virtual work environments that users can access from any internet-connected device on a browser. By harnessing the power of CDN edge computing, Cloud Workspaces ensures minimal latency, creating a more responsive and ideal experience that empowers teams to work efficiently, no matter where they are.
+Macrometa Cloud Workspaces redefines the digital workplace by delivering secure, high-performance virtual work environments that users can access from any internet-connected device on a browser. By harnessing the power of CDN edge computing, Cloud Workspaces ensures minimal latency and creates a more responsive and ideal experience that empowers teams to work efficiently, no matter where they are.
 
 <grid cols={3}>
  <card
@@ -26,7 +26,7 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
   />
    <card
     heading="Remote Desktop Environments"
-    description="Access Windows and Linux remote desktops for your work tasks"
+    description="Access Windows and Linux remote desktops for your work"
     href="/workspaces/remote-desktop-enviroment"
   />
  </grid>
@@ -35,8 +35,8 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
 
 At its core, Cloud Workspaces integrates the following advanced technologies:
 
-- **[Remote Browser Acceleration (RBA)](./remote-browser-accelerator/index.md)**: RBA enhances the performance of specific web applications by deploying them directly at the network edge. It extends remote browser isolation by allowing users to interact with web apps as if running locally on their devices, ensuring optimal speed and responsiveness. By accelerating the delivery of these applications, RBA guarantees a better user experience and improved work efficiency. 
 - **Remote Browser Isolation (RBI)**: RBI offers a powerful approach to web security by executing all web browsing activities within isolated cloud environments. This isolation ensures that any potential threats from web content are contained and kept away from the user's local device, significantly reducing the risk of malware and other web-based attacks.
+- **[Remote Browser Acceleration (RBA)](./remote-browser-accelerator/index.md)**: RBA enhances the performance of specific web applications by deploying them directly at the network edge. It extends remote browser isolation by allowing users to interact with web apps as if running locally on their devices, ensuring optimal speed and responsiveness. By accelerating the delivery of these applications, RBA guarantees a better user experience and improved work efficiency. 
 - **[Remote Desktop Environments (RDE)](./remote-desktop-enviroment/index.md)**: RDE provides full-featured Windows and Linux remote desktop environments accessible from any device with an internet connection. These desktops are hosted in the cloud and are powerful, enabling users to perform intensive workloads with less powerful machines. VDI ensures consistency and flexibility, enabling users to maintain productivity regardless of location.
 
 These technologies work together to deliver a versatile and secure workspace solution on the edge, tailored to the diverse needs of modern businesses. It enables rapid deployment of web applications, secure and isolated browsing sessions, and full-featured virtual desktops— all within a unified environment designed to enhance productivity and maintain strong security.
@@ -45,7 +45,7 @@ These technologies work together to deliver a versatile and secure workspace sol
 
 1. **Flexibility for remote work**: Access your work environment from anywhere, ensuring you remain productive no matter your location or the limitations of your local device. This flexibility helps maintain operational continuity, even during unexpected disruptions.
 
-2. **Support**: Cloud Workspaces offers support for a variety of users, improving work access and overall productivity. With Active Directory support, and other authentication methods, users with different systems can access Workspaces and its entire toolbox. 
+2. **Access control**: Cloud Workspaces supports various authentication methods to onboard users in your organization, including Active Directory.
 
 2. **Robust security**: Protect your sensitive data and applications with advanced cloud-based security measures. By centralizing information and enforcing strict access controls and encryption, you minimize the risks associated with device theft or loss.
 
@@ -55,4 +55,4 @@ These technologies work together to deliver a versatile and secure workspace sol
 
 5. **Enhanced data privacy**: Cloud Workspaces ensure compliance with global data protection laws such as GDPR, CCPA, LGPD, and PIPL by maintaining data residency, minimizing cross-border data movement, and providing granular control over data management.
 
-With more businesses having distributed teams today, Workspaces integrated toolbox offers you the flexibility and performance required to work more efficiently. You can [start by following this guide](quickstart.md).  
+With more businesses having distributed teams today, Workspaces integrated toolbox offers you the flexibility and performance required to work more efficiently. Follow the [quickstart guide](quickstart.md) to start using Cloud Workspaces.  

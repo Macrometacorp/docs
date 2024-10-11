@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Validating Peripheral Devices
+title: Validating Peripheral Devices for RBA
 ---
 
 RBA supports the following peripheral devices when accessing web apps from the remote browser:
