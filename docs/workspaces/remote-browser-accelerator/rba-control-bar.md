@@ -13,22 +13,24 @@ To access the RBA control bar,
 
 Below is an overview of each menu on the control bar and how to use them to enhance your browsing experience.
 
-1. **Drag viewport**: This setting allows you to move the remote browser window around the screen when minimized.
+1. **Keys**: The keys menu provides on-screen buttons for essential control keys such as **Control**, **Alt**, **Tab**, and the **Esc** key. This functionality is especially handy for mobile device users who don't have access to a full keyboard.
 
-2. **Keys**: The keys menu provides on-screen buttons for essential control keys such as **Control**, **Alt**, **Tab**, and the **Esc** key. This functionality is especially handy for mobile device users who don't have access to a full keyboard.
+2. **Clipboard**: The clipboard feature allows text transfer between your local device and the remote browser. Text copied within the remote browser appears in this panel for easy access. This is not compulsory for the Chrome browser, as it has native clipboard integration that handles text efficiently.
 
-3. **Clipboard**: The clipboard feature allows text transfer between your local device and the remote browser. Text copied within the remote browser appears in this panel for easy access. This is not compulsory for the Chrome browser, as it has native clipboard integration that handles text efficiently.
+3. **Fullscreen**: Full screen maximizes the remote browser to fill your entire screen, providing an immersive and distraction-free browsing experience. Use the **Esc** key to exit fullscreen mode.
 
-4. **Fullscreen**: Full screen maximizes the remote browser to fill your entire screen, providing an immersive and distraction-free browsing experience. Use the **Esc** key to exit fullscreen mode.
-
-5. **USB**: The USB menu displays all devices connected to your local device via USB. To connect a device to the remote browser, select it from the list and click **Connect**.
-
-6. **Display:** This menu allows you to manage multiple monitors efficiently. Click the **Display** menu to add, remove, and arrange screens. New screens open in separate browser windows, which you can position on your local monitors. Use the Display menu to match the on-screen arrangement to your physical setup and adjust positions and sizes as needed.
+4. **Display:** This menu allows you to manage multiple monitors efficiently. Click the **Display** menu to add, remove, and arrange screens. New screens open in separate browser windows, which you can position on your local monitors. Use the Display menu to match the on-screen arrangement to your physical setup and adjust positions and sizes as needed.
 
    ![Display Menu](/img/workspaces/display-menu.png)
-7. **Settings:** The Settings menu lets you customize your remote browser further. Here, you can adjust various aspects to tailor the browser to your preferences and optimize your user experience.
+5. **Settings:** The Settings menu provides other options that lets you customize your remote browser further. Here, you can adjust various aspects to tailor the browser to your preferences and optimize your user experience.
 
    ![Settings Menu](/img/workspaces/rba-settings.png)
+
+    Some of these Settings menu options include:
+
+    - **Navigation Bar**: This controls the top-right navigation tab.
+   
+    - **Shared Mode**: Allows multiple users connect to the same session.
 
     - **View-only**: This option restricts the remote browser to a read-only mode, preventing any write operations. Users can browse and view content without being able to modify or interact with elements.
 
