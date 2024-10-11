@@ -49,7 +49,7 @@ Workspaces also offers a remote VS Code editor for developers to develop and bui
 
 ## Validating Peripheral Devices
 
-Workspaces offers its [Peripheral Validator](./peripheral-validator.md), a feature that allows your peripheral devices connect to it successfully to ensure a smooth and productive experience. This feature enhances the user experience by allowing the use of essential hardware in virtual environments. Cloud Workspaces currently supports the following peripheral devices:
+Workspaces offers its [Peripheral Validator](./remote-browser-accelerator/rba-peripheral-validator.md), a feature that allows your peripheral devices connect to it successfully to ensure a smooth and productive experience. This feature enhances the user experience by allowing the use of essential hardware in virtual environments. Cloud Workspaces currently supports the following peripheral devices:
 
 - Signature pad
 - Card reader

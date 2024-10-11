@@ -31,7 +31,7 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
   />
  </grid>
 
-## Cloud Workspaces Toolbox
+## Cloud Workspaces toolbox
 
 At its core, Cloud Workspaces integrates the following advanced technologies:
 
