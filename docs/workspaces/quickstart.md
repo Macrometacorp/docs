@@ -3,11 +3,11 @@ title: Quickstart
 sidebar_position: 1
 ---
 
-Cloud Workspaces is deployed and managed by Macrometa's engineering team based on your product needs, ensuring optimal performance and security. 
+Cloud Workspaces is deployed and managed by Macrometa's engineering team based on your product needs, ensuring optimal performance and security. This short guide walks you through getting started with the service. 
 
 ## Prerequisites
 
-Ensure to have the following installed before using Cloud Workspaces:
+Before you can start using Workspaces, ensure to have the following installed:
 
 1. For **Windows 10**, download the latest stable **Chrome** browser.
 
@@ -30,15 +30,24 @@ Ensure to have the following installed before using Cloud Workspaces:
 Once your browser is installed on your device,
 
 1. Contact Macrometa support to receive your unique URL for accessing your Cloud Workspace environment.
-1. Open your local browser and enter the provided URL in the address bar. This URL connects you to your remote workspace.
+1. Open your local browser and enter the provided URL in the address bar. Enter your login details.
 
-Once connected, you'll see the specific web applications deployed for your business use case under Workspaces, along with the virtual Linux and Windows desktops. Additionally you have VS Code, a remote IDE for developers. Refer to the [RBA](./remote-browser-accelerator/index.md) and [RDE](./remote-desktop-enviroment/index.md) documentation for more details on how to use these workspaces.
+    ![login-screen](/img/workspaces/login-screen.png)
 
-![Cloud Workspace interface](/img/workspaces/workpsace-screen.png)
+- After login, first-time users are taken to the onboarding screen. The onboarding screen contains different installers for using Cloud Workspaces tools. Download the appropriate installer based on your specific requirements and refer to the respective guides for detailed instructions on how to set up the [VDI](./remote-desktop-enviroment/index.md) and [RBA](./remote-browser-accelerator/getting-started.md) installers.
+    
+    ![onboarding-screen](/img/workspaces/onboarding-screen.png)
+
+- Returning users are redirected to the homepage.
+
+    ![Cloud Workspace interface](/img/workspaces/homepage.jpeg)
+    
+The Workspaces homepage displays the different tools available in the service, and allows you to navigate between these tools.
+
 
 ## Validating Peripheral Devices
 
-Workspaces offers its [Peripheral Validator](./peripheral-validator.md), a feature that allows your peripheral devices connect to it successfully to ensure a smooth and productive experience. This feature enhances the user experience by allowing the use of essential hardware in virtual environments. Cloud Workspaces currently supports the following peripheral devices:
+Workspaces offers its [Peripheral Validator](./remote-browser-accelerator/rba-peripheral-validator.md), a feature that allows your peripheral devices connect to it successfully to ensure a smooth and productive experience. This feature enhances the user experience by allowing the use of essential hardware in virtual environments. Cloud Workspaces currently supports the following peripheral devices:
 
 - Signature pad
 - Card reader

@@ -1,0 +1,38 @@
+---
+title: Getting started
+---
+
+RBA allows you access your work applications and tools at the edge, thus reducing latency and improving performance. This guide walks you through the necessary steps to using the service. 
+
+At the end of this guide, you will be able to:
+
+- Download and install the RBA installer
+- Get RBA started and launch your necessary work applications.
+- Use the RBA control bar for a better experience
+
+## Prerequisites
+
+Before proceeding, ensure to do the following:
+
+- Get your Workspace URL and login details from Macrometa support.
+- [Download the RBA installer](#step-1-download-and-install-the-rba-installer)
+
+## Step 1: Download and Install the RBA Installer
+
+The RBA installer is a driver that enables you to launch your applications with the service. To install this driver:
+
+1. Launch your provided Workspace URL in your preferred browser to access the Workspaces homepage.
+1. Follow one of these steps based on your usage level:
+    - For first-time users, you are directed to an onboarding screen that displays various installers for different needs. Click **Download RBA Installer**
+    - For returning users, click **Download Package** from the bottom of the left-side menu on the homepage. This takes you to the onboarding page with the various installers. Click **Download RBA Installer**.
+    
+    ![onboarding-screen](/img/workspaces/onboarding-screen.png)
+1. Run the installer and enter your **Email** and **RBA Installer Token**. You can find and copy the RBA Installer Token from the onboarding screen.
+
+## Step 2: Launch your web apps
+
+With the installer now successfully installed:
+
+1. Navigate to the Workspaces homepage
+1. Click on the web app you wish to use. By default, the selected application or service will open in a tab within the remote browser. A control bar icon `>` appears on the left side of the screen, allowing you to easily manage and interact with the remote browser.
+

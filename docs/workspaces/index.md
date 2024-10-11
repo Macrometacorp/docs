@@ -11,9 +11,7 @@ title: Cloud Workspaces
 
 # Macrometa Cloud Workspaces
 
-Macrometa Cloud Workspaces redefines the digital workplace by delivering secure, high-performance virtual work environments that users can access from any internet-connected device on a browser. By harnessing the power of CDN edge computing, Cloud Workspaces ensures minimal latency, creating a responsive and ideal experience that empowers teams to work efficiently, no matter where they are.
-
-## Start using Cloud Workspaces
+Macrometa Cloud Workspaces redefines the digital workplace by delivering secure, high-performance virtual work environments that users can access from any internet-connected device on a browser. By harnessing the power of CDN edge computing, Cloud Workspaces ensures minimal latency, creating a more responsive and ideal experience that empowers teams to work efficiently, no matter where they are.
 
 <grid cols={3}>
  <card
@@ -22,26 +20,26 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
     href="/quickstart"
   />
    <card
-    heading="Peripherals Validator"
-    description="Validate your peripheral devices for a better Cloud Workspaces experience"
-    href="/workspaces/peripheral-validator"
+    heading="Remote Browser Accelerator"
+    description="Access your web apps at the edge for better performance"
+    href="/workspaces/remote-browser-accelerator"
   />
    <card
     heading="Remote Desktop Environments"
-    description="Access a remote desktop environment for your daily tasks"
+    description="Access Windows and Linux remote desktops for your work tasks"
     href="/workspaces/remote-desktop-enviroment"
   />
  </grid>
 
-## Cloud Workspaces Toolbox
+## Cloud Workspaces toolbox
 
 At its core, Cloud Workspaces integrates the following advanced technologies:
 
-- **[Remote Browser Acceleration (RBA)](./remote-browser-accelerator/index.md)**: RBI offers a powerful approach to web security by executing all web browsing activities within isolated cloud environments. This isolation ensures that any potential threats from web content are contained and kept away from the user's local device, significantly reducing the risk of malware and other web-based attacks.
-- **Remote Browser Isolation (RBI)**: RBA enhances the performance of specific web applications by deploying them directly at the network edge. It extends the remote browser isolation by allowing users to interact with web apps as if they were running locally on their devices, ensuring optimal speed and responsiveness. By accelerating the delivery of these applications, RBA guarantees
-- **[Remote Desktop Environments (RDE)](./remote-desktop-enviroment/index.md)**: RDE provides full-featured Windows and Linux remote desktop environments, accessible from any device with an internet connection. These desktops are hosted in the cloud, allowing users to access their familiar workspace, including all applications and data, from anywhere. VDI ensures consistency and flexibility, enabling users to maintain productivity regardless of their location.
+- **[Remote Browser Acceleration (RBA)](./remote-browser-accelerator/index.md)**: RBA enhances the performance of specific web applications by deploying them directly at the network edge. It extends remote browser isolation by allowing users to interact with web apps as if running locally on their devices, ensuring optimal speed and responsiveness. By accelerating the delivery of these applications, RBA guarantees a better user experience and improved work efficiency. 
+- **Remote Browser Isolation (RBI)**: RBI offers a powerful approach to web security by executing all web browsing activities within isolated cloud environments. This isolation ensures that any potential threats from web content are contained and kept away from the user's local device, significantly reducing the risk of malware and other web-based attacks.
+- **[Remote Desktop Environments (RDE)](./remote-desktop-enviroment/index.md)**: RDE provides full-featured Windows and Linux remote desktop environments accessible from any device with an internet connection. These desktops are hosted in the cloud, allowing users to access their familiar workspace from anywhere, including all applications and data. VDI ensures consistency and flexibility, enabling users to maintain productivity regardless of location.
 
-These technologies work together to deliver a versatile and secure workspace solution on the edge, tailored to the diverse needs of modern businesses. It enables rapid deployment of web applications, secure and isolated browsing sessions, and full-featured virtual desktops—all within a unified environment designed to enhance productivity and maintain strong security.
+These technologies work together to deliver a versatile and secure workspace solution on the edge, tailored to the diverse needs of modern businesses. It enables rapid deployment of web applications, secure and isolated browsing sessions, and full-featured virtual desktops— all within a unified environment designed to enhance productivity and maintain strong security.
 
 ## Key benefits
 
