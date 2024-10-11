@@ -32,9 +32,9 @@ Once your browser is installed on your device,
 1. Contact Macrometa support to receive your unique URL for accessing your Cloud Workspace environment.
 1. Open your local browser and enter the provided URL in the address bar. Enter your login details.
 
-    ![login-screen](/img/workspaces/login-screen.png)
+    ![login-screen](/img/workspaces/login-resized.jpeg)
 
-- After login, first-time users are taken to the onboarding screen. The onboarding screen contains different installers for using Cloud Workspaces tools. Download the appropriate installer based on your specific requirements and refer to the respective guides for detailed instructions on how to set up the [VDI](./remote-desktop-enviroment/index.md) and [RBA](./remote-browser-accelerator/getting-started.md) installers.
+- After login, first-time users are taken to the onboarding screen. The onboarding screen contains different installers for using Cloud Workspaces tools. Download the appropriate installer based on your specific requirements and refer to the respective guides for detailed instructions on how to set up the [VDI](./remote-desktop-enviroment/index.md) and [RBA](./remote-browser-accelerator/index.md) installers.
     
     ![onboarding-screen](/img/workspaces/onboarding-screen.png)
 
@@ -42,7 +42,9 @@ Once your browser is installed on your device,
 
     ![Cloud Workspace interface](/img/workspaces/homepage.jpeg)
     
-The Workspaces homepage displays the different tools available in the service, and allows you to navigate between these tools.
+The Workspaces homepage displays the different tools available in the service, and allows you to navigate between these tools. With the appropriate installer installed and depending on your business needs, you can now connect to [RBA](./remote-browser-accelerator/index.md) or [VDI](./remote-desktop-enviroment/index.md). 
+
+Workspaces also offers a remote VS Code editor for developers to develop and build products with a secure browser at the edge, hastening development cycles. 
 
 
 ## Validating Peripheral Devices
@@ -53,12 +55,3 @@ Workspaces offers its [Peripheral Validator](./remote-browser-accelerator/rba-pe
 - Card reader
 - Webcams
 - Printers
-
-:::important
-Before validating your devices, ensure to download and install the latest drivers and updates
-:::
-
-To validate your devices and ensure they function correctly within your remote sessions:
-
-1. Navigate to the **Peripherals** card from your Workspaces homepage and click **Connect**.
-1. Click **Test** to confirm the validation of every device to ensure they are properly configured and ready for use in your remote sessions.
