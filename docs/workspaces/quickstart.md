@@ -5,26 +5,6 @@ sidebar_position: 1
 
 Cloud Workspaces is deployed and managed by Macrometa's engineering team based on your product needs, ensuring optimal performance and security. This short guide walks you through getting started with the service. 
 
-## Prerequisites
-
-Before you can start using Workspaces, ensure to have the following installed:
-
-1. For **Windows 10**, download the latest stable **Chrome** browser.
-
-2. For **Windows 7**, download the [latest supported Chrome browser](https://support.google.com/chrome/a/answer/7100626?hl=en&sjid=16270217913818414435-EU).
-
-3. For **Windows XP**, you need to install the **Supermium browser**. Follow these steps to download and install Supermium:
-
-   a. Go to the [Supermium v.122 release page](https://github.com/win32ss/supermium/releases/tag/v122-r6) on GitHub
-
-   b. Select and download the *.exe* file appropriate for your operating system architecture (32-bit or 64-bit).
-
-   c. Locate the downloaded *.exe* file and double-click to start the installation. Follow the on-screen instructions to complete the installation process.
-
-   d. During installation, select the "**Create shortcuts**" checkbox for easier access to the app after installation.
-
-   ![Supermium installation](/img/workspaces/supermium.png)
-
 ## Connecting to the workspace
 
 Once your browser is installed on your device,
@@ -45,13 +25,3 @@ Once your browser is installed on your device,
 The Workspaces homepage displays the different tools available in the service, and allows you to navigate between these tools. With the appropriate installer installed and depending on your business needs, you can now connect to [RBA](./remote-browser-accelerator/index.md) or [VDI](./remote-desktop-enviroment/index.md). 
 
 Workspaces also offers a remote VS Code editor for developers to develop and build products with a secure browser at the edge, hastening development cycles. 
-
-
-## Validating Peripheral Devices
-
-Workspaces offers its [Peripheral Validator](./remote-browser-accelerator/rba-peripheral-validator.md), a feature that allows your peripheral devices connect to it successfully to ensure a smooth and productive experience. This feature enhances the user experience by allowing the use of essential hardware in virtual environments. Cloud Workspaces currently supports the following peripheral devices:
-
-- Signature pad
-- Card reader
-- Webcams
-- Printers
