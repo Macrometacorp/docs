@@ -9,18 +9,14 @@ Remote Browser Acceleration (RBA) enhances the performance of specific web appli
 
 At the end of this guide, you will be able to:
 
-- Download and install the RBA installer
-- Get RBA started and launch your necessary work applications.
-- Use the RBA control bar for a better experience
+- Download and set up the [RBA installer](#step-1-download-and-set-up-the-rba-installer)
+- Get RBA started and launch your necessary work applications
+- [Validate peripherals](./rba-peripheral-validator.md) for RBA
+- Use the [RBA control bar](./rba-control-bar.md) for an optimized experience
 
-## Prerequisites
+Before proceeding, contact Macrometa support for your Workspace URL.
 
-Before proceeding, ensure to do the following:
-
-- Get your Workspace URL from Macrometa support.
-- [Download the RBA installer](#step-1-download-and-install-the-rba-installer)
-
-## Step 1: Download and Install the RBA Installer
+## Step 1: Download and set up the RBA installer
 
 The RBA installer is a driver that enables you to launch your applications with the service. To install this driver:
 
