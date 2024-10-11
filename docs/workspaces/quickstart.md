@@ -5,26 +5,6 @@ sidebar_position: 1
 
 Cloud Workspaces is deployed and managed by Macrometa's engineering team based on your product needs, ensuring optimal performance and security. This guide walks you through getting started with the service. 
 
-## Prerequisites
-
-Before you can start using Workspaces, ensure to have the following installed:
-
-1. For **Windows 10**, download the latest stable **Chrome** browser.
-
-2. For **Windows 7**, download the [latest supported Chrome browser](https://support.google.com/chrome/a/answer/7100626?hl=en&sjid=16270217913818414435-EU).
-
-3. For **Windows XP**, you need to install the **Supermium browser**. Follow these steps to download and install Supermium:
-
-   a. Go to the [Supermium v.122 release page](https://github.com/win32ss/supermium/releases/tag/v122-r6) on GitHub
-
-   b. Select and download the *.exe* file appropriate for your operating system architecture (32-bit or 64-bit).
-
-   c. Locate the downloaded *.exe* file and double-click to start the installation. Follow the on-screen instructions to complete the installation process.
-
-   d. During installation, select the "**Create shortcuts**" checkbox for easier access to the app after installation.
-
-   ![Supermium installation](/img/workspaces/supermium.png)
-
 ## Connecting to the workspace
 
 Once your browser is installed on your device,
