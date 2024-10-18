@@ -13,9 +13,24 @@ This guide will help you:
 - [Purge the Cache](../07-prerendering-management/manage-cache/manage-cache.md)
 - [Customize rendering behavior with Prerender headers](../03-features/02-prerendering-headers/index.md)
 
+## Preparing your site for Prerender
+
+Before using the service, we recommend doing the following to improve the findability and visibility of your site:
+
+- **Optimize your site SEO:** Prerender works best with well-structured content, and your website SEO helps with this. Here’s what you should review:
+
+    - **Metadata:** Properly configure your site’s metadata (titles, descriptions, etc.) to improve indexing for bots.
+    - **Content Structure:** Use H1-H6 headings and structured content for better SEO crawling.
+    - **URL Structure:** Keep URLs clean, concise, and relevant. Avoid lengthy query strings when possible.
+    - **Relevant Content:** Ensure your content remains relevant and helpful to your target audience. 
+- **Determine your caching strategy:** Prerender's Cache Manager allows you to cache certain pages from your origin. Depending on your business data and how often this data is accessed, decide what pages need caching to reduce render time and costs. 
+
 ## Prerequisites
 
+Before configuring your site for Prerender, ensure to have the following:
+
 - A Prerender instance. This Instance gives you access to the service and other tools needed to use it. Contact Macrometa engineers to help set up your Prerender Instance.
+- Configure user permissions to ensure protection of sensitive data. Prerender's [auth service](./explore.md) allows you to configure user roles to tailor who accesses and uses the service. 
 - Target domain 
 
 
@@ -34,7 +49,7 @@ To set up your origin:
     
     :::important
     
-    Adding a sitemap is needed if you intend to use a prefetching strategy, i.e, using Prerender to prefetch the URLs in your site.
+    Adding a sitemap path is needed if you intend to use a prefetching strategy, i.e, using Prerender to prefetch the URLs in your site.
 
     :::
     - **Enable Caching** - Click to turn on caching, and select the cache expiration time (also called time to live (ttl)) in days.
