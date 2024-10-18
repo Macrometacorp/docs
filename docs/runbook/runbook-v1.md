@@ -6,56 +6,32 @@ sidebar_position: 1
 title:  Runbook v1
 ---
 
-
-- [Objective](#objective)     
-- [Connecting to Workspaces](#connecting-to-workspaces)
-- [Using VDI on Workspaces](#using-vdi-on-cloud-workspaces)  
-  - [Download the VDI installer](#download-the-vdi-installer)
-  - [Working with Windows](#working-with-windows)
-  - [Working with Linux](#working-with-linux)   
-- [Using RBA to access the Western Union App](#using-rba-to-access-the-western-union-app)
-  - [Prerequisites](#prerequisites)
-  - [Download the RBA installer](#download-the-rba-installer)
-  - [Accessing the Western Union App](#accessing-the-western-union-app)
-  - [Validating peripheral devices for RBA](#validating-peripheral-devices-for-rba)
-       - [Printer](#printer)
-       - [Signature Pad](#signature-pad)
-       - [Card Reader](#card-reader)
-       - [Image Scanner](#image-scanner)
-  - [Using the RBA Control bar](#using-the-rba-control-bar) 
-- [Troubleshooting and FAQs](#troubleshooting-and-faqs)
-
-Macrometa Cloud Workspaces is redefining our approach to remote work and productivity. As a cloud-based virtual environment, it enables effective access to your work tools and business-specific applications directly from your browser. The service includes a suite of tools designed for high performance and security, including remote browser access and remote desktops on the edge. 
-
-For Western Union, Cloud Workspaces has the following key services:
-1. **Remote Browser Acceleration (RBA)** - to access the **Western Union App** for agents.
-2. **Virtual Desktop Interface (VDI)** - providing remote **Linux** and **Windows** desktops.
-3. **VS Code** - a remote IDE for developers.
-
-
-## **Objective**
-This runbook provides a comprehensive guide on how to use the Western Union App and remote desktops from Cloud Workspaces efficiently. It includes steps for accessing the services, troubleshooting common issues, and a section for frequently asked questions (FAQs)  
+With Workspaces evolving over time, this runbook will act as a guide to using the different versions of Workspaces.  
 
 ## **Connecting to Workspaces**
 
-> Ignore steps 1 and 2 if you are already logged into Workspaces.
+:::note
+Ignore steps 1 and 2 if you are already logged into Workspaces.
+:::
 
 1. Open your browser and enter your Workspaces URL. This URL connects you to the Workspace environment and displays a login screen.
 
-    ![login-page](img/runbook-images/login-page.png)
+    ![login-page](/img/runbook-images/login-page.png)
 
 2. Login with appropriate credentials to your workspace.
 3. After logging in,
    
      - For first-time users, the onboarding screen is displayed so you can download the appropriate installer based on your specific requirements. Refer to the respective guides for   detailed instructions on how to set up the [VDI](#download-the-vdi-installer) and [RBA](#download-the-rba-installer) installers. Click **Go to Home** to return back to the Workspaces homepage.
    
-        ![onboarding-page](img/runbook-images/onboarding.png)
+        ![onboarding-page](/img/runbook-images/onboarding.png)
 
      - If you're a returning user, you are automatically redirected to the homepage.
 
-        ![home-page](img/runbook-images/workspaces-homepage.png)
+        ![home-page](/img/runbook-images/workspaces-homepage.png)
 
-> If you miss the installers, click the **Download Package** menu from the sidebar to return to the onboarding screen.
+:::note
+If you miss the installers, click the **Download Package** menu from the sidebar to return to the onboarding screen.
+:::
 
 The sidebar also provides access to the **User Guide** and **Logout** options. You can view your profile by clicking the user icon in the top-right corner of the screen. 
 
@@ -91,21 +67,21 @@ To start using the remote Windows desktop,
 
 1. Navigate to the **Workspaces** homepage and click the **Connect** button for **Windows Web Dev**. A pop-up modal appears with some authentication instructions for use later in Step 4. 
 
-    ![vdi-login](img/runbook-images/vdi-login.png)
+    ![vdi-login](/img/runbook-images/vdi-login.png)
 
 2. Click **OK**. Select **Open Windows PowerShell**  if you are prompted to access it.
 3. It launches a **Remote Desktop Connection** window for you to connect to your remote computer. Click **Connect** to initiate the connection to the remote desktop.
 
-    ![rdp-powershell](img/runbook-images/vdi-rdp.png)
+    ![rdp-powershell](/img/runbook-images/vdi-rdp.png)
 
 4. Enter your Workspaces password in the credentials window.
 
-    ![rdp-powershell](img/runbook-images/windows-credentials.png)
+    ![rdp-powershell](/img/runbook-images/windows-credentials.png)
 
 6.  If you get any warning to proceed despite any certificate errors, Click **Yes**.
 7.   After successful authentication and configuration, the remote Windows desktop is launched, providing you with full access to perform your tasks.
 
-![windows](img/runbook-images/windows-vdi.png)
+![windows](/img/runbook-images/windows-vdi.png)
 
 To terminate the session, 
 1. Click the **X (close)** button from the top of the screen.
@@ -116,7 +92,7 @@ To terminate the session,
 To use the remote Linux desktop, 
 1. Connect to  **Linux Web Dev** from the **Workspaces** homepage.  This action opens the remote Linux desktop environment in a new browser tab.  
 
-![linux](img/runbook-images/linux-vdi.png)
+![linux](/img/runbook-images/linux-vdi.png)
 
 From this point, you can begin your work just as you would on a local machine. You can launch applications, access files, use the terminal or browser, configure your settings, etc.
 
@@ -138,17 +114,17 @@ To use the Western Union App with RBA, the following installation is required to
   
 2. Run the file and follow the on-screen prompts until you reach the login screen. Enter your login details when prompted. To obtain your RBA token, return to the [onboarding screen](#connecting-to-workspaces) or navigate to **Download Package** menu from the homepage sidebar. Click on **RBA Installer Token** and copy the displayed token.
 
-      ![rba-installer.png](img/runbook-images/rba-installer-login.png)
+      ![rba-installer.png](/img/runbook-images/rba-installer-login.png)
 
 3. After successful validation, finalize the installation.
   
-      ![rba-validation.png](img/runbook-images/rba-validation.png)
+      ![rba-validation.png](/img/runbook-images/rba-validation.png)
 
      > Ensure that the validation and installation process is completed so that the installer can download all the necessary requirements for RBA to function optimally.
 
 4. After installation is complete, you are prompted to restart your device. Click **Finish** to restart. 
 
-      ![login-page](img/runbook-images/rba-restart.png)
+      ![login-page](/img/runbook-images/rba-restart.png)
 
 5. Return to Cloud Workspaces and click **Go home** to return to the homepage.
 
@@ -158,11 +134,11 @@ After setting up the RBA installer, continue with the following steps to access 
 
 1. From the **Workspaces** home screen, click **Connect** for the **Western Union App**. The web app opens up in a new tab within the remote browser.
 
-    ![wu](img/runbook-images/western-union.png)
+    ![wu](/img/runbook-images/western-union.png)
 
 2. The navigation controls in the top-right corner of the screen allow you to navigate, refresh, and close the web app.
    
-    ![rba-controls](img/runbook-images/rba-controls.png)
+    ![rba-controls](/img/runbook-images/rba-controls.png)
    
 ### **Validating peripheral devices for RBA**
 
@@ -176,23 +152,23 @@ To check the functionality of your connected devices, use the **Peripheral Valid
    
 Navigate to the homepage and click **Connect** for **Peripherals** to start the validation process for each device. 
    
-  ![workspaces-homepage](img/runbook-images/workspaces-homepage.png)
+  ![workspaces-homepage](/img/runbook-images/workspaces-homepage.png)
 
 It displays all the supported peripheral devices that can be validated.
 
-![peripherals](img/runbook-images/peripherals-validator.png)
+![peripherals](/img/runbook-images/peripherals-validator.png)
 
 #### **Printer**
 
 To validate the printer:
 1. Click the **Test** button for **Printer** from the **Peripherals** screen. It displays a colored page to test the printer.
 
-   ![test-printer](img/runbook-images/validate-printer.png)
+   ![test-printer](/img/runbook-images/validate-printer.png)
 
 3. Click on **Test Printer** and add a virtual PDF printer to verify that it is accessible from the remote browser.
 4. Select “**See more**..” from the **Destination** options on the print screen to check if the printer (Peripheral1-Printer) is listed. 
 
-   ![save-printer](img/runbook-images/printer-save.png)
+   ![save-printer](/img/runbook-images/printer-save.png)
 
 5. Select the printer and print the test page.
 6. Alternatively, connect your printer device and confirm that it shows in the list of printers. Select the printer and print the test page.
@@ -203,11 +179,11 @@ To validate the printer:
 To validate the signature pad:
 1. Click the **Connect** button for **Signature Pad** from the **Peripherals** screen. It displays a signature pad validator.
 
-   ![sig-pad](img/runbook-images/signature-pad.png)
+   ![sig-pad](/img/runbook-images/signature-pad.png)
 
 2. Click **Capture**, connect your signature pad device, and start signing. The Signature Capture window displays the signature as you sign.
 
-    ![sig-capture](img/runbook-images/signature-capture.png)
+    ![sig-capture](/img/runbook-images/signature-capture.png)
 
 3. After signing, Click **OK** from the Signature Capture window. The signature is displayed on the validator screen.
 4. Click the **Erase** button to remove the existing signature. 
@@ -218,7 +194,7 @@ To validate the signature pad:
 To validate the card reader, continue with the following steps:
 1. Click the **Test** button for **Card Reader** from the **Peripherals** screen. It displays a card reader validator with an input box.
 
-   ![card-reader](img/runbook-images/card-reader.png)
+   ![card-reader](/img/runbook-images/card-reader.png)
 
 3. Connect your card reader device. Set your cursor on the input box and swipe your card. The card details are displayed on the screen.
 
@@ -235,7 +211,7 @@ To access the control bar,
 
 - Click the control bar icon on the left side of the browser to access the menu.
 
-    ![control-bar](img/runbook-images/control-bar-resized.jpeg)
+    ![control-bar](/img/runbook-images/control-bar-resized.jpeg)
 
 Below is an overview of each menu on the control bar and how to use them to enhance your browsing experience.
 
@@ -246,11 +222,11 @@ Below is an overview of each menu on the control bar and how to use them to enha
 5. **USB**: The USB menu displays all devices connected to your local device via USB. To connect a device to the remote browser, select it from the list and click Connect.
 6. **Display**:  This menu allows you to manage multiple monitors efficiently. Click the Display menu to add, remove, and arrange screens. New screens open in separate browser windows, which you can position on your local monitors. Use the Display menu to match the on-screen arrangement to your physical setup and adjust positions and sizes as needed.
 
-    ![displays](img/runbook-images/display.png)
+    ![displays](/img/runbook-images/display.png)
 
 7. **Settings**: The Settings menu lets you customize your remote browser further. Here, you can adjust various aspects to tailor the browser to your preferences and optimize your user experience.
 
-    ![settings](img/runbook-images/settings-resized.jpeg)
+    ![settings](/img/runbook-images/settings-resized.jpeg)
 
     a. **View-only**: This option restricts the remote browser to a read-only mode, preventing any write operations. Users can browse and view content without being able to modify or interact with elements.
    
@@ -301,3 +277,10 @@ Macrometa workspaces require a minimum network bandwidth to perform optimally. T
 
 - Verify the network connection and bandwidth quality.
 - Restart your network device(s).
+
+### Why can't I launch VDI from my Windows 11?
+
+Some antiviruses like BitDefender might prevent the execution of the Windows PowerShell script. To fix this, follow any of these solutions:
+
+- Temporarily turn off this antivirus and retry launching VDI.
+-  Whitelist the powershell script - `RDPLauncher.ps1`
