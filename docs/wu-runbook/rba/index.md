@@ -21,7 +21,7 @@ The RBA installer also installs a Chrome browser on your device. You must access
   
 2. Run the file and follow the on-screen prompts until you reach the login screen. Enter your login details when prompted. Use your Workspaces email address and the [RBA Installer Token](#prerequisites) you copied earlier. Click **Next**.
 
-      ![rba-installer.png](/img/runbook-images/rba-installer-login.png)
+      ![rba-installer.png](/img/runbook-images/rba-login.png)
 
 3. After successful validation,  Click **OK** to finalize the installation.
   
