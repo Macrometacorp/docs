@@ -35,14 +35,13 @@ A common reason for this error is an unstable internet connection or incorrect d
 
 - Check your internet connection. Restart all network devices if necessary.
 - Check your remote connection settings for interruptions and [activate remote desktop access](https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/clients/remote-desktop-allow-access) if it is disabled. 
-- Check your IP address. Security measures may prevent a public IP address from creating a connection. If this is the case, you may need to whitelist your IP address.
 - Change your network settings from public to private.
 
 ### Why can’t I access workspaces?
 This may result from reasons like an incorrect URL or browser incompatibility. To resolve this:
 
 - Confirm your system meets the system requirements.
-- Check the accuracy of your Workspaces URL.
+- Check the accuracy of the Workspaces URL. Check for common errors like typos or misplaced characters in the URL and try again. 
 - Contact Macrometa personnel for assistance.
 
 ### What should I do if my team experiences slow performance accessing the remote workspaces?
