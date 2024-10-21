@@ -32,7 +32,7 @@ Ignore steps 1 and 2 if you are already logged into Cloud Workspaces.
 2. Login with appropriate credentials to your workspace.
 3. After logging in,
    
-     - For first-time users, the onboarding screen is displayed so you can download the appropriate installer for the service you want to use. Refer to the respective guides for   detailed instructions on how to set up the [VDI](#download-the-vdi-installer) and [RBA](#download-the-rba-installer) installers. Click **Go to Home** to proceed to the Workspaces homepage.
+     - For first-time users, the onboarding screen is displayed so you can download the appropriate installer for the service you want to use. Refer to the respective guides for detailed instructions on how to set up the [VDI](./vdi/index.md#download-the-vdi-installer) and [RBA](./rba/index.md#download-the-rba-installer) installers. Click **Go to Home** to proceed to the Workspaces homepage.
    
         ![onboarding-page](/img/runbook-images/onboarding.png)
 

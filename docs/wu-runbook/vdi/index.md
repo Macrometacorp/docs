@@ -17,7 +17,8 @@ These remote desktops support the following key peripherals:
 
 Before accessing remote desktops using VDI, you're required to do the following:
  
-1. Click **Download VDI Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer.
+1. Click **Download VDI Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer. Alternatively,  navigate to **Download Package** menu from the homepage sidebar and click **Download VDI Installer**. 
+  
 2. Run the file and follow the on-screen prompts to install the VDI components.
 3. Once installed, return to Cloud Workspaces and click **Go to Home** to access the homepage.
 
