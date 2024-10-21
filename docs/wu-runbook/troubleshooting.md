@@ -10,7 +10,7 @@ Here are some common issues and steps to resolve them.
 This error typically occurs when you are trying to access a VDI session  and all available sessions are currently in use. You won't be able to use VDI until a session becomes available for use. Wait a while and try again later to see if  you can access VDI. 
 
 ### Why am I unable to use my peripheral devices (printer, webcams, card reader)
-Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](#validating-peripheral-devices-for-rba) before use.
+Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](./rba/validating-peripherals.md).
 
 ### Why can't I launch VDI from my Windows 11?
 

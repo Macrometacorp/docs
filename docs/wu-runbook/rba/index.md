@@ -17,9 +17,9 @@ To use the Western Union App with RBA, the following installation steps is requi
 The RBA installer also installs a Chrome browser on your device. You must access RBA using this browser to ensure RBA functions properly. For devices with the supported browser already installed, the RBA installer skips this browser installation.
 :::
 
-1. Click **Download RBA Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer.
+1. Click **Download RBA Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer. Alternatively,  navigate to **Download Package** menu from the homepage sidebar and click **Download RBA Installer**. 
   
-2. Run the file and follow the on-screen prompts until you reach the login screen. Enter your login details when prompted. Use your Workspaces email address and the [RBA Installer Token](#prerequisites) you copied earlier. Click **Next**.
+2. Run the file and follow the on-screen prompts until you reach the login screen. Use your Workspaces email address and the [RBA Installer Token](#prerequisites) you copied earlier when prompted for your login details. Click **Next**.
 
       ![rba-installer.png](/img/runbook-images/rba-login.png)
 
