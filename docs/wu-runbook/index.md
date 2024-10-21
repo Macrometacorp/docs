@@ -38,7 +38,7 @@ Ignore steps 1 and 2 if you are already logged into Cloud Workspaces.
 
      - If you're a returning user, you are automatically redirected to the homepage.
 
-        ![home-page](/img/runbook-images/workspaces-homepage.png)
+        ![home-page](/img/runbook-images/wkspace-homepage.png)
 
 :::note
 If you missed the installers, click the **Download Package** menu from the sidebar to return to the onboarding screen.
