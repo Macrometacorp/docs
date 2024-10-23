@@ -15,9 +15,9 @@ This guide will help you:
 
 ## Preparing your site for Prerender
 
-Before using the service, we recommend doing the following to improve the findability and visibility of your site:
+Before using the service, we recommend doing the following to improve the findability and visibility of your site with Prerender:
 
-- **Optimize your site SEO:** Prerender works best with well-structured content, and your website SEO helps with this. Here’s what you should review:
+- **Optimize your site SEO:** Prerender works best with well-structured content, and your website SEO helps you to achieve this. Here’s what you should review:
 
     - **Metadata:** Properly configure your site’s metadata (titles, descriptions, etc.) to improve indexing for bots.
     - **Content Structure:** Use H1-H6 headings and structured content for better SEO crawling.
