@@ -13,28 +13,39 @@ This guide will help you:
 - [Purge the Cache](../07-prerendering-management/manage-cache/manage-cache.md)
 - [Customize rendering behavior with Prerender headers](../03-features/02-prerendering-headers/index.md)
 
+## Preparing your site for Prerender
+
+Before using the service, we recommend doing the following to improve the findability and visibility of your site with Prerender:
+
+- **Optimize your site SEO:** Prerender works best with well-structured content, and your website SEO helps you to achieve this. Here’s what you should review:
+
+    - **Metadata:** Properly configure your site’s metadata (titles, descriptions, etc.) to improve indexing for bots.
+    - **Content Structure:** Use H1-H6 headings and structured content for better SEO crawling.
+    - **URL Structure:** Keep URLs clean, concise, and relevant. Avoid lengthy query strings when possible.
+    - **Relevant Content:** Ensure your content remains relevant and helpful to your target audience. 
+- **Determine your caching strategy:** Prerender's Cache Manager allows you to cache certain pages from your origin. Depending on your business data and how often this data is accessed, decide what pages need caching to reduce render time and costs. 
+
 ## Prerequisites
 
 - A Prerender instance. This Instance gives you access to the service and other tools needed to use it. Contact Macrometa engineers to help set up your Prerender Instance.
 - Target domain 
 
-
 ### Set Up Origin
 
-Before leveraging the different capabilities of Prerender, you need to define your origin, which is the target site for Prerender. This step is crucial as it helps the system to understand the source of the pages and determine the caching strategy for ensuring optimal performance. For example, a regularly-updated products page may require shorter periods between subsequent caches than a contact page. 
+Before leveraging the different capabilities of Prerender, you need to define your origin, which is the target site for Prerender. This step is crucial as it enables Prerender to understand the source of the pages and affects the caching strategy for ensuring optimal performance. For example, a regularly-updated products page may require shorter periods between subsequent caches than a contact page. 
 
 To set up your origin:
 
 1. Navigate to **Origin Settings** on your [Prerender dashboard](../07-prerendering-management/index.md)
 1. Click **Add Origin URL**
 1. Configure your origin by filling the values for the following fields.
-    - **Subdomain** - (Optional) Enter the target subdomain of the domain for Prerendering
-    - **Domain** - Select the target domain for prerender.
-    - **Sitemap Paths** - (Optional) Click **Add Sitemap Path** and add the path to the sitemap. 
+    - **Subdomain** - (Optional) Enter the target subdomain of the domain for Prerender.
+    - **Domain** - Select the target domain for Prerender.
+    - **Sitemap Paths** - (Optional) Click **Add Sitemap Path** and add the path to the sitemap. A sitemap path is a file that provides useful information about the pages and files in your site. It acts as a navigator for bots, helping them crawl your site more effectively.
     
     :::important
     
-    Adding a sitemap is needed if you intend to use a prefetching strategy, i.e, using Prerender to prefetch the URLs in your site.
+    Adding a sitemap path is needed if you intend to use a [prefetching strategy](../04-prerendering-strategies/01-prefetching/index.md), i.e, using Prerender to prefetch the URLs in your site.
 
     :::
     - **Enable Caching** - Click to turn on caching, and select the cache expiration time (also called time to live (ttl)) in days.
