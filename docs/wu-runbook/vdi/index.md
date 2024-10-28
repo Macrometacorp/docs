@@ -62,12 +62,3 @@ To start using the remote Windows desktop,
 
 1. Click the **X (close)** button from the top of the screen.
 2. A prompt will inform you that your remote session will be disconnected. Click **OK** to confirm.
-
-### **Working with Linux**
-
-To use the remote Linux desktop, 
-1. Connect to  **Linux Web Dev** from the **Workspaces** homepage.  This action opens the remote Linux desktop environment in a new browser tab.  
-
-![linux](/img/runbook-images/linux-vdi.png)
-
-From this point, you can begin your work just as you would on a local machine. You can launch applications, access files, use the terminal or browser, configure your settings, etc.
