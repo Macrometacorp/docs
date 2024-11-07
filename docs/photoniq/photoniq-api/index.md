@@ -43,4 +43,10 @@ title: PhotonIQ API Reference
     description=""
     href="../../../docs/apiHss#"
   />
+
+  <card
+    heading="ObjectStore API"
+    description=""
+    href="../../../docs/apiObjectstore#"
+  />
 </grid>
