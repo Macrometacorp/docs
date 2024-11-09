@@ -1,18 +1,17 @@
 ---
-title: Getting started
+title: Getting started with pCDN
+sidebar_label: Getting started
 ---
 
-Macrometa offers you two ways to interact with pCDN: the GUI and REST API
-
-This guide acts as a guide for using pCDN and will help you achieve the following:
+Macrometa provides you access to pCDN through the GUI and REST API. This guide will walk you through getting started with pCDN, enabling you to:
 
 - Create a route
-- Creating an upstream
+- Set up an upstream
 - Test the route
 
-## Prerequisite(s)
+## Prerequisites
 
-- Stargate instance. Contact the Macrometa team for your Stargate server and login details.
+- A Stargate instance. Contact the Macrometa team for your Stargate server and login details. 
 
 ## Step 1: Create a route
 
@@ -27,6 +26,8 @@ You need to configure a route to use the pCDN to manage your APIs. A route is th
     To enable a plugin, navigate to the desired plugin and toggle the slider bar to enable/disable the plugin. Some plugins require configuration, while others, like basic auth, do not. 
     1. **Preview:** This step allows you go through your configuration from steps 1-3.  **Click Submit**.
 
+### Validate the Route    
+
 ## Step 2: Add an Upstream
 
 An upstream acts as the target for routes and provide multiple nodes for load balancing routed requests. To add an upstream:
@@ -37,4 +38,4 @@ An upstream acts as the target for routes and provide multiple nodes for load ba
 4. Choose an **Algorithm** and **Upstream type**. This guide uses the round robin algorithm and a node for the upstream type. Leave other fields empty. 
 5. Click **Next**. Preview your configurations and click **Submit**
 
-## Step 3: Validate route
+### Validate the Upstream    

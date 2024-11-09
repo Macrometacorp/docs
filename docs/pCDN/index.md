@@ -4,7 +4,7 @@ pagination_prev: null
 sidebar_class_name: hidden
 sidebar_label: pCDN
 sidebar_position: 0
-title: Introduction
+title: Private Content Delivery Network
 ---
 
 For organizations tasked with managing many API endpoints for a worldwide audience, the present centralized system of API management becomes insufficient and faces scalability, latency, and reliability challenges.  
@@ -15,18 +15,12 @@ Macrometa’s private CDN (pCDN) provides a highly distributed API management pl
 
 Apart from the improved scalability, reliability, and latency offered by the pCDN, it also offers the following benefits:
 
-### Improved performance
+1. **Improved performance**: Geo-replicating and eliminating the single point of failure from accessing your APIs while using custom plugins with functionalities that identify frequently accessed content helps inform your caching strategies. For example, high-traffic endpoints inform on the TTL and can be cached closer to users to reduce latency and improve loading times for users. 
 
-Geo-replicating and eliminating the single point of failure from accessing your APIs while using custom plugins with functionalities that identify frequently accessed content helps inform your caching strategies. For example, high-traffic endpoints inform on the TTL and can be cached closer to users to reduce latency and improve loading times for users. 
+2. **Efficient resource consumption**: The pCDN uses a proxy cache to store hot endpoints, reducing calls to the origin server, conserving network bandwidth, and improving server load and response times.  
 
-### Efficient resource consumption
+3. **Improved observability and monitoring**: pCDN acts as a central hub for managing your network of APIs and employs a combination of logs, metrics, alerting systems, and efficient reporting to observe and visualize the performance of your APIs over time. Insights derived over time help diagnose performance issues and inform future growth strategies. 
 
-The pCDN uses a proxy cache to store hot endpoints, reducing calls to the origin server, conserving network bandwidth, and improving server load and response times.  
+4. **Personalized marketing**: Consumer ID used in pCDN for the unique identification of users helps create consumer groups, with each group containing different upstream and plugin configurations. Marketing teams can use these groups to create targeted responses and recommendations that speak to their group-specific needs.
 
-### Improved observability and monitoring
-
-pCDN acts as a central hub for managing your network of APIs and employs a combination of logs, metrics, alerting systems, and efficient reporting to observe and visualize the performance of your APIs over time. Insights derived over time help diagnose performance issues and inform future growth strategies. 
-
-### Personalized marketing
-
-Consumer ID used in pCDN for the unique identification of users helps create consumer groups, with each group containing different upstream and plugin configurations. Marketing teams can use these groups to create targeted responses and recommendations that speak to their group-specific needs,  
+In the next guide, we'll delve deeper into [Getting started with pCDN](./01-getting-started/index.md).
