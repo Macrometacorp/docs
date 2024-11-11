@@ -2,14 +2,20 @@
 pagination_next: null
 pagination_prev: null
 sidebar_class_name: hidden
-sidebar_label: pCDN
+sidebar_label: Private CDN
 sidebar_position: 0
 title: Private Content Delivery Network
 ---
 
-For organizations tasked with managing many API endpoints for a worldwide audience, the present centralized system of API management becomes insufficient and faces scalability, latency, and reliability challenges.  
+Macrometa's private CDN (pCDN) is a highly-distributed API management platform designed to resolve the scalability, reliability, and latency limitations most centralized API management systems face. It does this with the following functionalities:
 
-Macrometa’s private CDN (pCDN) provides a highly distributed API management platform with built-in functionalities like caching, basic TTL management, traffic handling, authentication, security, and other features. It also offers its custom plugins, which handle critical API management tasks like advanced cache management and dynamic ttl assignment from content classification and frequency analysis, with its custom plugins to provide a more robust management platform for servicing numerous business needs.
+- **Distributed API handling:** pCDN uses a distributed platform to receive and handle all API traffic, eliminating the single point of failure and improving reliability and latency.
+- **Load balancing:** The pCDN distributes and balances incoming traffic load almost evenly across upstream nodes, thus preventing overloading a single server and possible downtime. 
+- **Rate limiting and traffic control:** pCDN implements rate-limiting, which allows you to control resource consumption to prevent abuse and unnecessary costs. 
+- **Security and authentication:** The platform offers numerous plugins to improve security when handling your APIs. These plugins are also customizable, allowing you to further enhance their effectiveness.
+- **Extensibility:** pCDN offers numerous plugins that handle tasks like observability, authentication, traffic handling, and many more, allowing users to extend the service's capabilities to fit their business-specific needs. 
+
+You can [get started by configuring your first route](./01-getting-started/index.md). 
 
 ## Benefits of Macrometa pCDN
 
