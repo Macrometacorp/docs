@@ -3,11 +3,10 @@ title: Getting started with pCDN
 sidebar_label: Getting started
 ---
 
-Macrometa provides you access to pCDN through the GUI and REST API. This guide will walk you through getting started with pCDN, enabling you to:
+The pCDN handles API traffic, acting as a gateway and routing to various destinations, depending on your configurations. This tutorial will walk you through configuring your first route, and other tasks like:
 
-- Create a route
-- Set up an upstream
-- Test the route
+- Validating the route
+- Creating an upstream object for use in routing. 
 
 ## Prerequisites
 
@@ -15,27 +14,31 @@ Macrometa provides you access to pCDN through the GUI and REST API. This guide w
 
 ## Step 1: Create a route
 
-You need to configure a route to use the pCDN to manage your APIs. A route is the entry point for requests and forwards incoming requests to an upstream target address. To create a route:
+A route acts as the gateway/entry point for incoming requests and forwards them to an upstream target address. 
 
-1. Login to your Stargate instance and navigate to **Routes** from the **Dashboard.**
-2. Click **+Create** to create a route following these steps**:**
+To create a route:
+
+1. Login to your Stargate instance.
+![stargate](/img/pcdn/login-stargate.jpg)
+
+2. Navigate to **Routes** from the **Dashboard.**
+![routes](/img/pcdn/dashboard-routes.png)
+1. Click **+Create** . Follow these four-step process to configure a route:
 
     1. **Define API request:**  Enter a name for your route. Other fields in this step are optional. Click **Next.**
-    1. **Define API Backend server:** Here, you define your upstream configuration. This is the target address for your route. Enter a Target host and port and leave every other field as it is. Click **Next**
+    ![config-route](/img/pcdn/config-route-1.png)
+    ![config-route](/img/pcdn/config-route-2.png)
+    The path `/*` matches against all available paths from the host address.
+    ![config-route](/img/pcdn/config-route-3.png)
+    1. **Define API Backend server:** Here, you define your upstream configuration. This is the target address for your route. Enter a Target host and port and leave every other field as it is. Our upstream uses the round robin algorithm and nodes. You can add more nodes to help with load balancing. Click **Next**
+    ![config-route-step-2](/img/pcdn/route-2.png)
+     You can enable health check and configure settings for your health check.
+    ![route-health](/img/pcdn/route-2-health.png)
+
     1. **Plugin Config:** Here, you can enable your desired plugins. The platform offers numerous plugins catering to areas like authentication, security, traffic control, serverless, and observability. 
+    ![plugins](/img/pcdn/plugins-enable.png)
     To enable a plugin, navigate to the desired plugin and toggle the slider bar to enable/disable the plugin. Some plugins require configuration, while others, like basic auth, do not. 
     1. **Preview:** This step allows you go through your configuration from steps 1-3.  **Click Submit**.
 
-### Validate the Route    
-
-## Step 2: Add an Upstream
-
-An upstream acts as the target for routes and provide multiple nodes for load balancing routed requests. To add an upstream:
-
-1. Click **Upstream** from your dashboard
-2. Click **+Create** 
-3. Enter a name for the upstream and the target **host** and **port**. 
-4. Choose an **Algorithm** and **Upstream type**. This guide uses the round robin algorithm and a node for the upstream type. Leave other fields empty. 
-5. Click **Next**. Preview your configurations and click **Submit**
-
-### Validate the Upstream    
+## Step 2: Validate the Route  
+ 
