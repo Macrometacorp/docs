@@ -17,7 +17,7 @@ These remote desktops support the following key peripherals:
 
 Before accessing remote desktops using VDI, you're required to do the following:
  
-1. Click **Download VDI Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer. Alternatively,  navigate to **Download Package** menu from the homepage sidebar and click **Download VDI Installer**. 
+1. Click **Download VDI Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer. Alternatively,  navigate to **Software Downloads** from the homepage sidebar and click **Download VDI Installer**. 
   
 2. Run the file and follow the on-screen prompts to install the VDI components.
 3. Once installed, return to Cloud Workspaces and click **Go to Home** to access the homepage.
@@ -38,18 +38,22 @@ Cloud Workspaces offers you access to two different types of Windows VDI:
 The Windows VDI is exclusively available on Windows OS/terminals in this release.
 :::
 
-To start using the remote Windows desktop, 
+To **start using the remote Windows desktop**, 
 
-1. Navigate to the **Workspaces** homepage and click the **Connect** button for **Windows Web Dev**. A pop-up modal appears with some authentication instructions for use later in Step 4. 
+1. Navigate to the **Workspaces** homepage and click the **Connect** button for **Windows Web Dev**. 
+
+   ![vdi-user](/img/runbook-images/vdi.png)
+
+2. A pop-up modal appears with some authentication instructions for use later in Step 5. 
 
     ![vdi-login](/img/runbook-images/vdi-login.png)
 
-2. Click **OK**. Select **Open Windows PowerShell**  if you are prompted to access it.
-3. It launches a **Remote Desktop Connection** window for you to connect to your remote computer. Click **Connect** to initiate the connection to the remote desktop.
+3. Click **OK**. Select **Open Windows PowerShell**  if you are prompted to access it.
+4. It launches a **Remote Desktop Connection** window for you to connect to your remote computer. Click **Connect** to initiate the connection to the remote desktop.
 
     ![rdp-powershell](/img/runbook-images/vdi-rdp.png)
 
-4. Enter your Workspaces password in the credentials window.
+5. Enter your Workspaces password in the credentials window.
 
     ![rdp-powershell](/img/runbook-images/windows-credentials.png)
 

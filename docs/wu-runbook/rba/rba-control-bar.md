@@ -1,6 +1,6 @@
 ---
 pagination_next: null
-sidebar_position: 3
+sidebar_position: 4
 title:  Using the RBA control bar
 ---
 

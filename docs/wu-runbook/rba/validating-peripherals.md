@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title:  Validating peripheral devices for RBA
 ---
 RBA supports the following peripheral devices when accessing web apps from the remote browser:
@@ -14,7 +14,7 @@ WUPOS agents are required to configure the supported peripheral devices to ensur
 
 To verify the functionality of your connected devices, use the **Peripheral Validator**: 
    
-- Navigate to the homepage and click **Connect** for **Peripherals** to start the validation process for each device. 
+- Navigate to the **Peripherals** in the homepage and click **Connect** for the **Peripherals**  menu to start the validation process for each device. 
    
   ![workspaces-homepage](/img/runbook-images/workspaces-homepage.png)
 
