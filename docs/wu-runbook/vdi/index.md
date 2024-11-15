@@ -48,6 +48,8 @@ To **start using the remote Windows desktop on the universal client**,
 
 2. Login with your credentials and click **Connect**. You now have full access to a remote Windows desktop, enabling you to perform your tasks as if you were working on a local machine.
 
+    ![windows-universal](/img/runbook-images/windows-universal.png)
+
 From this point, you can begin your work just as you would on a local machine. Launch applications, access files, use the terminal or browser, configure your settings - all within the secure confines of your browser tab.
 
 #### Windows remote desktop menu
