@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title:  Using RBA to access the Western Union App
 ---
 
@@ -7,7 +7,9 @@ WUPOS Agents can access the Western Union app using Remote Browser Acceleration 
 
 ### **Prerequisites**
 
-- **RBA Installer Token**: The RBA Installer Token is required when [setting up the installer](#download-the-rba-installer). To access this token, return to the [onboarding screen](../index.md#connecting-to-workspaces) or navigate to **Download Package** menu from the homepage sidebar. Click on **RBA Installer Token** and copy the displayed token. 
+- **RBA Installer Token**: The RBA Installer Token is required when [setting up the installer](#download-the-rba-installer). To access this token, return to the [onboarding screen](../index.md#connecting-to-workspaces) or navigate to **Software Downloads** from the homepage sidebar. Click on **RBA Installer Token** and copy the displayed token. 
+
+    ![rba-installer.jpeg](/img/runbook-images/rba-installer.jpg)
 
 ### **Download the RBA Installer**
 
@@ -17,7 +19,7 @@ To use the Western Union App with RBA, the following installation steps is requi
 The RBA installer also installs a Chrome browser on your device. You must access RBA using this browser to ensure RBA functions properly. For devices with the supported browser already installed, the RBA installer skips this browser installation.
 :::
 
-1. Click **Download RBA Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer. Alternatively,  navigate to **Download Package** menu from the homepage sidebar and click **Download RBA Installer**. 
+1. Click **Download RBA Installer** from the [onboarding screen](../index.md#connecting-to-workspaces) to download the installer. Alternatively,  navigate to **Software Downloads** from the homepage sidebar and click **Download RBA Installer**. 
   
 2. Run the file and follow the on-screen prompts until you reach the login screen. Use your Workspaces email address and the [RBA Installer Token](#prerequisites) you copied earlier when prompted for your login details. Click **Next**.
 
@@ -40,11 +42,11 @@ The RBA installer also installs a Chrome browser on your device. You must access
 
 After setting up the RBA installer and restarting your device, continue with the following steps to access the Western Union app from Workspaces:
 
-1. Log in to Cloud Workspaces on the newly installed browser and click **Go home** if you're not on the homepage.
+1. Log in to Cloud Workspaces on the newly installed browser and click **Go home** if you're not on the homepage. As mentioned in subscriptions, the tools available in your workspace may vary depending on your [user subscription](../index.md#workspaces-subscriptions).
 
-    ![home-page](/img/runbook-images/workspaces-homepage.png)
+    ![home-page](/img/runbook-images/rba.png)
 
-2. From the **Workspaces** homepage, click **Connect** for the **Western Union App**. The web app opens up in a new tab within the remote browser.
+2. From the **Workspaces** homepage, click **Open** for the **Western Union App**. The web app opens up in a new tab within the remote browser.
 
     ![wu](/img/runbook-images/western-union.png)
 

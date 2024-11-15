@@ -31,47 +31,39 @@ Ignore steps 1 and 2 if you are already logged into Cloud Workspaces.
 2. Login with appropriate credentials to your workspace.
 3. After logging in,
    
-     - For first-time users, the onboarding screen is displayed so you can download the appropriate installer for the service you want to use. Refer to the respective guides for detailed instructions on how to set up the [VDI](./vdi/index.md#download-the-vdi-installer) and [RBA](./rba/index.md#download-the-rba-installer) installers. Click **Go to Home** to proceed to the Workspaces homepage.
+     - For first-time users, the onboarding screen is displayed for you to download the appropriate installer for the service you want to use. Refer to the respective guides for detailed instructions on how to set up the [VDI](./vdi/index.md#download-the-vdi-installer) and [RBA](./rba/index.md#download-the-rba-installer) installers. Click **Go to Home** to proceed to the Workspaces homepage.
    
         ![onboarding-page](/img/runbook-images/onboarding.png)
 
-     - If you're a returning user, you are automatically redirected to the homepage. This homepage is for users subscribed to RBA and VDI.
+     - If you're a returning user, you are automatically redirected to the homepage. The services displayed in your homepage is based on your [user subscription](#workspaces-subscriptions). The homepage below is for users subscribed to RBA and VDI.
 
-        ![vdi-rba-user](/img/runbook-images/rba-vdi.png)
+        ![vdi-rba-user](/img/runbook-images/rba-vdi-mac.png)
 
 :::note
-If you missed the installers, click the **Download Package** menu from the sidebar to return to the onboarding screen.
+If you missed the installers, click the **Software Downloads** menu from the sidebar to return to the installer screen.
 :::
 
 The sidebar also provides access to the **User Guide** and **Logout** options. To view your profile, click the **user icon** in the top-right corner of the screen. 
 
-**Next steps:**
-- For WUPOS users, continue with the steps highlighted in [ Using RBA to access the Western Union App](./rba/index.md).
-- VDI users can continue with the [setup process](./vdi/index.md) to start using remote desktops.
+## **Workspaces subscriptions**
 
-## Workspace Management
-
-Cloud Workspaces offers its management dashboard for admin users to configure and edit their domain.
-
-![admin-dashboard](/img/workspaces/management-dashboard.png)
-
-:::note
-Regular users won't find the management dashboard as it is only available for admin users.
-:::
-
-
-## **Workspace Subscriptions**
-
-Cloud Workspaces has different tools in its toolbox and are available based on subscriptions. Depending on subscriptions, there are three classes of Cloud Workspace users:
+Cloud Workspaces has different tools in its toolbox which are available based on subscriptions. Depending on subscriptions, there are three classes of Cloud Workspace users:
 
 - **VDI users**: This class of users can only access the Windows VDI. After logging into Workspaces, users with only a VDI subscription have the following homepage.
 
-![vdi-user](/img/runbook-images/vdi.png)
+![vdi-user](/img/runbook-images/vdi-mac.png)
 
-- **RBA users**: Users in this group can only access RBA and their valid web apps.
+
+- **RBA users**: Users in this group can only access their designated web applications, specifically the Western Union App in this instance.
 
 ![rba-user](/img/runbook-images/rba.png)
 
 - **VDI and RBA users**: These users have access to all the tools in the Workspaces toolbox
 
 ![vdi-rba-user](/img/runbook-images/rba-vdi.png)
+
+**Next steps:**
+- For admins, visit the [Workspace Management guide](workspace-manangement.md) to configure your domain.
+- For WUPOS users, continue with the steps highlighted in [ Using RBA to access the Western Union App](./rba/index.md).
+- VDI users can continue with the [setup process](./vdi/index.md) to start using remote desktops.
+
