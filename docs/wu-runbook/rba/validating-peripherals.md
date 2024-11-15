@@ -14,9 +14,9 @@ WUPOS agents are required to configure the supported peripheral devices to ensur
 
 To verify the functionality of your connected devices, use the **Peripheral Validator**: 
    
-- Navigate to the **Peripherals** in the homepage and click **Connect** for the **Peripherals**  menu to start the validation process for each device. 
-   
-  ![workspaces-homepage](/img/runbook-images/workspaces-homepage.png)
+- Navigate to the **Peripherals** in the homepage and click **Open** for the **Peripherals** menu .
+  
+  ![workspaces-homepage](/img/runbook-images/peripherals-homepage.png)
 
 - It displays all the supported peripheral devices that can be validated.
 
