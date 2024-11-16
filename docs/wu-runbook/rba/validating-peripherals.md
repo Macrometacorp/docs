@@ -14,7 +14,7 @@ WUPOS agents are required to configure the supported peripheral devices to ensur
 
 To verify the functionality of your connected devices, use the **Peripheral Validator**: 
    
-- Navigate to the **Peripherals** in the homepage and click **Open** for the **Peripherals** menu .
+- Navigate to **Peripherals** in the homepage and click **Open** for the **Peripherals** menu .
   
   ![workspaces-homepage](/img/runbook-images/peripherals-homepage.png)
 
@@ -41,7 +41,7 @@ To validate the printer:
 ## **Signature Pad**
 
 To validate the signature pad:
-1. Click the **Connect** button for **Signature Pad** from the **Peripherals** screen. It displays a signature pad validator.
+1. Click the ***Test** button for **Signature Pad** from the **Peripherals** screen. It displays a signature pad validator.
 
    ![sig-pad](/img/runbook-images/signature-pad.png)
 
