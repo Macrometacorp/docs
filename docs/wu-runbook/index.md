@@ -31,7 +31,7 @@ Ignore steps 1 and 2 if you are already logged into Cloud Workspaces.
 2. Login with appropriate credentials to your workspace.
 3. After logging in,
    
-     - For first-time users, the onboarding screen is displayed for you to download the appropriate installer for the service you want to use. Refer to the respective guides for detailed instructions on how to set up the [VDI](./vdi/index.md#download-the-vdi-installer) and [RBA](./rba/index.md#download-the-rba-installer) installers. Click **Go to Home** to proceed to the Workspaces homepage.
+     - For first-time users, the **Software Downloads** screen is displayed for you to download the appropriate installer for the service you want to use. Refer to the respective guides for more details on the [VDI](./vdi/index.md) and [RBA](./rba/index.md) installers. Click **Homepage** to proceed to the Workspaces homepage.
    
         ![onboarding-page](/img/runbook-images/onboarding.png)
 
@@ -51,14 +51,14 @@ Cloud Workspaces has different tools in its toolbox which are available based on
 
 - **VDI users**: This class of users can only access the Windows VDI. After logging into Workspaces, users with only a VDI subscription have the following homepage.
 
-![vdi-user](/img/runbook-images/vdi-mac.png)
+![vdi-user](/img/runbook-images/vdi-windows.png)
 
 
 - **RBA users**: Users in this group can only access their designated web applications, specifically the Western Union App in this instance.
 
 ![rba-user](/img/runbook-images/rba.png)
 
-- **VDI and RBA users**: These users have access to all the tools in the Workspaces toolbox
+- **VDI and RBA users**: These users have access to all the tools in the Workspaces toolbox.
 
 ![vdi-rba-user](/img/runbook-images/rba-vdi.png)
 
