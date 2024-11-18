@@ -9,11 +9,29 @@ title: Private Content Delivery Network
 
 Macrometa's private CDN (pCDN) is a highly-distributed API management platform designed to resolve the scalability, reliability, and latency limitations most centralized API management systems face. It does this with the following functionalities:
 
-- **Distributed API handling:** pCDN uses a distributed platform to receive and handle all API traffic, eliminating the single point of failure and improving reliability and latency.
-- **Load balancing:** The pCDN distributes and balances incoming traffic load almost evenly across upstream nodes, thus preventing overloading a single server and possible downtime. 
-- **Rate limiting and traffic control:** pCDN implements rate-limiting, which allows you to control resource consumption to prevent abuse and unnecessary costs. 
-- **Security and authentication:** The platform offers numerous plugins to improve security when handling your APIs. These plugins are also customizable, allowing you to further enhance their effectiveness.
-- **Extensibility:** pCDN offers numerous plugins that handle tasks like observability, authentication, traffic handling, and many more, allowing users to extend the service's capabilities to fit their business-specific needs. 
+<grid cols={4}>
+  <card
+    heading="Distributed API handling"
+    description="A distributed system to receive and distribute API traffic to improve performance"
+    href="/pCDN/getting-started/"
+  />
+    <card
+    heading="Load balancing"
+    description="Use upstream nodes to balance API traffic load to prevent server overload."
+    href="/pCDN/getting-started/set-up-load-bal/"
+  />
+    <card
+    heading="Rate limiting"
+    description="Set API thresholds to control and limit server resource consumption."
+    href="/pCDN/getting-started/rate-limiting/"
+   />
+    <card
+    heading="Authentication"
+    description="Control access to your APIs with customizable plugins."
+    href="/pCDN/plugins/authenticate/"
+  />
+</grid>
+
 
 You can [get started by configuring your first route](./01-getting-started/index.md). 
 
@@ -28,5 +46,7 @@ Apart from the improved scalability, reliability, and latency offered by the pCD
 3. **Improved observability and monitoring**: pCDN acts as a central hub for managing your network of APIs and employs a combination of logs, metrics, alerting systems, and efficient reporting to observe and visualize the performance of your APIs over time. Insights derived over time help diagnose performance issues and inform future growth strategies. 
 
 4. **Personalized marketing**: Consumer ID used in pCDN for the unique identification of users helps create consumer groups, with each group containing different upstream and plugin configurations. Marketing teams can use these groups to create targeted responses and recommendations that speak to their group-specific needs.
+
+5. **Extensibility:** pCDN offers numerous plugins that handle tasks like observability, authentication, traffic handling, and many more, allowing users to extend the service's capabilities to fit their business-specific needs.
 
 In the next guide, we'll delve deeper into [Getting started with pCDN](./01-getting-started/index.md).

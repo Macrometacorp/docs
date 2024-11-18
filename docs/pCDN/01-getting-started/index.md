@@ -3,18 +3,16 @@ title: Getting started with pCDN
 sidebar_label: Getting started
 ---
 
-The pCDN handles API traffic, acting as a gateway and routing to various destinations, depending on your configurations. This tutorial will walk you through configuring your first route, and other tasks like:
+As an API gateway, the pCDN uses routes to route all incoming traffic to different destinations depending on your upstream configuration. Routes are the gateway/entry point for all these requests, This guide will walk you through the following tasks to get you started using pCDN:
 
+- Configuring a route
 - Validating the route
-- Creating an upstream object for use in routing. 
 
-## Prerequisites
+## Prerequisite(s)
 
 - A Stargate instance. Contact the Macrometa team for your Stargate server and login details. 
 
-## Step 1: Create a route
-
-A route acts as the gateway/entry point for incoming requests and forwards them to an upstream target address. 
+## Step 1: Configuring a route
 
 To create a route:
 
@@ -30,7 +28,8 @@ To create a route:
     ![config-route](/img/pcdn/config-route-2.png)
     The path `/*` matches against all available paths from the host address.
     ![config-route](/img/pcdn/config-route-3.png)
-    1. **Define API Backend server:** Here, you define your upstream configuration. This is the target address for your route. Enter a Target host and port and leave every other field as it is. Our upstream uses the round robin algorithm and nodes. You can add more nodes to help with load balancing. Click **Next**
+    1. **Define API Backend server:** Here, you define your upstream configuration. This is the target address for your route. Enter a Target **host** and **port** and leave every other field as it is. 
+    Our upstream uses the round robin algorithm and nodes. You can [add more nodes to help with load balancing](./01-set-up-load-bal.md). Click **Next**
     ![config-route-step-2](/img/pcdn/route-2.png)
      You can enable health check and configure settings for your health check.
     ![route-health](/img/pcdn/route-2-health.png)
@@ -42,3 +41,4 @@ To create a route:
 
 ## Step 2: Validate the Route  
  
+You can test the validity of your route by sending a request to the configured route. 
