@@ -13,22 +13,22 @@ Macrometa's private CDN (pCDN) is a highly-distributed API management platform d
   <card
     heading="Distributed API handling"
     description="A distributed system to receive and distribute API traffic to improve performance"
-    href="/pcdn/getting-started/"
+    href="/pCDN/getting-started/"
   />
     <card
     heading="Load balancing"
     description="Use upstream nodes to balance API traffic load to prevent server overload."
-    href="/pcdn/getting-started/set-up-load-bal/"
+    href="/pCDN/getting-started/set-up-load-bal/"
   />
     <card
     heading="Rate limiting"
     description="Set API thresholds to control and limit server resource consumption."
-    href="/pcdn/getting-started/rate-limiting/"
+    href="/pCDN/getting-started/rate-limiting/"
    />
     <card
     heading="Authentication"
     description="Control access to your APIs with customizable plugins."
-    href="/pcdn/plugin/authenticate/"
+    href="/pCDN/plugins/authenticate/"
   />
 </grid>
 

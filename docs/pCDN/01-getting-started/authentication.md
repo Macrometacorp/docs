@@ -4,15 +4,6 @@ title: Authentication
 
 While APIs exists to primarily exchange data between providers/businesses and consumers, not all data should be accessible to all API consumers, especially business internal data and sensitive Personal Identifiable Information(PCI), subject to GDPR and PCI data protection and compliance policies.
 
-pCDN contains [authentication plugins](../04-plugins/01-authenticate.md) that allow you to identify and authenticate users before allowing them to access your API endpoints. Using these plugins, you can restrict access to endpoints based on the consumer ID, thus ensuring data safety and security.
-
-These plugins include:
--  `basic-auth`
-- `forward-auth`
-- `jwt-auth`
-- `key-auth`
-- `idap-auth`
-
 This tutorial uses the `basic-auth` plugin to authenticate its API consumers and grant them access to different endpoints.
 
 ## Prerequisite(s)
@@ -24,7 +15,7 @@ This tutorial uses the `basic-auth` plugin to authenticate its API consumers and
 
 The `basic-auth` plugin lets API consumers to authenticate and access an API endpoint with a username and password. 
 
-You can enable the `basic-auth` plugin by enabling it during route configuration. Thus, consumers without `basic-auth` details are denied access.
+You can enable this plugin by enabling it during route configuration. Thus, consumers without auth details are denied access.
 
 
 ## Step 2: Create two different API consumers
