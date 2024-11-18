@@ -42,3 +42,7 @@ To create a route:
 ## Step 2: Validate the Route  
  
 You can test the validity of your route by sending a request to the configured route. 
+
+## Next steps
+
+Now we have our route configured, let's illustrate [load balancing using upstream nodes](01-set-up-load-bal.md). 
