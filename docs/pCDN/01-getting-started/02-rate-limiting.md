@@ -8,9 +8,14 @@ pCDN uses the limit-count plugin to limit the number of API requests sent to the
 
 ## Prerequisites
 
-Ensure to have your login details and a route configured to proceed.
+Ensure to have your login details and a [route configured](index.md) to proceed.
 
 ## Setting a rate-limit
+
+You can set a rate-limit in two ways:
+
+- Route configuration: When configuring your route, you can enable the `limit-count` plugin with the set configurations.
+- Using the plugin section to enable for a route or upstream.
 
 1. Navigate to **Plugins** from your Stargate dashboard
 1. Click **Traffic control** and click **Enable** from the limit-count card
@@ -22,3 +27,10 @@ This opens the Plugin editor.
 3. Click **Submit**
 
 ## Test rate limiting
+
+We set our limit-count to 4requests per 30seconds. To test this:
+
+- Run 4 concurrent requests within this time window. 
+- Now run a 5th request. This returns the error message we set when configuring the rate limit.
+
+
