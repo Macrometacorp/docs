@@ -1,5 +1,5 @@
 ---
-title: Working with GDN Documents Using PhotonIQ Functions
+title: Create and Manage GDN Document Collections Using PhotonIQ
 ---
 
 [GDN (Global Data Network) Document Collections](/docs/collections/documents/index.md) are schema-free stores that hold JSON documents. Each document is uniquely identified by a `_key`. These collections are globally distributed, ensuring low-latency access to data across multiple regions. [PhotonIQ Functions](/docs/photoniq/functions/index.md) is an edge-computing service that allows you to run your serverless applications smoothly. By using PhotonIQ functions to interact with GDN collections, you can create flexible APIs for efficient data management.
