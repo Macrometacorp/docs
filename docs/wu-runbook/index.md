@@ -40,25 +40,25 @@ Ignore steps 1 and 2 if you are already logged into Cloud Workspaces.
         ![vdi-rba-user](/img/runbook-images/rba-vdi-mac.png)
 
 :::note
-If you missed the installers, click the **Software Downloads** menu from the sidebar to return to the installer screen.
+If you missed the installers, click the **Software Downloads** menu from the sidebar.
 :::
 
-The sidebar also provides access to the **User Guide** and **Logout** options. To view your profile, click the **user icon** in the top-right corner of the screen. 
+The sidebar also provides access to the **User Guide** and **Logout** options. To view your username, click the **user icon** in the top-right corner of the screen. 
 
 ## **Workspaces subscriptions**
 
 Cloud Workspaces has different tools in its toolbox which are available based on subscriptions. Depending on subscriptions, there are three classes of Cloud Workspace users:
 
-- **VDI users**: This class of users can only access the Windows VDI. After logging into Workspaces, users with only a VDI subscription have the following homepage.
+- **VDI users**: Users with this subscription can only access the [Windows VDI](./vdi/index.md). After logging into Workspaces, the user has the following homepage:
 
 ![vdi-user](/img/runbook-images/vdi-windows.png)
 
 
-- **RBA users**: Users in this group can only access their designated web applications, specifically the Western Union App in this instance.
+- **RBA users**: Users in this group have the browser subscription and can access the WUPOS application using [RBA](./rba/index.md).
 
 ![rba-user](/img/runbook-images/rba.png)
 
-- **VDI and RBA users**: These users have access to all the tools in the Workspaces toolbox.
+- **VDI and RBA users**: These users have full access to the Workspaces toolbox, which includes the WUPOS application and the Windows VDI.
 
 ![vdi-rba-user](/img/runbook-images/rba-vdi.png)
 

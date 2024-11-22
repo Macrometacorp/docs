@@ -5,7 +5,7 @@ sidebar_label: Workspace Management
 ---
 
 
-Cloud Workspaces provides the management dashboard for admin users to configure thier Active Directory.
+Cloud Workspaces provides the management dashboard for admin users to configure and update thier Active Directory domain.
 
 ![admin-dashboard](/img/workspaces/management-dashboard.png)
 

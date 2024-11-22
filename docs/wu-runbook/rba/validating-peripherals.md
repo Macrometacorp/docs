@@ -2,6 +2,7 @@
 sidebar_position: 3
 title:  Validating peripheral devices for RBA
 ---
+
 RBA supports the following peripheral devices when accessing web apps from the remote browser:
 1. **Signature pad**
 2. **Webcam**
@@ -11,6 +12,10 @@ RBA supports the following peripheral devices when accessing web apps from the r
 6. **Pin pad**
 
 WUPOS agents are required to configure the supported peripheral devices to ensure they are automatically detected and functional in RBA. 
+
+:::info
+[Setting up the RBA installer](index.md#download-the-rba-installer) is required before you can proceed with validating peripherals..
+:::
 
 To verify the functionality of your connected devices, use the **Peripheral Validator**: 
    
