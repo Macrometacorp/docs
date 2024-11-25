@@ -4,16 +4,17 @@ title:  Troubleshooting and FAQs
 ---
 Here are some common issues and steps to resolve them.
 
+### Why am I seeing the error "No available sessions found"?
+This error can have different causes depending on the service you are trying to access:
 
-### Why am I seeing the error "No available sessions found" when trying to access the Windows VDI?
+- **Persistent VDI users**: You are pre-assigned to a specific session and instance by default. If you encounter this error, please contact [Macrometa support](https://www.macrometa.com/support) for assistance.
 
-This error typically occurs when you are trying to access a VDI session  and all available sessions are currently in use. You won't be able to use VDI until a session becomes available for use. Wait a while and try again later to see if  you can access VDI. 
+- **Non-Persistent VDI and RBA users**: This error typically occurs when all available sessions are in use. Wait for a session to free up and try again later.
 
-### Why am I unable to use my peripheral devices (printer, webcams, card reader)
+### Why am I unable to use my peripheral devices (printer card reader, e.t.c)?
 Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](./rba/validating-peripherals.md) before use.
 
 ### Why can't I launch VDI from my Windows 11?
-
 Some antiviruses like BitDefender might prevent the execution of the Windows PowerShell script. To fix this, follow any of these solutions:
 
 - Temporarily turn off this antivirus and retry launching VDI.
