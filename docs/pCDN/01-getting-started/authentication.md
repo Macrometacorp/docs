@@ -18,7 +18,7 @@ The `basic-auth` plugin lets API consumers to authenticate and access an API end
 You can enable this plugin by enabling it during route configuration. Thus, consumers without auth details are denied access.
 
 
-## Step 2: Create two different API consumers
+## Step 2: Create consumers
 
 pCDN consumers consume the APIs coming through the distributed pCDN gateway, and authenticating these users helps secure the access and consumption of your APIs.
 
@@ -36,4 +36,3 @@ Follow these steps to create the consumers with basic-auth details:
 
 Repeat steps 3-5, but with a different name and password for users b. 
 
-## Step 3: Test user access
