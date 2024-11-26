@@ -15,7 +15,7 @@ Ensure to have your login details and a [route configured](index.md) to proceed.
 You can set a rate-limit in two ways:
 
 - Route configuration: When configuring your route, you can enable the `limit-count` plugin with the set configurations.
-- Using the plugin section to enable for a route or upstream.
+- Enabling the plugin from the dashboard and add to your route configuration when creating a route. 
 
 1. Navigate to **Plugins** from your Stargate dashboard
 1. Click **Traffic control** and click **Enable** from the limit-count card
@@ -28,9 +28,11 @@ This opens the Plugin editor.
 
 ## Test rate limiting
 
-We set our limit-count to 4requests per 30seconds. To test this:
+We set our limit-count to 4requests per 30seconds. This configuration limits the incoming requests to a maximum of 4 requests within 30 seconds.To test this:
 
-- Run 4 concurrent requests within this time window. 
-- Now run a 5th request. This returns the error message we set when configuring the rate limit.
+- Generate 10 simultaneous requests.
+
+Of the 10 requests, only 4 return a successful 200 status code while the other 6 returns the errors status code(503)
+
 
 
