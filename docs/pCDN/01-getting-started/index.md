@@ -8,7 +8,7 @@ As an API gateway, the pCDN uses routes to direct API traffic to different desti
 This guide will walk you through the following tasks to get you started using pCDN:
 
 - Configuring a route
-- Setting up load balancing
+- [Setting up load balancing](#step-2-set-up-load-balancing)
 
 You can create a route using the GUI or via the Stargate REST API
 
