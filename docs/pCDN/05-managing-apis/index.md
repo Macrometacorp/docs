@@ -264,23 +264,6 @@ These are the users of the services and help in authentication before accessing 
 | DELETE      | `/api/stargate/v1/consumers/{username}` | Null             | Deletes a consumer with the specified username |
 | PATCH       | `/api/stargate/v1/consumers/{username}` | {...}            | Partially update a consumer                    |
 
-### Sample consumer requests
-
-1. Create a consumer
-
-- **Request**
-- **Response**
-
-2. Retrieve a consumer
-
-- **Request**
-- **Response**
-
-3. Update a consumer
-
-- **Request**
-- **Response**
-
 ## Services
 
 Reduce the redundancy by bounding routes with the same plugins and upstreams together.
