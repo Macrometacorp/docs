@@ -28,7 +28,7 @@ Macrometa's private CDN (pCDN) is a highly-distributed API management platform d
     <card
     heading="Authentication"
     description="Control access to your APIs with customizable plugins."
-    href="/pCDN/plugins/authenticate/"
+    href="/pCDN/plugins/"
   />
 </grid>
 

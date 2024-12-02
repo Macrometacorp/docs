@@ -1,7 +1,6 @@
 ---
 title: Traffic handling
 ---
-
 These pCDN plugins control API traffic and include:
 
 - `limit-conn`: Limits the number of concurrent requests to the service.
