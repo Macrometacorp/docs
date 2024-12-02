@@ -23,7 +23,7 @@ This plugin allows you to dynamically assign portions of traffic to different up
 | upstream.upstream_host         | string         | False        |             |                             | Host of the Upstream request. Only valid when pass_host attribute is set to rewrite.                                                                                                                                                                                                          |
 | weighted_upstreams.weight      | integer        | False        | weight = 1  |                             | Weight to give to each Upstream node for splitting traffic.                                                                                                                                                                                                                                   |
 
-### Enable plugin
+## Enable plugin
 
 You can enable this plugin when configuring a route or by following these steps:
 
@@ -32,5 +32,89 @@ You can enable this plugin when configuring a route or by following these steps:
 3. Toggle the **Enable** button to enable the plugin. Configure your plugin by specifying your attribute value.
 4. Click **Submit**
 
-### Sample usage
+## Sample `traffic-split` plugin use cases
 
+### Canary Release
+
+A canary release involves gradually deploying a new version by routing an increasing percentage of traffic to it. Eventually, all traffic is directed to the new version.
+
+To implement a canary release, configure the weight attribute in the weighted_upstreams section as shown below:
+
+```bash
+curl https://adrsearche-us-east.photoniq.macrometa.io:9080/api/stargate/v1/routes \
+-H "X-API-KEY: $admin_key" -X PUT -d '
+{
+    "uri": "/index.html",
+    "plugins": {
+        "traffic-split": {
+            "rules": [
+                {
+                    "weighted_upstreams": [
+                        {
+                            "upstream": {
+                                "name": "upstream_A",
+                                "type": "roundrobin",
+                                "nodes": {
+                                    "127.0.0.1:1981":10
+                                },
+                                "timeout": {
+                                    "connect": 30,
+                                    "send": 15,
+                                    "read": 15
+                                }
+                            },
+                            "weight": 3
+                        },
+                        {
+                            "weight": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:1980": 1
+        }
+    }
+}'
+
+```
+
+This configuration sets the weights at a ratio of 4:1, meaning:
+
+- 80% of traffic is routed to the upstream service running on 127.0.0.1:1981 (the plugin’s upstream).
+- 20% of traffic is routed to the upstream service running on 127.0.0.1:1980 (the route’s upstream).
+
+## Testing the Configuration
+
+After setting up the configuration, you can test it by making multiple requests. For instance, if you send 5 requests, 4 will hit the service at :1981 and 1 will hit the service at :1980:
+
+```bash
+
+curl http://127.0.0.1:9080/index.html -i
+```
+
+### Sample responses
+
+1. Request routed to :1980:
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+...
+hello 1980
+```
+
+2. Request routed to :1981:
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+...
+world 1981
+```
+
+This demonstrates the weighted traffic distribution in action.

@@ -32,11 +32,54 @@ This plugin uses the leaky bucket algorithm to limit the number of requests to y
 
 ### Enable plugin
 
-1, Navigate to **Plugins** on the Stargate dashboard.
-2. Click **Enable** on the `limit-req` card from the **Traffic** section. This opens the plugin editor.
-3. Toggle the **Enable** button to enable the plugin. Configure your plugin by specifying your attribute value.
-4. Click **Submit**
+```c
+curl https://adrsearche-us-east.photoniq.macrometa.io:9080/api/stargate/v1/routes -H "X-API-KEY: $admin_key" -X PUT -d '
+{
+    "methods": ["GET"],
+    "uri": "/index.html",
+    "plugins": {
+        "limit-req": {
+            "rate": 8,
+            "burst": 2,
+            "rejected_code": 503,
+            "key_type": "var",
+            "key": "remote_addr"
+        }
+    },
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:9001": 1
+        }
+    }
+}'
+```
 
-### Sample usage
+You can set the `key_type` to `var_combination`
+
+```c
+curl https://adrsearche-us-east.photoniq.macrometa.io:9080/api/stargate/v1/routes -H "X-API-KEY: $admin_key" -X PUT -d '
+{
+    "methods": ["GET"],
+    "uri": "/index.html",
+    "plugins": {
+        "limit-req": {
+            "rate": 8,
+            "burst": 2,
+            "rejected_code": 503,
+            "key_type": "var_combination",
+            "key": "$remote_addr"
+        }
+    },
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:9001": 1
+        }
+    }
+}'
+```
 
 ### Disable plugin
+
+Toggle the **Enable** button to disable the plugin or delete the plugin JSON configuration from your route configuration.

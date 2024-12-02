@@ -30,28 +30,85 @@ This plugin uses the Fixed Window algorithm to limit the amount of requests in a
 | `redis_cluster_name`      | string   | required when policy is redis-cluster |                     |                                     | Name of Redis cluster nodes                                                                                                                                                                                     |
 |                           |          |                                       |                     |                                     |                                                                                                                                                                                                                 |
 
-### Enable plugin
 
-1, Navigate to **Plugins** on the Stargate dashboard.
-2. Click **Enable** on the `limit-count` card from the **Traffic** section. This opens the plugin editor.
-3. Toggle the **Enable** button to enable the plugin. Configure your plugin by specifying your attribute value.
-4. Click **Submit**
+### Example Usage
 
-### Sample usage
-
-```json
+```c
+curl -i https://adrsearche-us-east.photoniq.macrometa.io:9080/api/stargate/v1/routes' \
+-H "X-API-KEY: $admin_key" -X PUT -d '
 {
-  "count": 2000,
-  "time_window": 10,
-  "key_type": "var",
-  "rejected_code": 503,
-  "policy": "local",
-  "allow_degradation": false,
-  "show_limit_quota_header": true
-}
+    "uri": "/index.html",
+    "plugins": {
+        "limit-count": {
+            "count": 2,
+            "time_window": 60,
+            "rejected_code": 503,
+            "key_type": "var",
+            "key": "remote_addr"
+        }
+    },
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:9001": 1
+        }
+    }
+}'
 ```
 
+The configuration below enforces a rate limit of 2 requests within a 60-second window. The first two requests will succeed, and the response headers will include the following:
+
+- **X-RateLimit-Limit**: The maximum number of requests allowed.
+- **X-RateLimit-Remaining**: The number of requests still available within the current limit.
+- **X-RateLimit-Reset**: The time (in seconds) remaining until the limit resets.
+
+For example:
+
+```bash
+curl -i http://127.0.0.1:9080/index.html
+```
+
+Response:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 13175
+Connection: keep-alive
+X-RateLimit-Limit: 2
+X-RateLimit-Remaining: 0
+X-RateLimit-Reset: 58
+Server: APISIX web server
+```
+
+When you make a third request within the same 60-second period, the server will reject it with a `503 Service Temporarily Unavailable` response. Even in case of rejection, the rate limit headers are returned:
+
+```http
+HTTP/1.1 503 Service Temporarily Unavailable
+Content-Type: text/html
+Content-Length: 194
+Connection: keep-alive
+X-RateLimit-Limit: 2
+X-RateLimit-Remaining: 0
+X-RateLimit-Reset: 58
+Server: APISIX web server
+```
+
+Additionally, you can customize the rejection response by setting the `rejected_msg` attribute. For instance:
+
+```http
+HTTP/1.1 503 Service Temporarily Unavailable
+Content-Type: text/html
+Content-Length: 194
+Connection: keep-alive
+X-RateLimit-Limit: 2
+X-RateLimit-Remaining: 0
+X-RateLimit-Reset: 58
+Server: APISIX web server
+
+{"error_msg": "Requests are too frequent, please try again later."}
+```
 
 ### Disable plugin
 
-Toggle the **Enable** button to disable the plugin or delete the plugin schema configuration from your route configuration.
+Toggle the **Enable** button to disable the plugin or delete the plugin JSON configuration from your route configuration.

@@ -31,23 +31,36 @@ To enable the `limit-conn` plugin:
 
 Here's a sample schema for this plugin:
 
-```json
-
+```c
+curl https://adrsearche-us-east.photoniq.macrometa.io:9080/api/stargate/v1/routes \
+-H "X-API-KEY: $admin_key" -X PUT -d '
 {
-  "conn": 1000,
-  "burst": 100,
-  "default_conn_delay": 10,
-  "only_use_default_delay": false,
-  "key_type": "var",
-  "key": "consumer_name",
-  "rejected_code": 503,
-  "rejected_msg": "Request limt exceeded/",
-  "allow_degradation": false
-}
-```
-The following plugin config allows a maximum of 1000 concurrent requests, while delaying a maximum of 100 additional requests. Any requests exceeding this 1,100 value will return the `Request limit exceeded` response. 
+    "methods": ["GET"],
+    "uri": "/index.html",
+    "plugins": {
+        "limit-conn": {
+            "conn": 1000,
+            "burst": 100,
+            "default_conn_delay": 10,
+            "only_use_default_delay": false,
+            "key_type": "var",
+            "key": "consumer_name",
+            "rejected_code": 503,
+            "rejected_msg": "Request limt exceeded/",
+            "allow_degradation": false
+        }
+    },
+    "upstream": {
+        "type": "roundrobin",
+        "nodes": {
+            "127.0.0.1:1980": 1
+        }
+    }
+}'
 
-Some use cases for the plugin include:
+```
+
+The following plugin config allows a maximum of 1000 concurrent requests, while delaying a maximum of 100 additional requests. Any requests exceeding this 1,100 value will return the `Request limit exceeded` response. 
 
 
 ### Disable plugin
