@@ -40,19 +40,36 @@ Ignore steps 1 and 2 if you are already logged into Cloud Workspaces.
         ![vdi-rba-user](/img/runbook-images/rba-vdi-mac.png)
 
 :::note
-If you missed the installers, click the **Software Downloads** menu from the sidebar.
+- VDI users with only [Universal Client](./vdi/index.md#accessing-vdi) won't see **Software Downloads** and will be redirected to the homepage instead. See [Workspace subscriptions](#workspaces-subscriptions) for more details.
+- If you missed the installers, click the **Software Downloads** menu from the sidebar.
 :::
 
-The sidebar also provides access to the **User Guide** and **Logout** options. To view your username, click the **user icon** in the top-right corner of the screen. 
+### Account options
+
+1. The sidebar gives you quick access to the **User Guide** and **Logout** options.
+
+2. To **see your username**, click the **user icon** in the top-right corner.
+
+3. To **log out**, you can either click **Logout** in the sidebar or click the **user icon** and choose **Logout** from the dropdown. You'll be prompted to confirm this action as shown below. Click the **Logout** button to complete the process.
+   
+      ![logout](/img/runbook-images/logout.png)
+
 
 ## **Workspaces subscriptions**
 
 Cloud Workspaces has different tools in its toolbox which are available based on subscriptions. Depending on subscriptions, there are three classes of Cloud Workspace users:
 
+:::tip
+The subscriptions determine the options displayed in the **Homepage** and **Software Downloads**.
+:::
+
 - **VDI users**: Users with this subscription can only access the [Windows VDI](./vdi/index.md). After logging into Workspaces, the user has the following homepage:
 
 ![vdi-user](/img/runbook-images/vdi-windows.png)
 
+:::note
+The Client available for your VDI may differ. Visit the [VDI documentation](./vdi/index.md#accessing-vdi) for more details.
+:::
 
 - **RBA users**: Users in this group have the browser subscription and can access the WUPOS application using [RBA](./rba/index.md).
 

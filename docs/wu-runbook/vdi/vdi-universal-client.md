@@ -13,7 +13,7 @@ To **start using the remote Windows desktop on the universal client**,
 
    ![universal-login.jpg](/img/runbook-images/universal-login.jpg)
 
-:::tip
+:::info
 - Click the Allow button to enable clipboard functionality in your VDI.
 - If you receive a pop-up blocked notification, you may need to enable pop-ups in your browser settings for the VDI tab to open successfully.
 :::
@@ -22,11 +22,15 @@ To **start using the remote Windows desktop on the universal client**,
 
     ![windows-universal](/img/runbook-images/windows-universal.png)
 
+:::tip
+If you enter the wrong password twice, your VDI session will be terminated. To reconnect, return to the **Workspaces** homepage and click the **Universal Client** button for Windows.
+:::
+
 From this point, you can begin your work just as you would on a local machine. Launch applications, access files, use the terminal or browser, configure your settings - all within the secure confines of your browser tab.
 
 ### Windows remote desktop menu
 
-The Windows remote desktop interface for VDI on the universal client provides essential control options to enhance your user experience and manage your session effectively:
+The Windows remote desktop interface for VDI on the universal client provides essential control options to enhance your user experience and manage your session effectively. To access the menu, click the **dropdown icon** at top of the screen:
 
 ![Windows Remote Desktop Menu](/img/runbook-images/windows-menu.png)
 
