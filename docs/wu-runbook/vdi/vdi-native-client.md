@@ -2,32 +2,24 @@
 sidebar_position: 7
 title:  Accessing VDI on the Native Client
 ---
-Using the native client requires you to run the VDI installer for neccessary configurations to accesss VDI. This guide will explain how to:
+The native client option is only available for users accessing VDI on **Windows**. Using the native client requires you to run the VDI installer for neccessary configurations to access VDI. This guide will explain how to:
 - [**Download the VDI installer**](#download-the-vdi-installer)
 - [**Connect to the VDI**](#connect-to-the-vdi)
-
-**Prerequisite**
-
-- **VDI Installer Token**: The VDI Installer Token is required when [setting up the installer](#download-the-vdi-installer). To access this token, 
-  1. Navigate to **Software Downloads** from the homepage sidebar. 
-  2. Copy the **Software Token** for **Virtual Desktop Infrastructure**.
-
-    ![vdi-token.png](/img/runbook-images/vdi-token.png)
 
 ## **Download the VDI installer**
 
 Before accessing remote desktops using the native client, follow these steps:
 
-1. Go to the **Software Downloads** page and click the **Download** button  for VDI to get the VDI installer.
+1. Go to the **Software Downloads** page and click the **Download** button  for Virtual Desktop Interface to get the VDI installer.
 
-    ![vdi-token.png](/img/runbook-images/onboarding.png)
+    ![vdi-package.png](/img/runbook-images/onboarding.png)
   
-2. Run the downloaded file and follow the installation prompts until prompted for login.
+2. Run the downloaded file and follow the installation prompts.
 
-    ![vdi-token.png](/img/runbook-images/vdi-login.png)
+3. Once the installation is complete, click **Finish**.
+4. After a succesful installation, you'll see the Macrometa VDI Service icon in the system tray.
 
-3. Use the token you copied earlier as the **VDI Installer Token** and click **Next**.
-4. Once the installation is complete, click **Finish**.
+    ![vdi-tray.png](/img/runbook-images/vdi-tray.png)
 
 
 ## **Connect to the VDI**
