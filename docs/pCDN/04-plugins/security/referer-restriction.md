@@ -2,9 +2,6 @@
 title: referer-restriction  
 ---
 
-
-## Description
-
 The `referer-restriction` Plugin restricts access to Services or Routes by applying rules to the `Referer` request header. You can define rules using whitelists or blacklists of hostnames, with optional support for wildcards.
 
 ## Attributes
@@ -20,7 +17,6 @@ The `referer-restriction` Plugin restricts access to Services or Routes by apply
 Only one of `whitelist` or `blacklist` must be specified. These attributes cannot be used together.  
 :::
 
----
 
 ## Enable Plugin
 
@@ -99,7 +95,6 @@ HTTP/1.1 200 OK
 ...
 ```
 
----
 
 ## Delete Plugin
 

@@ -3,13 +3,11 @@ title: ua-restriction
 ---
 
 
-## Description
-
 The `ua-restriction` Plugin in Stargate enables you to control access to Routes or Services by filtering requests based on the `User-Agent` header. You can define an `allowlist` to permit specific `User-Agent` headers or a `denylist` to block undesired ones.  
 
 A typical use case is restricting web crawlers or bots by denying specific `User-Agent` strings.
 
----
+
 
 ## Attributes
 
@@ -24,7 +22,7 @@ A typical use case is restricting web crawlers or bots by denying specific `User
 `allowlist` and `denylist` cannot be configured simultaneously. Use only one to avoid conflicts.  
 :::
 
----
+
 
 ## Enable Plugin
 
@@ -63,7 +61,7 @@ curl http://127.0.0.1:9180/api/stargate/v1/routes/1 -H "X-API-KEY: $admin_key" -
 }'
 ```
 
----
+
 
 ## Example Usage
 
@@ -92,7 +90,7 @@ HTTP/1.1 403 Forbidden
 {"message":"Do you want to do something bad?"}
 ```
 
----
+
 
 ## Delete Plugin
 

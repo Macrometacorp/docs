@@ -4,7 +4,6 @@ title: consumer-restriction
 
 ---
 
-## Description
 
 The `consumer-restriction` Plugin in Stargate allows you to manage access to Consumers, Routes, Services, or Consumer Groups by defining restrictions based on specific criteria. This enables fine-grained control over who can access your APIs.
 

@@ -2,11 +2,9 @@
 title: uri-blocker  
 ---
 
-## Description
 
 The `uri-blocker` Plugin is used to intercept and block requests that match specific URI patterns defined in `block_rules`. It allows you to secure Routes or Services by rejecting unwanted requests based on custom rules.
 
----
 
 ## Attributes
 
@@ -17,7 +15,7 @@ The `uri-blocker` Plugin is used to intercept and block requests that match spec
 | `rejected_msg`   | string        | False    |         | non-empty    | Custom message to include in the HTTP response body when a request is blocked.                                                                                                                       |
 | `case_insensitive` | boolean     | False    | false   |              | If `true`, the match is case-insensitive.                                                                                                                                                             |
 
----
+
 
 ## Enable Plugin
 
@@ -51,7 +49,7 @@ curl -i http://127.0.0.1:9180/api/stargate/v1/routes/1 -H "X-API-KEY: $admin_key
 }'
 ```
 
----
+
 
 ## Example Usage
 
@@ -102,7 +100,7 @@ Server: Stargate web server
 {"error_msg":"Access is not allowed"}
 ```
 
----
+
 
 ## Delete Plugin
 

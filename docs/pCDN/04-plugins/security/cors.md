@@ -2,8 +2,6 @@
 title: cors
 ---
 
-## Description
-
 The `cors` Plugins lets you enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) easily.
 
 ## Attributes
