@@ -3,11 +3,9 @@
 title: request-validation  
 ---
 
-## Description
-
 The `request-validation` Plugin validates incoming requests before they are forwarded to the Upstream service. This Plugin leverages [JSON Schema](https://github.com/api7/jsonschema) to enforce validation rules on headers and body content.
 
----
+
 
 ## Attributes
 
@@ -22,7 +20,7 @@ The `request-validation` Plugin validates incoming requests before they are forw
 At least one of `header_schema` or `body_schema` must be specified.  
 :::
 
----
+
 
 ## Enable Plugin
 
@@ -65,7 +63,7 @@ curl http://127.0.0.1:9180/api/stargate/v1/routes/5 \
 }'
 ```
 
----
+
 
 ## Example Scenarios
 
@@ -151,7 +149,7 @@ Define a schema to validate arrays with unique integer values:
 }
 ```
 
----
+
 
 ## Example Usage
 
@@ -176,7 +174,7 @@ curl --header "Content-Type: application/json" \
   http://127.0.0.1:9080/get
 ```
 
----
+
 
 ## Delete Plugin
 

@@ -3,8 +3,6 @@ title: ip-restriction
 ---
 
 
-## Description
-
 The `ip-restriction` Plugin allows you to restrict access to a Service or a Route by either whitelisting or blacklisting IP addresses.
 
 Single IPs, multiple IPs, or even IP ranges in CIDR notation like `10.10.10.0/24` can be used.
