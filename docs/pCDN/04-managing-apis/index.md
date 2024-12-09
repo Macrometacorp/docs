@@ -118,7 +118,7 @@ curl -X 'POST' \
 
 ```json
 {
-  "key": "/apisix/routes/00000000000000000023",
+  "key": "/apisix/00000000000000000023",
   "value": {
     "remote_addr": "192.168.1.0/24",
     "name": "product-service",

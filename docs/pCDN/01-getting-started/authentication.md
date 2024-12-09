@@ -2,7 +2,7 @@
 title: Authentication
 ---
 
-While APIs exists to primarily exchange data between providers/businesses and consumers, not all data should be accessible to all API consumers, especially business internal data and sensitive Personal Identifiable Information(PCI), subject to GDPR and PCI data protection and compliance policies.
+While APIs exists to primarily exchange data between providers/businesses and consumers, not all data should be accessible to API consumers, especially business internal data and sensitive Personal Identifiable Information(PII), subject to data protection and compliance policies set by regulatory bodies like General Data Protection Regulation (GDPR) and Payment Card Industry Data Security Standard (PCI DSS).
 
 This tutorial uses the `basic-auth` plugin to authenticate its API consumers and grant them access to different endpoints.
 
@@ -16,7 +16,6 @@ This tutorial uses the `basic-auth` plugin to authenticate its API consumers and
 The `basic-auth` plugin lets API consumers to authenticate and access an API endpoint with a username and password. 
 
 You can enable this plugin by enabling it during route configuration. Thus, consumers without auth details are denied access.
-
 
 ## Step 2: Create consumers
 
