@@ -8,3 +8,5 @@ title: Understand pCDN Terminology
 - **Service:** An API abstraction that bounds routes together. For example, two routes(A and B) with the same plugins and upstream can be bounded to the same service. This reduces the redundancy from configuring two separate plugins and upstreams for each route.
 - **Plugins:** Component(s) that improves the functionality of existing software to meet business/user specific needs. [Plugins](./04-plugins/index.md) are customizable and offers a plugin editor that allows you to update its schema configuration.
 - **Consumers:** The highest priority level in the API gateway that identifies the API requester. It uses authentication to generate a unique ID for every consumer and uses this ID to execute the plugins and upstream configurations bound to the consumer.
+- **Time to Live (TTL):** In caching, the TTL refers to the length of time, in secs, content is cached before refreshed or deleted from the cache.
+- **Proxy cache:** A server that stores copies of frequently accessed content to reduce round trips to the backend server, reducing bandwidth, resource consumption, and latency for improved performance. 

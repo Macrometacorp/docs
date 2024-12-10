@@ -33,7 +33,7 @@ This plugin uses the Fixed Window algorithm to limit the amount of requests in a
 
 ### Example Usage
 
-```c
+```bash
 curl -i https://adrsearche-us-east.photoniq.macrometa.io:9080/api/stargate/v1/routes' \
 -H "X-API-KEY: $admin_key" -X PUT -d '
 {
