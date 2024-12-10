@@ -1,5 +1,5 @@
 ---
-title: Traffic handling
+title: Traffic Handling
 ---
 These pCDN plugins control API traffic and include:
 
