@@ -1,17 +1,19 @@
 ---
-sidebar_position: 40
+sidebar_position: 50
 title: Fingerprinting Metrics
 ---
 
-When visitors access your website, the Digital Fingerprint service uniquely identifies them. At the same time, the fingerprint service collects metrics about the individual visitor. These metrics include device types (e.g., desktop, mobile), whether the visitor is a human or a bot, and how often these visitors access your website.
+While the Fingerprint service uniquely identifies your webpage visitors, it also collects metrics that offer valuable insights into every visitor on your site. Some of these insights include the following:
 
-## Fingerprint Metrics Reports
+- Frequency of return visitors to your site
+- Type of devices accessing your site
+- Different kinds of bots accessing your site
 
-The Digital Fingerprint service has several reports to show how often visitors return to your site, the type of devices that are accessing your site, and what kind of bots are accessing your site.
+Let's go over some of these metrics.
 
 ## Top N Visitors
 
-The top N visitor reports the top n number of visitors that have returned to your website over a given date/time range.
+The top N visitor report shows the top n number of visitors who returned to your website over a given date/time range.
 
 ## Device Types
 
@@ -19,4 +21,4 @@ The device types report returns all the different types of devices and how many 
 
 ## Visitor Traffic
 
-The visitor traffic report returns the number of good bots, bad bots, unknown bots, and humans who accessed your website. The report returns data in five-minute intervals over a date/time range of your choosing.
+The visitor traffic report returns the number of good bots, bad bots, unknown bots, and humans who accessed your website. The report returns data in five-minute intervals over a date/time range of your choice.
