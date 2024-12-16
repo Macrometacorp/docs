@@ -9,7 +9,7 @@ To **start using the remote Windows desktop on the universal client**,
 
    ![universal-login.jpg](/img/runbook-images/vdi-mac.png)
 
-2. It opens up the VDI in another broswer tab as shown below:
+2. It opens up the VDI in another browser tab as shown below:
 
    ![universal-login.jpg](/img/runbook-images/universal-login.jpg)
 

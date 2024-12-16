@@ -12,7 +12,13 @@ RBA supports the following peripheral devices when accessing web apps from the r
 5. **Card reader**
 6. **Pin pad**
    
-To verify the functionality of your connected devices, use the **Peripheral Validator**. From the homepage, click the **Connect** button under **Peripherals** to begin the validation process for each device. The validator displays all supported peripherals available for testing.
+To verify the functionality of your connected devices; 
+
+1. Click the **Peripherals** tab from the homepage.
+
+![peripherals](/img/workspaces/peripherals.png)
+
+2. Click **Open**. This opens a new tab to the Validation page. You can begin the validation process for each device. The validator displays all supported peripherals available for testing.
 
 ![peripherals](/img/workspaces/peripherals-validator.png)
 
