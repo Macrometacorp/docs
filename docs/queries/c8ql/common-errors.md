@@ -40,7 +40,7 @@ C8QL is not vulnerable to parameter injection in itself, but queries might be co
 
 Assembling query strings with simple **string concatenation** looks trivial, but is potentially **unsafe**. 
 
-You should use [bind parameters](../bind-parameters.md) instead whenever possible, use query building functionality if provided by a SDK (see [SDKs](../../sdks) for example) or at least sanitize user input with great care.
+You should use [bind parameters](../bind-parameters.md) instead whenever possible, use query building functionality if provided by a SDK (see [SDKs](../../developer-hub/sdks) for example) or at least sanitize user input with great care.
 
 ### Parameter injection examples
 

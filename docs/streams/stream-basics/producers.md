@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-A _producer_ is an application or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../../cep/).
+A _producer_ is an application or process that publishes messages to the stream. Once published, they can be processed with [stream workers](../../compute/cep/).
 
 ## Send Modes
 

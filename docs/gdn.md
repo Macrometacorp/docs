@@ -15,7 +15,7 @@ Macrometa's Global Data Network (GDN) is a distributed backend for building glob
 
 <grid cols={3}>
   <card
-    heading="Create your own DB"
+    heading="Create your own Database"
     description="Create, query, and update your distributed backend database with collections."
     href="/quickstart"
   />
@@ -39,7 +39,7 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   <card
     heading="Search Views"
     description="Flexible vector search, semantic search, similarity ranking, full-text search, and more."
-    href="/search-views"
+    href="/database/search-views"
   />
   <card
     heading="Streams"
@@ -49,6 +49,6 @@ Store and serve any kind of data, anywhere in the world, with high throughput an
   <card
     heading="Graphs"
     description="Dynamic, high-throughput graphs with ultra low-latency queries."
-    href="/graphs"
+    href="/database/graphs"
   />
 </grid>

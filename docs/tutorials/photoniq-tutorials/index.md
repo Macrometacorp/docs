@@ -1,4 +1,0 @@
----
-title: Mastering PhotonIQ 
----
-

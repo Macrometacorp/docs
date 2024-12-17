@@ -18,7 +18,7 @@ By the end of this tutorial, you will:
 :::note
 Macrometa allows you to manage your collections several ways: web interface (console), [CLI](../../cli/), [API](https://www.macrometa.com/docs/api), or one of our several SDKs. Because this is a tutorial for beginners, we will primarily enter commands in the console.
 
-If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../cli/queries-cli) command.
+If you are more comfortable working in the CLI, then you can enter any C8QL command using the [gdnsl query](../../developer-hub/cli/queries-cli) command.
 :::
 
 ## Prerequisites

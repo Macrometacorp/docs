@@ -5,13 +5,13 @@ title: Quickstart
 
 Collections are the fundamental unit of Macrometa GDN, allowing you to create a globally distributed database for your business needs. This tutorial is Macrometa's version of "Hello, world!", simplistic by design, and demonstrates how you can quickly use our stateful serverless back-end to run a globally distributed database with local read-write latencies around 50ms. 
 
-If you've already completed this tutorial, then you can [add search to your application](search-views/fulltext-search/getting-started-search).
+If you've already completed this tutorial, then you can [add search to your application](database/search-views/fulltext-search/getting-started-search).
 
 ## Objectives
 
 This tutorial walks you through the following tasks:
 
-- Creating a global address book via document [collection](collections/)
+- Creating a global address book via document [collection](database/collections/)
 - Inserting and querying user data from the new collection
 - Creating a fully operational API via [Query Workers](compute/queryworkers/)
 
@@ -173,6 +173,6 @@ You have a fully-functional API for your application. [We made a front-end for y
 ## Next Steps
 
 - [Getting Started with C8QL](queries/got-tutorial/index.md)
-- [Getting Started with Fulltext Search](search-views/fulltext-search/getting-started-search)
+- [Getting Started with Fulltext Search](database/search-views/fulltext-search/getting-started-search)
 - [Getting Started with Streams](streams/getting-started-streams)
-- [Getting Started with Stream Workers](cep/getting-started-stream-workers)
+- [Getting Started with Stream Workers](compute/cep/getting-started-stream-workers)

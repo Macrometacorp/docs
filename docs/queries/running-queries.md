@@ -7,7 +7,7 @@ After you [build a query](building-queries.md), you might want to run it. You mi
 
 ## Run a Query
 
-You can run a query in the Macrometa console, from the Macrometa CLI, or using an [API endpoint](../queryworkers/api-endpoints).
+You can run a query in the Macrometa console, from the Macrometa CLI, or using an [API endpoint](../compute/queryworkers/api-endpoints).
 
 ### Run a Query in the Console
 
@@ -22,12 +22,12 @@ Macrometa runs the query and displays the [Query Result](#query-result) for that
 
 ### Run a Query with CLI
 
-1. Install the CLI as described in [Install gdnsl](../cli/#install-gdnsl-cli).
+1. Install the CLI as described in [Install gdnsl](../developer-hub/cli/#install-gdnsl-cli).
 2. Enter queries using `gdnsl query`. For more information and examples, refer to the CLI [Queries](../cli/queries-cli) documentation.
 
 ## API Endpoint
 
-For more information, refer to [API Endpoints](../queryworkers/api-endpoints).
+For more information, refer to [API Endpoints](../compute/queryworkers/api-endpoints).
 
 ## Execution Plan
 

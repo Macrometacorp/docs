@@ -12,15 +12,15 @@ slug: /development
 <grid cols={3}>
   <card
     heading="API"
-    href="/api-docs"
+    href="/developer-hub/api-docs"
   />
   <card
     heading="CLI"
-    href="/cli"
+    href="/developer-hub/cli"
   />
   <card
     heading="SDKs"
-    href="/sdks"
+    href="/developer-hub/sdks"
   />
   <card
     heading="Postman Collection"

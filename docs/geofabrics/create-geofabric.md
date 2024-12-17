@@ -31,7 +31,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric create](../cli/fabrics-cli#gdnsl-fabric-create) CLI command to create fabrics.
+Use the [gdnsl fabric create](../developer-hub/cli/fabrics-cli#gdnsl-fabric-create) CLI command to create fabrics.
 
 </TabItem>
 </Tabs>
