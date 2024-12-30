@@ -2,9 +2,9 @@
 pagination_next: null
 pagination_prev: null
 sidebar_class_name: hidden
-sidebar_label: WU Workspaces Runbook v1.0
+sidebar_label: WU Workspaces Runbook v1.1.0
 sidebar_position: 0
-title: Cloud Workspaces Runbook for Western Union v1.0
+title: Cloud Workspaces Runbook for Western Union v1.1.0
 ---
 
 Macrometa Cloud Workspaces is redefining our approach to remote work and productivity. As a cloud-based virtual environment, it enables effective access to your work tools and business-specific applications directly from your browser. The service includes a suite of tools designed for high performance and security, including remote browser access and remote desktops on the edge.
