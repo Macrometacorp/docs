@@ -30,7 +30,7 @@ Only qualified admins with expertise in Active Directory should perform this tas
 
 ## Users & Hosts
 
-The **Users & Hosts** tab enables admins to manage user-to-host assignments in [VDI](./vdi/index.md). Hosts in the workspace are displayed with the following details:
+The **Users & Hosts** tab enables admins to manage user-to-host assignments in [VDI](./remote-desktop-enviroment/index.md). Hosts in the workspace are displayed with the following details:
 - **Host Name**
 - **Host Type** (persistent or non-persistent)
 - **Region**
@@ -45,7 +45,7 @@ To configure a host,
 
 1. Go to the **Users & Hosts** tab.
 2. Use the search bar to find users or hosts by their hostname, username, or region.
-3. Apply the `Persistent` or `Assigned` filter based on your required configurations.
+3. Apply filters to view unassigned hosts or other specific configurations.
 4. Continue with the desired action:
    1. **Assign**: Select a host and assign a user. The assigned user can now access the VDI.
    2. **Change user**: Change the user assigned to a host. The VDI is assigned to a new user.

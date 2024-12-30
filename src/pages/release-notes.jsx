@@ -6,15 +6,23 @@ const App = () => {
 
   const notes = [
     {
-      id: 1, date: "September, 2024", tag: "PhotonIQ", Product: "Prerender v1.2.4",
-      whatsNewContents: [],
-      Improvement: "Improvement", improvementContents: [ "Security updates: Enhanced security protocols for better data safety, security and performance."],
+      id: 4, date: "December 30, 2024", tag: "Workspaces", Product: "Workspaces v1.1.0",
+      whatsnew: "What's new", whatsNewContents: ["User and host management in VDI: Workspace admins can now manage users and hosts effectively to optimize resource allocation. The new Users & Hosts dashboard enables admins to assign or unassign users to specific host, filter hosts based on assignment status or host type, and more. "],
+      Improvement: "Improvement", improvementContents: [],
       bugFix: "Bug fixes", bugFixContents: [],
-      blogPostTitle:"documentation" , blogPostLink: "https://www.macrometa.com/docs/photoniq/prerendering",
+      blogPostTitle:"Workspaces Admin guide" , blogPostLink: "https://www.macrometa.com/docs/workspaces/workspace-management",
 
  },
     {
-      id: 1, date: "August 16, 2024", tag: "PhotonIQ", Product: "Prerender v1.2.1", whatsnew: "What's new",
+      id: 3, date: "September, 2024", tag: "PhotonIQ", Product: "Prerender v1.2.4",
+      whatsNewContents: [],
+      Improvement: "Improvement", improvementContents: [ "Security updates: Enhanced security protocols for better data safety, security and performance."],
+      bugFix: "Bug fixes", bugFixContents: [],
+      blogPostTitle:" Prerender documentation" , blogPostLink: "https://www.macrometa.com/docs/photoniq/prerendering",
+
+ },
+    {
+      id: 2, date: "August 16, 2024", tag: "PhotonIQ", Product: "Prerender v1.2.1", whatsnew: "What's new",
       whatsNewContents: [ "Connection: use our new Sync service for better connection and fault tolerance. Consolidate multiple Prerender services into a single WebSocket connection with the Sync service to reduce network overhead and improve performance.", "Authentication: Auth service for role-based access control. Manage and control access to the service to improve security and ease future auditing processes.", "Configuration: Editable GUI for better configuration management. This GUI also democratizes access to the service, ensuring technical and non-technical users use and manage their Prerender instance.", "Flexibility: Added Follow Redirect settings to manage redirect behavior. Achieve better flexibility by defining how the Prerender handles your redirects."],
       Improvement: "Improvement", improvementContents: [ "Resource consumption: Improve resource efficiency by reducing the load on the GDN server by aggregating and serving metrics every minute instead of pushing per request.", "Security: Reduce the occurrence of malware and phishing attacks with our newly added URL tags to the URL block list.", "Auditing: Prevent the complete removal of previous renders with the removal of the entire cache purge feature." ],
       bugFix: "Bug fixes", bugFixContents: [],
@@ -23,7 +31,7 @@ const App = () => {
  },
 
     {
-      id: 2, date: "February - May, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's new",
+      id: 1, date: "February - May, 2024", tag: "GDN", Product: "GDN v0.18.0 ", whatsnew: "What's new",
       whatsNewContents: [ "Create collections with strong consistency.", "Improvements to the web console for better management.", "New AWS S4 target for connection", "New API endpoint to Stream workers", "New Global API endpoint to Fabrics" ], 
       Improvement: "Improvement", improvementContents: [ "New Group ID API Endpoints", "Enhanced Error Handling for Stream Workers", "Stream workers support for all collection types.", "Addition of Akamai EdgeWorkers code bundles" ],
        bugFix: "Bug fixes", bugFixContents: ["Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."],
@@ -56,6 +64,10 @@ const App = () => {
           <li className={`list-none py-[4px] px-[8px] text-[14px] rounded-md cursor-pointer ${
               selectedTag === "GDN" ? "bg-[#6767E5] text-white" : "bg-[#edf0f2] text-[#687887]" }`}
             onClick={() => setSelectedTag("GDN")}> GDN </li>
+
+          <li className={`list-none py-[4px] px-[8px] text-[14px] rounded-md cursor-pointer ${
+              selectedTag === "Workspaces" ? "bg-[#6767E5] text-white" : "bg-[#edf0f2] text-[#687887]" }`}
+            onClick={() => setSelectedTag("Workspaces")}> Workspaces </li>
         </ul>
       </header>
       <div className="mt-6">
@@ -79,7 +91,10 @@ const App = () => {
                   <div className="col-span-3 sm:ml-20 ml-0">
                     <h1 className="text-2xl font-semibold">{Product}</h1>
                     <div className="flex flex-col space-y-2 my-4">
+                      
+                      {whatsNewContents.length > 0 && (
                       <div className="font-bold">{whatsnew}</div>
+                      )}
                       <div className="flex flex-col gap-y-3">
                         <div className="text-base">
                           {whatsNewContents.map((whatsNewContent, index) => (
@@ -92,7 +107,9 @@ const App = () => {
                         </div>
                       </div>
 
+                      {improvementContents.length > 0 && (
                       <div className="font-bold">{Improvement}</div>
+                      )}
                       <div className="flex flex-col gap-y-3">
                         <div className="text-base">
                           {improvementContents.map(
@@ -122,6 +139,8 @@ const App = () => {
                         </div>
                       </div>
                     </div>
+
+
                     {blogPostLink != "" && (
                     <p> For more detailed information, check out our <a href={blogPostLink}>{blogPostTitle}</a>.</p>                 
                     )}
