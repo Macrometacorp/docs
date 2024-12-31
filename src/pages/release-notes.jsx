@@ -1,5 +1,7 @@
 import Layout from "@theme/Layout";
 import React, { useState } from "react";
+import Markdown from "react-markdown";
+
 
 const App = () => {
   const [selectedTag, setSelectedTag] = useState("All");
@@ -7,8 +9,8 @@ const App = () => {
   const notes = [
     {
       id: 4, date: "December 30, 2024", tag: "Workspaces", Product: "Workspaces v1.1.0",
-      whatsnew: "What's new", whatsNewContents: ["User and host management in VDI: Workspace admins can now manage users and hosts effectively to optimize resource allocation. The new Users & Hosts dashboard enables admins to assign or unassign users to specific host, filter hosts based on assignment status or host type, and more. "],
-      Improvement: "Improvement", improvementContents: [],
+      whatsnew: "What's new", whatsNewContents: ["User and Host Management in Workspace: Workspace admins can now manage users and hosts(VDIs) more effectively to optimize resource allocation. The new `Users & Hosts` dashboard allows admins to assign or unassign users to specific hosts, reassign VDIs to other users, and filter hosts by assignment status or type.", "Added functionality to ensure each user is assigned a single host."],
+      Improvement: "Improvement", improvementContents: ["Enhanced performance on the admin page by adding indexes to the `sessions` and `session_assignments` , enabling faster filtering and query execution."],
       bugFix: "Bug fixes", bugFixContents: [],
       blogPostTitle:"Workspaces Admin guide" , blogPostLink: "https://www.macrometa.com/docs/workspaces/workspace-management",
 
@@ -100,7 +102,7 @@ const App = () => {
                           {whatsNewContents.map((whatsNewContent, index) => (
                             <ul key={index} className="ml-3">
                               <li className="relative text-[16px] before:absolute before:-left-6 before:top-2 before:h-2 before:w-2 before:rounded-full before:border-2 before:border-gray-300">
-                                {whatsNewContent}
+                               <Markdown>{whatsNewContent}</Markdown>
                               </li>
                             </ul>
                           ))}
@@ -116,7 +118,7 @@ const App = () => {
                             (improvementContent, index) => (
                               <ul key={index} className="ml-3">
                                 <li className="relative text-[16px] before:absolute before:-left-6 before:top-2 before:h-2 before:w-2 before:rounded-full before:border-2 before:border-gray-300">
-                                  {improvementContent}
+                                   <Markdown>{improvementContent}</Markdown>
                                 </li>
                               </ul>
                             )
@@ -132,7 +134,7 @@ const App = () => {
                           {bugFixContents.map((bugFixContent, index) => (
                             <ul key={index} className="ml-3">
                               <li className="relative text-[16px] before:absolute before:-left-6 before:top-2 before:h-2 before:w-2 before:rounded-full before:border-2 before:border-gray-300">
-                                {bugFixContent}
+                                <Markdown>{bugFixContent}</Markdown>
                               </li>
                             </ul>
                           ))}
