@@ -7,7 +7,7 @@ const App = () => {
   const notes = [
     {
       id: 4, date: "December 30, 2024", tag: "Workspaces", Product: "Workspaces v1.1.0",
-      whatsnew: "What's new", whatsNewContents: ["User and host management in VDI: Workspace admins can now manage users and hosts effectively to optimize resource allocation. The new Users & Hosts dashboard enables admins to assign or unassign users to specific host, filter hosts based on assignment status or host type, and more. "],
+      whatsnew: "What's new", whatsNewContents: ["User and host management in VDI: Workspace admins can now manage users and hosts effectively to optimize resource allocation. The new Users & Hosts dashboard enables admins to assign or unassign users to specific host, filter hosts based on assignment status or host type, and more.", "Speed: Indexes have been added to sessions and session_assignments to improve performance, ensuring faster and more responsive filtering on the admin page."],
       Improvement: "Improvement", improvementContents: [],
       bugFix: "Bug fixes", bugFixContents: [],
       blogPostTitle:"Workspaces Admin guide" , blogPostLink: "https://www.macrometa.com/docs/workspaces/workspace-management",
