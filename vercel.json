@@ -295,7 +295,22 @@
     { "source": "/docs/release-notes/release-notes-0-17-10", "destination": "/docs/releases/2022/release-notes-0-17-10", "permanent": true },
     { "source": "/docs/release-notes/release-notes-0-17-09", "destination": "/docs/releases/2022/release-notes-0-17-09", "permanent": true },
     { "source": "/docs/photoniq/functions/using-functions/configuring-functions", "destination": "/docs/photoniq/functions/developing-functions/configuring-functions", "permanent": true },
-    { "source": "/docs/photoniq/functions/using-functions", "destination": "/docs/photoniq/functions/developing-functions", "permanent": true }
+    { "source": "/docs/photoniq/functions/using-functions", "destination": "/docs/photoniq/functions/developing-functions", "permanent": true },
+    { "source": "/docs/queryworkers/sql", "destination": "/docs/queryworkers", "permanent": true },
+    { "source": "/docs/cep/reference", "destination": "/docs/cep", "permanent": true },
+    { "source": "/docs/cep/quickstart", "destination": "/docs/cep/getting-started-stream-workers", "permanent": true },
+    { "source": "/docs/streams/quickstart", "destination": "/docs/streams/getting-started-streams", "permanent": true },
+    { "source": "/docs/streams/concepts", "destination": "/docs/streams/stream-basics", "permanent": true },
+    { "source": "/docs/cep/reference/basics", "destination": "/docs/cep/stream-worker-basics", "permanent": true },
+    { "source": "/docs/cep/reference/extensions/execution/reorder", "destination": "/docs/cep/query-guide/functions/reorder", "permanent": true },
+    { "source": "/docs/demos/crypto-trading", "destination": "/docs/apps/crypto-trading", "permanent": true },
+    { "source": "/docs/photoniq/event-delivery/clients/Connection", "destination": "/docs/photoniq/event-delivery/clients/connection", "permanent": true }
+
+
+
+
+
+
 
   ]
 }
