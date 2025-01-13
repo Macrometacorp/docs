@@ -30,7 +30,7 @@ Refer to [Permissions](index.md) for information about each permission level.
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey set](../../cli/api-key-cli#gdnsl-apikey-set) CLI command to update API key permissions.
+Use the [gdnsl apikey set](../../developer-hub/cli/api-key-cli#gdnsl-apikey-set) CLI command to update API key permissions.
 
 Refer to [Permissions](../permissions/index.md) for information about each permission level.
 

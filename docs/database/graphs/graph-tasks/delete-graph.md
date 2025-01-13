@@ -35,7 +35,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph delete](../../cli/graph-cli#gdnsl-graph-delete) CLI command to create a delete a graph.
+Use the [gdnsl graph delete](../../../developer-hub/cli/graph-cli#gdnsl-graph-delete) CLI command to create a delete a graph.
 
 </TabItem>
 </Tabs>

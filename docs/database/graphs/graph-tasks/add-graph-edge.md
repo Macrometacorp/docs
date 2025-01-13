@@ -66,7 +66,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph edge create](../../cli/graph-edges-cli#gdnsl-graph-edge-create) CLI command to create a new graph edge.
+Use the [gdnsl graph edge create](../../../developer-hub/cli/graph-edges-cli#gdnsl-graph-edge-create) CLI command to create a new graph edge.
 
 </TabItem>
 </Tabs>

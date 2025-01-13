@@ -37,7 +37,7 @@ The dataset is stored in [food-restaurants.json](food-restaurants.json), which i
 To get the documents into a collection called `restaurants`:
 
 1. Create a document collection called `restaurants`.
-follow the instructions in [Add Documents from a File](../collections/documents/add-document#add-documents-from-a-file). If desired, you can set `id` as the primary key, but it doesn't matter for the following examples.
+follow the instructions in [Add Documents from a File](../../../database/collections/documents/add-document#add-documents-from-a-file). If desired, you can set `id` as the primary key, but it doesn't matter for the following examples.
 
 ## Query Examples
 

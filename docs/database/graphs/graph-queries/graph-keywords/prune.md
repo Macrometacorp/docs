@@ -3,7 +3,7 @@ title: PRUNE
 sidebar_position: 30
 ---
 
-The PRUNE keyword in [C8QL](../../../queries/c8ql/) is used in conjunction with graph traversal queries to optimize performance by controlling the traversal process. It helps to reduce the number of paths explored during the traversal by stopping further exploration of a path if a specified condition is met.
+The PRUNE keyword in [C8QL](../../../../compute/queryworkers/queries/c8ql/) is used in conjunction with graph traversal queries to optimize performance by controlling the traversal process. It helps to reduce the number of paths explored during the traversal by stopping further exploration of a path if a specified condition is met.
 
 By using `PRUNE`, you can define criteria that, once met, will prevent the traversal from continuing along a particular path. This early termination of traversal can significantly improve query performance, especially in large graphs, by eliminating unnecessary exploration of nodes and edges that do not contribute to the desired result.
 

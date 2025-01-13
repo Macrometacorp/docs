@@ -18,7 +18,7 @@ The streaming platform has the following graph structure:
 
 ### C8QL Query
 
-The `uniqueVertices` option can be used in a [C8QL](../../queries/c8ql/) query to find unique viewers who have recently watched content from the 'Sci-Fi' genre:
+The `uniqueVertices` option can be used in a [C8QL](../../../compute/queryworkers/queries/c8ql/) query to find unique viewers who have recently watched content from the 'Sci-Fi' genre:
 
 ```sql
 FOR user, edge, path IN 1..1 OUTBOUND 'content/Sci-Fi' watched

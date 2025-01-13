@@ -9,7 +9,7 @@ You can create and update query workers from the Macrometa web console, command 
 
 Each query worker functions as an endpoint. Query workers exist on the fabric level along with other data like collections and documents.
 
-Query workers can be used as sources and sinks for [stream workers](../../cep/). For more information, refer to [Query Worker Source](../../cep/source/query-worker-source) and [Query Worker Sink](../../cep/sink/query-worker-sink).
+Query workers can be used as sources and sinks for [stream workers](../../compute/cep/). For more information, refer to [Query Worker Source](../../compute/cep/source/query-worker-source) and [Query Worker Sink](../../compute/cep/sink/query-worker-sink).
 
 ## Create a New Query Worker
 
@@ -18,7 +18,7 @@ When you save a query, it becomes a query worker.
 1. Log in to your [Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Compute > Query Workers**.
 3. In the Editor, select **C8QL** or **SQL**, depending on which language you want to write the query worker in.
-4. Write a [SQL](../../queries/sql/index.md) or [C8QL](../../queries/c8ql/index.md) query.
+4. Write a [SQL](../../compute/queryworkers/queries/sql/index.md) or [C8QL](../../compute/queryworkers/queries/c8ql/index.md) query.
 5. Click **Save Query**.
 6. Enter a **Name** and then click **Save**.
 
@@ -36,7 +36,7 @@ Click the stacked pages to copy any query worker and edit it in the Query Editor
 
 ### Explain a Query Worker
 
-Click the chat bubbles to display the [Execution Plan](../../queries/running-queries.md#execution-plan) of the query worker without running the query.
+Click the chat bubbles to display the [Execution Plan](../../compute/queryworkers/queries/running-queries.md#execution-plan) of the query worker without running the query.
 
 ### Run a Query Worker
 

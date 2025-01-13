@@ -5,7 +5,7 @@ title: Fulltext Search Queries
 
 With Macrometa, the `SEARCH` keyword is used to filter your queries using a fulltext search view. By employing this keyword, you can:
 
-- Filter documents based on Boolean expressions and functions in [C8QL](../../../queries/c8ql/).
+- Filter documents based on Boolean expressions and functions in [C8QL](../../../../compute/queryworkers/queries/c8ql/).
 - Match documents that reside in different collections.
 - Sort the resulting set based on how closely each document matches the search conditions.
 

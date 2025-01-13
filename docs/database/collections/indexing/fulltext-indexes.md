@@ -51,7 +51,7 @@ In case that the index was successfully created, an object with the index detail
 
 ## Fulltext C8QL Functions
 
-Fulltext C8QL functions are detailed in [Fulltext functions](../../../queries/c8ql/functions/fulltext.md).
+Fulltext C8QL functions are detailed in [Fulltext functions](../../../compute/queryworkers/queries/c8ql/functions/fulltext.md).
 
 ## Create Fulltext Index in GDN Console
 

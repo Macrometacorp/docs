@@ -34,9 +34,9 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker list](../../cli/stream-workers-cli#gdnsl-stream-worker-list) CLI command to fetch a list of all existing stream workers.
+Use the [gdnsl stream-worker list](../../../developer-hub/cli/stream-workers-cli#gdnsl-stream-worker-list) CLI command to fetch a list of all existing stream workers.
 
-Use the [gdnsl stream-worker describe](../../cli/stream-workers-cli#gdnsl-stream-worker-describe) CLI command to fetch details of a specific stream worker.
+Use the [gdnsl stream-worker describe](../../../developer-hub/cli/stream-workers-cli#gdnsl-stream-worker-describe) CLI command to fetch details of a specific stream worker.
 
 </TabItem>
 </Tabs>

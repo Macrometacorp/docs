@@ -9,7 +9,7 @@ These examples are based on the [Traversal Graph](../../graph-examples/sample-da
 
 ## Shortest Path Example
 
-You can query the shortest path from **A** to **D** using either the named graph syntax or the collection sets syntax. The results are identical. For information about running queries, refer to [Running Queries](../../../queries/running-queries).
+You can query the shortest path from **A** to **D** using either the named graph syntax or the collection sets syntax. The results are identical. For information about running queries, refer to [Running Queries](../../../../compute/queryworkers/queries/running-queries).
 
 ### Named Graph
 
@@ -35,7 +35,7 @@ The `RETURN` statement returns an array containing the `_key` attributes of both
 
 ## Traverse Mixed Directions Example
 
-You can also compute shortest paths based on documents found in collections. You can use either the named graph syntax or the collection sets syntax, the results are identical. For information about running queries, refer to [Running Queries](../../../queries/running-queries).
+You can also compute shortest paths based on documents found in collections. You can use either the named graph syntax or the collection sets syntax, the results are identical. For information about running queries, refer to [Running Queries](../../../../compute/queryworkers/queries/running-queries).
 
 ### Named Graph
 

@@ -15,7 +15,7 @@ Events are part of a stream worker definition, they are what a stream worker con
 
 A _stream_ is a logical series of events ordered in time with a uniquely identifiable name and a defined set of typed attributes defining its schema. Streams can be used in stream workers as sources or sinks.
 
-For more information about streams in general, refer to [Streams](../../streams/).
+For more information about streams in general, refer to [Streams](../../../streams/).
 
 For more information about using streams in stream workers, refer to [Stream Source](../source/stream-source) and [Stream Sink](../sink/stream-sink).
 
@@ -39,7 +39,7 @@ For more information about metadata, refer to [Trigger](../source/trigger).
 
 ### Query Worker
 
-You can access your Macrometa data collections by writing a _query_ in [SQL](../../queries/sql/) or [C8QL](../../queries/c8ql/). GDN stores named and parameterized queries as _query workers_ that you can run from a dedicated REST endpoint.
+You can access your Macrometa data collections by writing a _query_ in [SQL](../../../compute/queryworkers/queries/sql/) or [C8QL](../../../compute/queryworkers/queries/c8ql/). GDN stores named and parameterized queries as _query workers_ that you can run from a dedicated REST endpoint.
 
 You can use a query worker as a stream worker source or to process stream events. Stream workers can either create new stream workers or use existing ones.
 

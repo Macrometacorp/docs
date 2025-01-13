@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Tables (Collections)
 ---
 
-A _table_ is a stored version of an stream or a table of events. Its schema is defined in the _table definition_ that is similar to a stream definition. These events are stored in database. In Macrometa GDN, tables are called [collections](../../collections/).
+A _table_ is a stored version of an stream or a table of events. Its schema is defined in the _table definition_ that is similar to a stream definition. These events are stored in database. In Macrometa GDN, tables are called [collections](../../../database/collections/).
 
 :::note
 If you want to use an existing Macrometa collection as a store, then you must define it in the stream worker.

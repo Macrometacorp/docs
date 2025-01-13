@@ -35,7 +35,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph vertex create](../../cli/graph-vertex-cli#gdnsl-graph-vertex-create) CLI command to create a new graph vertex.
+Use the [gdnsl graph vertex create](../../../developer-hub/cli/graph-vertex-cli#gdnsl-graph-vertex-create) CLI command to create a new graph vertex.
 
 </TabItem>
 </Tabs>
@@ -65,7 +65,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph vertex describe](../../cli/graph-vertex-cli#gdnsl-graph-vertex-describe) CLI command to view a graph vertex.
+Use the [gdnsl graph vertex describe](../../../developer-hub/cli/graph-vertex-cli#gdnsl-graph-vertex-describe) CLI command to view a graph vertex.
 
 </TabItem>
 </Tabs>
@@ -98,7 +98,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph vertex update](../../cli/graph-vertex-cli#gdnsl-graph-vertex-update) CLI command to update a graph vertex.
+Use the [gdnsl graph vertex update](../../../developer-hub/cli/graph-vertex-cli#gdnsl-graph-vertex-update) CLI command to update a graph vertex.
 
 </TabItem>
 </Tabs>
@@ -131,7 +131,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph vertex replace](../../cli/graph-vertex-cli#gdnsl-graph-vertex-replace) CLI command to replace a graph vertex.
+Use the [gdnsl graph vertex replace](../../../developer-hub/cli/graph-vertex-cli#gdnsl-graph-vertex-replace) CLI command to replace a graph vertex.
 
 </TabItem>
 </Tabs>
@@ -161,7 +161,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph vertex delete](../../cli/graph-vertex-cli#gdnsl-graph-vertex-delete) CLI command to delete a graph vertex.
+Use the [gdnsl graph vertex delete](../../../developer-hub/cli/graph-vertex-cli#gdnsl-graph-vertex-delete) CLI command to delete a graph vertex.
 
 </TabItem>
 <TabItem value="c8ql" label="C8QL">
@@ -238,7 +238,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph describe](../../cli/graph-cli#gdnsl-graph-describe) CLI command to get a list of vertex collections for a graph.
+Use the [gdnsl graph describe](../../../developer-hub/cli/graph-cli#gdnsl-graph-describe) CLI command to get a list of vertex collections for a graph.
 
 </TabItem>
 </Tabs>
@@ -266,7 +266,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to add a vertex collection to a graph.
+Use the [gdnsl graph update](../../../developer-hub/cli/graph-cli#gdnsl-graph-update) CLI command to add a vertex collection to a graph.
 
 </TabItem>
 </Tabs>
@@ -294,7 +294,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to remove a vertex collection from a graph.
+Use the [gdnsl graph update](../../../developer-hub/cli/graph-cli#gdnsl-graph-update) CLI command to remove a vertex collection from a graph.
 
 </TabItem>
 </Tabs>

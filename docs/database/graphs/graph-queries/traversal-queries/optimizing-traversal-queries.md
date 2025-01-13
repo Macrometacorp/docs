@@ -5,7 +5,7 @@ title: Optimizing Traversal Queries
 
 When working with graph traversal queries in Macrometa, it's essential to understand how the query optimizer and filter statements can help improve the performance of your queries. The query optimizer in the query execution plan can optimize filters combined with the `AND` operator, but not filters combined with the `OR` operator. Knowing this can help you design filter statements that can be optimized effectively, leading to better query performance.
 
-To learn more about query execution plans, refer to [Execution Plan](../../../queries/running-queries#execution-plan).
+To learn more about query execution plans, refer to [Execution Plan](../../../../compute/queryworkers/queries/running-queries#execution-plan).
 
 ## Filter Statements and Early Path Pruning
 
@@ -25,7 +25,7 @@ The query execution plan provides insights into how the optimizer works and how 
 
 The execution plan also shows the indexes used and the traversals on graphs. This information is useful for developers and database administrators, as it can help them optimize queries to improve performance, especially when working with large graphs. By understanding how the query optimizer works and the optimization rules applied, you can modify their queries to make better use of the optimization mechanisms provided by the database engine.
 
-For more information about running queries and query results, refer to [Running Queries](../../../queries/running-queries).
+For more information about running queries and query results, refer to [Running Queries](../../../../compute/queryworkers/queries/running-queries).
 
 ## Practical Examples and Considerations
 

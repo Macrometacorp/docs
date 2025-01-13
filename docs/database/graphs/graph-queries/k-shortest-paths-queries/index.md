@@ -9,7 +9,7 @@ You can use k shortest path queries to find multiple optimal routes between two 
 
 When executing k shortest path queries in Macrometa GDN, you can use the built-in graph traversal functions provided by the C8QL query language to specify the starting and destination vertices, the weight attribute of the edges, and the maximum number of paths (K) to return. This enables you to efficiently retrieve multiple optimal paths in your application based on the graph data stored in the Macrometa GDN.
 
-For more information about Macrometa queries in general, refer to [Queries](../../../queries/) and [Query Workers](../../../queryworkers/).
+For more information about Macrometa queries in general, refer to [Queries](../../../../compute/queryworkers/queries/) and [Query Workers](../../../../compute/queryworkers/).
 
 ## Use Cases
 

@@ -34,7 +34,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection create](../../cli/collections-cli#gdnsl-collection-create) CLI command to create a
+Use the [gdnsl collection create](../../../developer-hub/cli/collections-cli#gdnsl-collection-create) CLI command to create a
 Graph Edge collection.
 
 </TabItem>

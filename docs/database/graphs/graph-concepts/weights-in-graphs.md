@@ -9,7 +9,7 @@ Unweighted graphs, on the other hand, do not consider the cost or importance of 
 
 ## Weight Options
 
-`weightAttribute` and `defaultWeight` are options used in [C8QL](../../queries/c8ql/) queries that involve pathfinding algorithms, such as [SHORTEST_PATH](../graph-queries/shortest-path-queries/) and [K_SHORTEST_PATHS](../graph-queries/k-shortest-paths-queries/). These options allow you to customize the way weights are considered in the pathfinding process.
+`weightAttribute` and `defaultWeight` are options used in [C8QL](../../../compute/queryworkers/queries/c8ql/) queries that involve pathfinding algorithms, such as [SHORTEST_PATH](../graph-queries/shortest-path-queries/) and [K_SHORTEST_PATHS](../graph-queries/k-shortest-paths-queries/). These options allow you to customize the way weights are considered in the pathfinding process.
 
 - **weightAttribute**: This option specifies the name of the attribute in the edge documents that contains the weight values. When you set this option, the pathfinding algorithm takes the edge weights into account when calculating the path length. If the attribute does not exist or is not numeric, then the `defaultWeight` is used instead.
 - **defaultWeight**: This option sets a default weight value to be used when an edge does not have the specified weight attribute or when the attribute value is invalid. This ensures that the pathfinding algorithm can still compute a path length even when the weight information is incomplete or inconsistent. The default value is 1.

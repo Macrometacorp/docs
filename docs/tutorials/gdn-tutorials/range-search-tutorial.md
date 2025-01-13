@@ -103,7 +103,7 @@ INSERT {
 INTO inventory
 ```
 
-This query contains bind parameters for inserting data into the document. Bind parameters are denoted by the `@` symbol, such as `@brand`. For more information about bind parameters, refer to [Bind Parameters](../../queries/bind-parameters).
+This query contains bind parameters for inserting data into the document. Bind parameters are denoted by the `@` symbol, such as `@brand`. For more information about bind parameters, refer to [Bind Parameters](../../compute/queryworkers/queries/bind-parameters).
 
 ![Create a Query Worker](/img/search/range-example/query-workers.png)
 
@@ -229,6 +229,6 @@ Now that you have completed this tutorial, consider exploring the following topi
 
 - [Getting Started with Search](../../database/search-views/fulltext-search/getting-started-search)
 - [Getting Started with Graphs](../../database/graphs/getting-started-with-graphs)
-- [C8QL Query Tutorial](../../queries/got-tutorial/)
+- [C8QL Query Tutorial](../../compute/queryworkers/queries/got-tutorial/)
 
 By diving into these topics, you will be well-equipped to optimize and expand your Macrometa-powered projects. Good luck, and happy coding!

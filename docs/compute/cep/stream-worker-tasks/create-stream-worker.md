@@ -50,7 +50,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker create](../../cli/stream-workers-cli#gdnsl-stream-worker-create) CLI command to validate and create an unpublished stream worker.
+Use the [gdnsl stream-worker create](../../../developer-hub/cli/stream-workers-cli#gdnsl-stream-worker-create) CLI command to validate and create an unpublished stream worker.
 
 </TabItem>
 </Tabs>

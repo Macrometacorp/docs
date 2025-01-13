@@ -14,7 +14,7 @@ The following new features are included in this release.
 [Search](../../database/search-views/index.md) and [Stream Workers](../../compute/cep/index.md), previously only available in closed beta, are now generally available for everyone to use.
 
 ### Invite User
-~~~~
+
 You can now invite users to your Macrometa account by sending them email.
 
 [Invite Users](../../account-management/users/invite-users.md) was added as a result of this feature.
@@ -33,13 +33,13 @@ This release adds support for Akamai edge workers as functions in GDN. For more 
 
 Macrometa now supports SQL queries. Support will be expanded in future releases.
 
-[SQL in Macrometa](../../queries/sql/index.md) was added as a result of this feature.
+[SQL in Macrometa](../../compute/queryworkers/queries/sql/index.md) was added as a result of this feature.
 
 ### Redis Support - Beta
 
 Macrometa now offers Redis support.
 
-[Redis Mode Collections](../../database/collections/redis-mode/index.md) and [Redis in Macrometa](../../queries/redis/index.md) were added as a result of this feature.
+[Redis Mode Collections](../../database/collections/redis-mode/index.md) and [Redis in Macrometa](../../compute/queryworkers/queries/redis/index.md) were added as a result of this feature.
 
 ### Kafka Support - Beta
 

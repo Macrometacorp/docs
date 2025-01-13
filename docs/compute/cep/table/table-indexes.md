@@ -36,7 +36,7 @@ The following properties can be configured in an index definition. Available pro
 
 | Property | Description |
 | --------- | ----------- |
-| type          | Index type. This field is required. Options are: [fulltext](../../../database/collections/indexing/fulltext-indexes), [geo](../../collections/indexing/geo-indexes), [hash](../../../database/collections/indexing/index.md#hash-index), [persistent](../../collections/indexing/persistent-indexes), [skiplist](../../../database/collections/indexing/index.md#skiplist-index), [ttl](../../../database/collections/indexing/ttl-indexes).            |
+| type          | Index type. This field is required. Options are: [fulltext](../../../database/collections/indexing/fulltext-indexes), [geo](../../../database/collections/indexing/geo-indexes), [hash](../../../database/collections/indexing/index.md#hash-index), [persistent](../../../database/collections/indexing/persistent-indexes), [skiplist](../../../database/collections/indexing/index.md#skiplist-index), [ttl](../../../database/collections/indexing/ttl-indexes).            |
 
 ### Fulltext Index Properties
 

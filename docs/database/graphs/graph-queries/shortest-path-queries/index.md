@@ -10,7 +10,7 @@ A _shortest path query_ is a query that finds the shortest path between two give
 
 Shortest path queries enable you to quickly find the shortest path between two vertices in your graph, allowing you to traverse and analyze your graph's structure. This can be particularly useful in applications where finding the most efficient path is critical, such as route planning or supply chain optimization.
 
-For more information about Macrometa queries in general, refer to [Queries](../../../queries/) and [Query Workers](../../../queryworkers/).
+For more information about Macrometa queries in general, refer to [Queries](../../../../compute/queryworkers/queries/) and [Query Workers](../../../../compute/queryworkers/).
 
 ## Use Cases
 

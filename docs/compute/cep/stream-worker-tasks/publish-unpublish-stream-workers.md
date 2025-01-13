@@ -30,7 +30,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl stream-worker](../../cli/stream-workers-cli) CLI command to publish or unpublish a stream worker.
+Use the [gdnsl stream-worker](../../../developer-hub/cli/stream-workers-cli) CLI command to publish or unpublish a stream worker.
 
 </TabItem>
 </Tabs>

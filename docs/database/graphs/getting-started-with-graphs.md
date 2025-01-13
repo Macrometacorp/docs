@@ -44,7 +44,7 @@ You now have two empty collections that are ready to receive data.
 
 ## Upload Data with Queries
 
-Add data to the collections with C8QL queries. For more information about Macrometa queries, refer to [Queries](../queries/).
+Add data to the collections with C8QL queries. For more information about Macrometa queries, refer to [Queries](../../compute/queryworkers/queries/).
 
 1. Click **Compute > Query Workers**.
 1. To populate the `cities` collection, copy the following query and paste it in the editor.

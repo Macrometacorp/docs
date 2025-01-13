@@ -57,7 +57,7 @@ This release includes the following API changes.
 
 GDN CLI (`gdnsl`) version 0.0.45 is now available! If you use the Macrometa CLI, be sure to update as soon as possible.
 
-For more information, refer to [Command Line Interface](../../cli).
+For more information, refer to [Command Line Interface](../../developer-hub/cli).
 
 ### Unique Index Option Change
 

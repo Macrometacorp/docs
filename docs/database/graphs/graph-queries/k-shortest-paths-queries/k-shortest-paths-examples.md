@@ -18,7 +18,7 @@ Create the following collections. The collection names in the queries are case-s
 
 ### Add Vertex Dataset
 
-Using one of the methods in [Running Queries](../../../queries/running-queries), run the following query to add data to the `places` collection. These are the graph vertices.
+Using one of the methods in [Running Queries](../../../../compute/queryworkers/queries/running-queries), run the following query to add data to the `places` collection. These are the graph vertices.
 
 ```sql
 FOR cityData IN [
@@ -44,7 +44,7 @@ IN places
 
 ### Add Edges Dataset
 
-Using one of the methods in [Running Queries](../../../queries/running-queries), run the following query to add data to the `connections` collection. These are the graph edges.
+Using one of the methods in [Running Queries](../../../../compute/queryworkers/queries/running-queries), run the following query to add data to the `connections` collection. These are the graph edges.
 
 ```sql
 FOR edgeData IN [

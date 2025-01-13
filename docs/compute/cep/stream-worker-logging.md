@@ -45,7 +45,7 @@ By default, Macrometa delivers log output to a specialized streaming window call
 
 Macrometa opens a stream window at the bottom of the screen that displays all log messages from all published stream workers that have logs.
 
-You can also view the `c8locals.streamworkerslog` stream using one of the methods in [View Streams](../streams/stream-tasks/view-streams). You can also [Subscribe to Streams](../streams/stream-tasks/subscribe-streams) with the Macrometa SDK or API.
+You can also view the `c8locals.streamworkerslog` stream using one of the methods in [View Streams](../../streams/stream-tasks/view-streams). You can also [Subscribe to Streams](../../streams/stream-tasks/subscribe-streams) with the Macrometa SDK or API.
 
 Log messages will have a timestamp, application name, region, priority, and event information. For example:
 

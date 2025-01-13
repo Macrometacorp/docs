@@ -28,14 +28,14 @@ The following features updates are included in this release.
 - You can now enter SQL queries in the Macrometa query editor and save them as query workers.
 - Other SQL functionality improvements.
 
-Topics in [Queries](../../queries) and [SQL in Macrometa](../../queries/sql) were updated as a result of this change.
+Topics in [Queries](../../compute/queryworkers/queries) and [SQL in Macrometa](../../compute/queryworkers/queries/sql) were updated as a result of this change.
 
 ### Redis Support Updates - Beta
 
 - Python SDK (pyC8) and JavaScript SDK (jsC8) now both support Redis functions.
-- Macrometa documentation now clarifies [Redis limitations](../../queries/redis/limitations) and [Redis Data Formats](../../queries/redis/data-type-format).
+- Macrometa documentation now clarifies [Redis limitations](../../compute/queryworkers/queries/redis/limitations) and [Redis Data Formats](../../compute/queryworkers/queries/redis/data-type-format).
 
-Topics in [Redis](../../queries/redis) were updated as a result of this change.
+Topics in [Redis](../../compute/queryworkers/queries/redis) were updated as a result of this change.
 
 ### Akamai EdgeWorker Support Updates - Preview
 

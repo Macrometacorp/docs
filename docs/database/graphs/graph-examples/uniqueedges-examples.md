@@ -18,7 +18,7 @@ The streaming service has the following graph structure:
 
 ### C8QL Query
 
-The `uniqueEdges` option can be used in a [C8QL](../../queries/c8ql/) query to find unique recommendation paths that led users to discover new content:
+The `uniqueEdges` option can be used in a [C8QL](../../../compute/queryworkers/queries/c8ql/) query to find unique recommendation paths that led users to discover new content:
 
 ```sql
 FOR user IN users

@@ -26,7 +26,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use our command line interface to [Update a Fulltext Search View](../../../CLI/search-views-cli#gdnsl-view-update).
+Use our command line interface to [Update a Fulltext Search View](../../../../developer-hub/cli/search-views-cli#gdnsl-view-update).
 
 </TabItem>
 </Tabs>

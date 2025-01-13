@@ -10,7 +10,7 @@ We will first review the syntax of CRUD commands and then use SDKs to send queri
 
 Before we can insert documents with SQL, we need a place to put them in: a collection.
 
-For this tutorial, [Create a Document Collection](../../database/collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../database/collections/index.md).
+For this tutorial, [Create a Document Collection](../../../../database/collections/documents/create-document-store.md) in the console. For more information about collections, refer to [Collections](../../../../database/collections/index.md).
 
 1. [Log in to your Macrometa account](https://auth-play.macrometa.io/).
 2. Click **Data > Collections**.

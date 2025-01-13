@@ -6,7 +6,7 @@ title: Install SDKs
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page explains how to install and update Macrometa SDKs.
+Follow these steps to learn how to install and update Macrometa SDKs.
 
 ## Install SDKs
 

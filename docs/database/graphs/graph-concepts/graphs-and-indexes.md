@@ -81,7 +81,7 @@ For more information about creating collections, refer to [Collections](../../co
 
 After creating these collections and inserting sample data, indexes can be added to optimize query performance.
 
-For more information on adding indexes, refer to [Working with Indexes](../../collections/indexing/working-with-indexes) or the [gdnsl index](../../cli/indexes-cli) command.
+For more information on adding indexes, refer to [Working with Indexes](../../collections/indexing/working-with-indexes) or the [gdnsl index](../../../developer-hub/cli/indexes-cli) command.
 
 **email_index**: Add a "persistent" index on the `email` attribute in the `users` collection. This index would speed up queries that filter users based on their email addresses.
 

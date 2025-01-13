@@ -12,7 +12,7 @@ This page guides you through creating and querying your first semantic search vi
 
 ## 1. Add Data to Collection
 
-To begin, you will insert data with vectors into the `employees` collection. For more information about using C8QL, refer to [Queries](../../queries/).
+To begin, you will insert data with vectors into the `employees` collection. For more information about using C8QL, refer to [Queries](../../../compute/queryworkers/queries/).
 
 1. Click **Compute > Query Workers** (if you are not already in that section).
 1. Click **New Query**.

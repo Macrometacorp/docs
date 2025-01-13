@@ -12,27 +12,27 @@ A collection is a group of documents with a unique name and identifier. These co
   <card
     heading="Create a Document Collections"
     description="NoSQL document collections with flexible indexing and modeling."
-    href="/collections/documents"
+    href="/database/collections/documents"
   />
   <card
     heading="Key-Value Collections"
     description="High-throughput KV collections powering a wide range of use cases."
-    href="/collections/keyvalue"
+    href="/database/collections/keyvalue"
   />
   <card
     heading="Graph Edge Collection"
     description="Document type used by Graphs to model relationships between nodes."
-    href="/collections/graph-edge"
+    href="/database/collections/graph-edge"
   />
   <card
     heading="Dynamo-mode Collections"
     description="Full-featured compatibility with AWS DynamoDB SDKs and CLI."
-    href="/collections/dynamo/create-dynamo-table"
+    href="/database/collections/dynamo/create-dynamo-table"
   />
   <card
     heading="Redis-mode Collections"
     description="Full-featured Redis-compatible collection and API."
-    href="/collections/redis-mode/"
+    href="/database/collections/redis-mode/"
   />
 </grid>
 

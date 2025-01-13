@@ -37,7 +37,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph edge create](../../cli/graph-edges-cli#gdnsl-graph-edge-create) CLI command to create a new graph edge.
+Use the [gdnsl graph edge create](../../../developer-hub/cli/graph-edges-cli#gdnsl-graph-edge-create) CLI command to create a new graph edge.
 
 </TabItem>
 </Tabs>
@@ -67,7 +67,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph edge describe](../../cli/graph-edges-cli#gdnsl-graph-edge-describe) CLI command to view a graph edge.
+Use the [gdnsl graph edge describe](../../../developer-hub/cli/graph-edges-cli#gdnsl-graph-edge-describe) CLI command to view a graph edge.
 
 </TabItem>
 </Tabs>
@@ -100,7 +100,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph edge update](../../cli/graph-edges-cli#gdnsl-graph-edge-update) CLI command to update a graph edge.
+Use the [gdnsl graph edge update](../../../developer-hub/cli/graph-edges-cli#gdnsl-graph-edge-update) CLI command to update a graph edge.
 
 </TabItem>
 </Tabs>
@@ -133,7 +133,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph edge replace](../../cli/graph-edges-cli#gdnsl-graph-edge-replace) CLI command to replace a graph edge.
+Use the [gdnsl graph edge replace](../../../developer-hub/cli/graph-edges-cli#gdnsl-graph-edge-replace) CLI command to replace a graph edge.
 
 </TabItem>
 </Tabs>
@@ -163,7 +163,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph edge delete](../../cli/graph-edges-cli#gdnsl-graph-edge-delete) CLI command to delete a graph edge.
+Use the [gdnsl graph edge delete](../../../developer-hub/cli/graph-edges-cli#gdnsl-graph-edge-delete) CLI command to delete a graph edge.
 
 </TabItem>
 </Tabs>
@@ -180,7 +180,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph describe](../../cli/graph-cli#gdnsl-graph-describe) CLI command to get a list of edge collections for a graph.
+Use the [gdnsl graph describe](../../../developer-hub/cli/graph-cli#gdnsl-graph-describe) CLI command to get a list of edge collections for a graph.
 
 </TabItem>
 </Tabs>
@@ -213,7 +213,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to add an edge collection to a graph.
+Use the [gdnsl graph update](../../../developer-hub/cli/graph-cli#gdnsl-graph-update) CLI command to add an edge collection to a graph.
 
 </TabItem>
 </Tabs>
@@ -241,7 +241,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to remove an edge collection from a graph.
+Use the [gdnsl graph update](../../../developer-hub/cli/graph-cli#gdnsl-graph-update) CLI command to remove an edge collection from a graph.
 
 </TabItem>
 </Tabs>

@@ -26,6 +26,6 @@ Follow these instructions to create a new collection using the GDN console web U
 
 ## Create a Dynamo Table Collection with Code
 
-Use [createTable](../../../queries/dynamo-support/reference/createTable) to create a new Dynamo table in the collection.
+Use [createTable](../../../compute/queryworkers/queries/dynamo-support/reference/createTable) to create a new Dynamo table in the collection.
 
-Refer to the other topics in [Dynamo Support](../../../queries/dynamo-support/using-aws-cli.md) for various examples using this function with the SDK, CLI, and Boto3.
+Refer to the other topics in [Dynamo Support](../../../compute/queryworkers/queries/dynamo-support/using-aws-cli.md) for various examples using this function with the SDK, CLI, and Boto3.

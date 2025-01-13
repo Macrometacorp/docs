@@ -3,9 +3,9 @@ title: Transformations
 sidebar_position: 60
 ---
 
-When you create a connection to a Macrometa collection, you can add a _transformation_. These transformations are similar to Macrometa [stream workers](../cep/), which help you change your data using Stream QL in stream worker queries.
+When you create a connection to a Macrometa collection, you can add a _transformation_. These transformations are similar to Macrometa [stream workers](../compute/cep/), which help you change your data using Stream QL in stream worker queries.
 
-Stream QL is documented in [Stream Worker Queries](../cep/query-guide/), but only portions of that section apply to transformations.
+Stream QL is documented in [Stream Worker Queries](../compute/cep/query-guide/), but only portions of that section apply to transformations.
 
 This page explains the difference between transformations and stream workers and lists the portions of Stream QL (the language used in stream worker queries) you can and cannot use in transformations.
 
@@ -23,46 +23,46 @@ Stream workers support multiple output actions, including INSERT INTO, UPDATE, a
 
 ### Queries
 
-Transformations allow you to write one query, while stream workers allow you to write several queries. For more information about stream worker queries, refer to [Stream Worker Queries](../cep/query-guide/).
+Transformations allow you to write one query, while stream workers allow you to write several queries. For more information about stream worker queries, refer to [Stream Worker Queries](../compute/cep/query-guide/).
 
 ### Workflow
 
 Transformations only process, or transform, content going into or out of Macrometa collections via a connection.
 
-Stream workers process data streams, which can include Macrometa collections, but also support a variety of different [sources](../cep/source/) and [sinks](../cep/sink/).
+Stream workers process data streams, which can include Macrometa collections, but also support a variety of different [sources](../compute/cep/source/) and [sinks](../compute/cep/sink/).
 
 ## Supported Stream QL
 
-Stream QL is documented in [Stream Worker Queries](../cep/query-guide/), but only the following portions of that documentation apply to transformations. If your data pipeline needs are met by the following functionality, then a transformation might be the best solution:
+Stream QL is documented in [Stream Worker Queries](../compute/cep/query-guide/), but only the following portions of that documentation apply to transformations. If your data pipeline needs are met by the following functionality, then a transformation might be the best solution:
 
-- [Query](../cep/query-guide/query), except for the joins and stream worker examples.
-- [Values](../cep/query-guide/value)
-- [Event Types](../cep/query-guide/event-types)
-- [Functions](../cep/query-guide/functions/)
-- [Filters](../cep/query-guide/filters/)
-- [Aggregate Functions](../cep/query-guide/aggregate-functions)
-- [HAVING|WHERE](../cep/query-guide/having-where)
-- [GROUP BY](../cep/query-guide/group-by)
-- [ORDER BY](../cep/query-guide/order-by)
-- [LIMIT and OFFSET](../cep/query-guide/limit-and-offset)
-- [Output Rate Limiting](../cep/query-guide/output-rate-limiting)
-- [In-line Windows](../cep/windows/windows-queries), which are windows defined in the query.
+- [Query](../compute/cep/query-guide/query), except for the joins and stream worker examples.
+- [Values](../compute/cep/query-guide/value)
+- [Event Types](../compute/cep/query-guide/event-types)
+- [Functions](../compute/cep/query-guide/functions/)
+- [Filters](../compute/cep/query-guide/filters/)
+- [Aggregate Functions](../compute/cep/query-guide/aggregate-functions)
+- [HAVING|WHERE](../compute/cep/query-guide/having-where)
+- [GROUP BY](../compute/cep/query-guide/group-by)
+- [ORDER BY](../compute/cep/query-guide/order-by)
+- [LIMIT and OFFSET](../compute/cep/query-guide/limit-and-offset)
+- [Output Rate Limiting](../compute/cep/query-guide/output-rate-limiting)
+- [In-line Windows](../compute/cep/windows/windows-queries), which are windows defined in the query.
 
 ## Unsupported Stream QL
 
 The following Stream QL and stream worker elements are not supported. If you need to use them in your data pipeline, then you might need to create a stream worker:
 
-- [Custom Script Functions](../cep/query-guide/custom-script-functions)
-- [JOIN](../cep/query-guide/join/)
-- [Partitions](../cep/query-guide/partition/)
-- [Named Windows](../cep/windows/)
-- [Named Aggregations](../cep/aggregations/)
-- [Ad Hoc Queries](../cep/ad-hoc-queries/)
-- Creating any other elements, including [Tables](../cep/table/), [Sources](../cep/source/), and [SINKS](../cep/sink/).
+- [Custom Script Functions](../compute/cep/query-guide/custom-script-functions)
+- [JOIN](../compute/cep/query-guide/join/)
+- [Partitions](../compute/cep/query-guide/partition/)
+- [Named Windows](../compute/cep/windows/)
+- [Named Aggregations](../compute/cep/aggregations/)
+- [Ad Hoc Queries](../compute/cep/ad-hoc-queries/)
+- Creating any other elements, including [Tables](../compute/cep/table/), [Sources](../compute/cep/source/), and [SINKS](../compute/cep/sink/).
 
 ## Syntax
 
-For more information about query syntax, refer to [Query Syntax](../cep/query-guide/query#syntax).
+For more information about query syntax, refer to [Query Syntax](../compute/cep/query-guide/query#syntax).
 
 ```sql
 INSERT INTO

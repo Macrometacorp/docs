@@ -98,7 +98,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl collection](../../cli/collections-cli) CLI command to create a document collection.
+Use the [gdnsl collection](../../../developer-hub/cli/collections-cli) CLI command to create a document collection.
 
 </TabItem>
 </Tabs>  

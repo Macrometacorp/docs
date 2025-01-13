@@ -83,4 +83,4 @@ Used to modify the way the traversal runs. Only the following attributes have an
 
 The SHORTEST_PATH computation will only find an unconditioned shortest path. With this construct it is not possible to define a condition like: "Find the shortest path where all edges are of type _X_". If you want to do this, use a normal [Traversal](../traversal-queries/) instead with the option `{bfs: true}` in combination with `LIMIT 1`.
 
-Also consider using [`WITH`](../../../../queries/c8ql/operations/with.md) to specify the collections you expect to be involved.
+Also consider using [`WITH`](../../../../compute/queryworkers/queries/c8ql/operations/with.md) to specify the collections you expect to be involved.

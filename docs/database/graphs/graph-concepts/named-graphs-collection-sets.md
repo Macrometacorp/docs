@@ -5,15 +5,15 @@ title: Named Graphs and Collection Sets
 
 In Macrometa Global Data Network (GDN), you can work with graphs using either named graphs or collection sets, depending on your needs and preferences. Both approaches offer different levels of convenience and flexibility when managing and querying graph data.
 
-[C8QL](../../queries/c8ql/) language constructs for graph querying fully support both named graphs and collection sets. These constructs provide optimizations to ensure the best performance when querying your graph data, regardless of the chosen approach.
+[C8QL](../../../compute/queryworkers/queries/c8ql/) language constructs for graph querying fully support both named graphs and collection sets. These constructs provide optimizations to ensure the best performance when querying your graph data, regardless of the chosen approach.
 
 For more information about querying graphs, refer to [Graph Queries](../graph-queries/).
 
-To learn more about querying in general, refer to [Queries](../../queries/).
+To learn more about querying in general, refer to [Queries](../../../compute/queryworkers/queries/).
 
 ## Named Graphs
 
-_Named graphs_ are a way to manage and organize graph data in GDN, where Macrometa handles the collections involved in a graph. To create a named graph, you can use the [API](../../api-docs/), the [CLI](../../cli/), or the web interface. When defining a named graph, you'll need to specify the name of the graph and the vertex and edge collections involved.
+_Named graphs_ are a way to manage and organize graph data in GDN, where Macrometa handles the collections involved in a graph. To create a named graph, you can use the [API](../../../developer-hub/api-docs/), the [CLI](../../../developer-hub/cli/), or the web interface. When defining a named graph, you'll need to specify the name of the graph and the vertex and edge collections involved.
 
 Using named graphs simplifies the process of working with graph data because it allows you to focus on the graph structure itself, without worrying about the details of the underlying collections.
 

@@ -48,7 +48,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph create](../../cli/graph-cli#gdnsl-graph-create) CLI command to create a new named graph.
+Use the [gdnsl graph create](../../../developer-hub/cli/graph-cli#gdnsl-graph-create) CLI command to create a new named graph.
 
 </TabItem>
 </Tabs>

@@ -9,7 +9,7 @@ This page explains how to install the Databricks Client Connector.
 
 - Databricks Runtime 11.3 LTS(with Apache Spark 3.3.0)
 - Scala 2.12 or later
-- A Macrometa account with write permissions for streams. For more information about permissions, refer to [Permissions](../../account-management/permissions/).
+- A Macrometa account with write permissions for streams. For more information about permissions, refer to [Permissions](../../../account-management/permissions/).
 
 ## Install the Macrometa Databricks Client Connector
 

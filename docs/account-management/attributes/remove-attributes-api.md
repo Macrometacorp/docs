@@ -27,7 +27,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey clear](../../cli/api-key-cli#gdnsl-apikey-clear) CLI command to remove attributes.
+Use the [gdnsl apikey clear](../../developer-hub/cli/api-key-cli#gdnsl-apikey-clear) CLI command to remove attributes.
 
 </TabItem>
 </Tabs>

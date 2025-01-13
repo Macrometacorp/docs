@@ -32,4 +32,4 @@ This tool is not available with SQL.
 After you write a query, you can do the following:
 
 - [Run the query](running-queries).
-- Save the query as a [query worker](../queryworkers/query-workers).
+- Save the query as a [query worker](../../queryworkers/query-workers).

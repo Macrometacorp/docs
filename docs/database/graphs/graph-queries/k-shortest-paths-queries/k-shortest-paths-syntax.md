@@ -100,4 +100,4 @@ Used to modify the way the traversal runs. Only the following attributes have an
 
 An optional parameter that sets the maximum number of paths to return. Using a `LIMIT` for `K_SHORTEST_PATHS` is highly recommended to manage the number of results and prevent excessive resource usage.
 
-For more information, refer to [LIMIT operation](../../../queries/c8ql/operations/limit).
+For more information, refer to [LIMIT operation](../../../../compute/queryworkers/queries/c8ql/operations/limit).

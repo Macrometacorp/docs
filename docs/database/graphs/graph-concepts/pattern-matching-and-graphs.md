@@ -7,7 +7,7 @@ If you traverse a graph to find paths fulfilling complex conditions, that kind o
 
 Pattern matching is a technique used to find specific structures or patterns within a graph. It enables expressing complex queries concisely and intuitively by defining a pattern to match in the graph data. Pattern matching is especially useful for identifying and extracting relevant subgraphs based on specific relationships between vertices and edges.
 
-In [C8QL](../../queries/c8ql/), Macrometa's query language, you can use the `FOR` keyword to define variables representing vertices and edges in the graph, along with traversal operators to describe their relationships.
+In [C8QL](../../../compute/queryworkers/queries/c8ql/), Macrometa's query language, you can use the `FOR` keyword to define variables representing vertices and edges in the graph, along with traversal operators to describe their relationships.
 
 ## Traversal Operators
 

@@ -34,8 +34,8 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Use our command line interface to:
 
-- [List Search Views](../../../CLI/search-views-cli#gdnsl-view-list)
-- [Describe a Search View](../../../CLI/search-views-cli#gdnsl-view-describe)
+- [List Search Views](../../../../developer-hub/cli/search-views-cli#gdnsl-view-list)
+- [Describe a Search View](../../../../developer-hub/cli/search-views-cli#gdnsl-view-describe)
 
 </TabItem>
 </Tabs>

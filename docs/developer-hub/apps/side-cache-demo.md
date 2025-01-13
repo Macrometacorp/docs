@@ -3,7 +3,7 @@ sidebar_position: 30
 title: Side Cache Demo
 ---
 
-This demo demonstrates that a Macrometa [key-value store](../collections/keyvalue/), acting as a cache, can drastically reduce response time from cloud databases such as MongoDB.
+This demo demonstrates that a Macrometa [key-value store](../../database/collections/keyvalue/), acting as a cache, can drastically reduce response time from cloud databases such as MongoDB.
 
 ## Macrometa GDN
 

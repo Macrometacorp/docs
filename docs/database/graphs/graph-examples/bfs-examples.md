@@ -20,7 +20,7 @@ Each vertex in the `accounts` collection represents a bank account, and each edg
 
 ### C8QL Query
 
-The `bfs` option can be used in a [C8QL](../../queries/c8ql/) query to traverse the graph and identify patterns of suspicious activity that may indicate fraudulent behavior.
+The `bfs` option can be used in a [C8QL](../../../compute/queryworkers/queries/c8ql/) query to traverse the graph and identify patterns of suspicious activity that may indicate fraudulent behavior.
 
 For example, suppose the bank has identified a single account as potentially fraudulent. It can use the `bfs` traversal option to identify all accounts that are directly or indirectly connected to the fraudulent account through a sequence of transactions. Then, the bank can analyze the transaction patterns of these connected accounts to see if there are any commonalities or anomalies that suggest fraudulent behavior.
 

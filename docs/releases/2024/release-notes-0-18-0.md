@@ -60,7 +60,7 @@ The Global API Endpoint for each fabric is now displayed in the Fabrics tab.
 
 ![Global API Endpoint](/img/release-notes/18-00-global-api-endpoint.png)
 
-[APIs](../../api-docs) was updated as a result of this change.
+[APIs](../../developer-hub/api-docs) was updated as a result of this change.
 
 ### New Connection - S3 Target
 

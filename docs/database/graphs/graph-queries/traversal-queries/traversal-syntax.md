@@ -69,7 +69,7 @@ All collections in the list that do not specify their own direction use the dire
 
 ## Query Parameters
 
-This section explains the parameters of the queries above. Anything not specific to graph traversal queries (such as `FILTER`, `SORT`, `LIMIT`, `COLLECT`, and `RETURN`) is explained in [C8QL](../../../queries/c8ql/).
+This section explains the parameters of the queries above. Anything not specific to graph traversal queries (such as `FILTER`, `SORT`, `LIMIT`, `COLLECT`, and `RETURN`) is explained in [C8QL](../../../../compute/queryworkers/queries/c8ql/).
 
 ### Specifying Collections: WITH
 

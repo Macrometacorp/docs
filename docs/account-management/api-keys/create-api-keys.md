@@ -140,7 +140,7 @@ print("API Key Created: ", resp)
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl apikey](../../cli/api-key-cli) CLI command to create API keys.
+Use the [gdnsl apikey](../../developer-hub/cli/api-key-cli) CLI command to create API keys.
 
 </TabItem>
 </Tabs>

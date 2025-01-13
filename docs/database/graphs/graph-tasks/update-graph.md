@@ -21,7 +21,7 @@ Follow these instructions to update a graph using the GDN console web UI.
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl graph update](../../cli/graph-cli#gdnsl-graph-update) CLI command to update settings or collections of a graph.
+Use the [gdnsl graph update](../../../developer-hub/cli/graph-cli#gdnsl-graph-update) CLI command to update settings or collections of a graph.
 
 </TabItem>
 </Tabs>
