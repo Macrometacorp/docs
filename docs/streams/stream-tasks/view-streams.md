@@ -144,8 +144,8 @@ Use our interactive API Reference with code generation in 18 programming languag
 
 Use the following CLI commands to view existing streams:
 
-- [gdnsl streams list](../../cli/streams-cli#gdnsl-streams-list)
-- [gdnsl streams describe](../../cli/streams-cli#gdnsl-streams-describe)
+- [gdnsl streams list](../../developer-hub/cli/streams-cli#gdnsl-streams-list)
+- [gdnsl streams describe](../../developer-hub/cli/streams-cli#gdnsl-streams-describe)
 
 </TabItem>
 </Tabs>

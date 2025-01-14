@@ -17,8 +17,8 @@ A tenant can have multiple fabrics. Each fabric isolates its contained data from
 
 Each fabric contains the following:
 
-- [Collections](../collections/index.md) are groups of JSON documents. A fabric can store unlimited collections, and collections can store unlimited documents.
-- [Graphs](../graphs/index.md) consist of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices).
-- [Search Views](../search-views/index.md) is a full-text search engine for information retrieval on one or more linked collections.
+- [Collections](../database/collections/index.md) are groups of JSON documents. A fabric can store unlimited collections, and collections can store unlimited documents.
+- [Graphs](../database/graphs/index.md) consist of vertices and edges. Edges are stored as documents in edge collections. A vertex can be a document of a document collection or of an edge collection (so edges can be used as vertices).
+- [Search Views](../database/search-views/index.md) is a full-text search engine for information retrieval on one or more linked collections.
 - [Streams](../streams/index.md) are a type of collection that capture data in motion. Streams support both pub-sub and queuing models. Messages are sent via streams by publishers to consumers who then do something with the message.
-- [Stream Workers](../cep/index.md) perform complex event processing in real-time on streams.
+- [Stream Workers](../compute/cep/index.md) perform complex event processing in real-time on streams.

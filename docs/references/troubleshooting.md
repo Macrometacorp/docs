@@ -1,25 +1,36 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 title: Troubleshooting
 slug: troubleshooting
 ---
 
-If you are unable to access your tenant's global URL, you can try flushing your DNS cache. Use the following procedure for your OS:
+## Browser Support
 
-* [Windows 10/11](#windows-1011)
-* [MacOS](#macos)
-* [Linux](#linux)
+Macrometa GDN supports the following browsers:
 
-## Windows 10/11
+- Google Chrome
+- Apple Safari
+- Mozilla Firefox
 
-To flush your DNS cache on Windows, use the following steps:
+## Unable to access GDN?
 
-1. Open the command line.
-2. Type `ipconfig /flushdns` and press Enter.
+If you are unable to access your tenant's global URL, try flushing your DNS cache. Use the following procedure for your OS:
 
-## MacOS
+- [Windows 10/11](#windows-1011)
+- [MacOS](#macos)
+- [Linux](#linux)
 
-To flush your DNS cache on MacOS, use the following steps:
+### Windows 10/11
+
+Follow these steps to flush your DNS cache on Windows:
+
+1. Navigate to '**Start**' and search for the '**Command Line**'
+1. Right-click to open the command line and click '**Run as Administrator**'
+1. Type `ipconfig /flushdns` and press Enter. A message appears confirming that the DNS Resolver Cache was flushed.
+
+### MacOS
+
+To flush your DNS cache on MacOS:
 
 1. Open the Terminal application.
 2. Type `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder` and press Enter.
@@ -33,7 +44,7 @@ For older versions of MacOS, use the following commands:
 * Leopard: `sudo lookupd –flushcache`
 * Tiger: `lookupd –flushcache`
 
-## Linux
+### Linux
 
 On most Linux systems, the DNS resolver is either `systemd-resolved` or `dnsmasq`. 
 

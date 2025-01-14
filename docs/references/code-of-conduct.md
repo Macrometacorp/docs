@@ -1,6 +1,6 @@
 ---
 sidebar_position: 15
-title: Community Code of Conduct
+title: Join our Community
 ---
 
 This code of conduct governs Macrometa Corporation’s community events and discussions.

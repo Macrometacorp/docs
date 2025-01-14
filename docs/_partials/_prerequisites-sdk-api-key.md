@@ -1,3 +1,3 @@
 - A [Macrometa account](https://auth-play.macrometa.io/) with admin permissions.
 - An API key with admin permissions. Here's how you can [create an API key](../account-management/api-keys/create-api-keys.md).
-- [Install the SDK](../sdks/install-sdks.md). Macrometa offers different SDKs to enable you work and interact with GDN. 
+- [Install the SDK](../developer-hub/sdks/install-sdks.md). Macrometa offers different SDKs to enable you work and interact with GDN. 

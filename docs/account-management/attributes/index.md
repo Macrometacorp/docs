@@ -26,4 +26,4 @@ To enforce these restrictions, the fulfillment company can add _attributes_ to A
 
 When you assign an attribute, you can also assign a value to further restrict permissions. For example, an `employee` attribute can have a `staff` or `admin` value to signify levels of permission.
 
-For examples demonstrating how to use attributes in queries, refer to [Attribute-Based Access Control](../../queryworkers/attribute-based-access.md).
+For examples demonstrating how to use attributes in queries, refer to [Attribute-Based Access Control](../../compute/queryworkers/attribute-based-access.md).

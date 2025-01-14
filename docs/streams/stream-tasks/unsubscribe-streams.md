@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="operating-systems">
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the Python SDK](../../developer-hub/sdks/install-sdks.md) before you can run this code.
 
 ```py
 from c8 import C8Client
@@ -55,7 +55,7 @@ print("Subscription unsubscribed (removed from all ", type, " streams): ", resp)
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the JavaScript SDK](../../developer-hub/sdks/install-sdks.md) before you can run this code.
 
 ```js
 const jsc8 = require("jsc8");
@@ -247,7 +247,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams subscription](../../cli/streams-cli#gdnsl-streams-subscription) CLI commands to delete existing stream subscriptions.
+Use the [gdnsl streams subscription](../../developer-hub/cli/streams-cli#gdnsl-streams-subscription) CLI commands to delete existing stream subscriptions.
 
 </TabItem>
 </Tabs>

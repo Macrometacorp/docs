@@ -11,10 +11,10 @@ The following new features are included in this release.
 
 ### Search and Stream Workers are in GA
 
-[Search](../../search-views/index.md) and [Stream Workers](../../cep/index.md), previously only available in closed beta, are now generally available for everyone to use.
+[Search](../../database/search-views/index.md) and [Stream Workers](../../compute/cep/index.md), previously only available in closed beta, are now generally available for everyone to use.
 
 ### Invite User
-~~~~
+
 You can now invite users to your Macrometa account by sending them email.
 
 [Invite Users](../../account-management/users/invite-users.md) was added as a result of this feature.
@@ -33,13 +33,13 @@ This release adds support for Akamai edge workers as functions in GDN. For more 
 
 Macrometa now supports SQL queries. Support will be expanded in future releases.
 
-[SQL in Macrometa](../../queries/sql/index.md) was added as a result of this feature.
+[SQL in Macrometa](../../compute/queryworkers/queries/sql/index.md) was added as a result of this feature.
 
 ### Redis Support - Beta
 
 Macrometa now offers Redis support.
 
-[Redis Mode Collections](../../collections/redis-mode/index.md) and [Redis in Macrometa](../../queries/redis/index.md) were added as a result of this feature.
+[Redis Mode Collections](../../database/collections/redis-mode/index.md) and [Redis in Macrometa](../../compute/queryworkers/queries/redis/index.md) were added as a result of this feature.
 
 ### Kafka Support - Beta
 
@@ -57,7 +57,7 @@ Customers with Macrometa Play tier accounts _can_ use `api-play.paas.macrometa.i
 
 Instead, we recommend that you use an account-specific global or regional URL, which you can find in the API Reference in the Macrometa web console or on your GeoFabrics page. Any endpoint listed on the GeoFabric will accept API calls if you prepend `api-` to it.
 
-For more information, refer to [Unique Global URL vs. Generic](../../api-docs/index.md#unique-global-url-vs-generic).
+For more information, refer to [Unique Global URL vs. Generic](../../developer-hub/api-docs/index.md#unique-global-url-vs-generic).
 
 ### Stream Worker Prefixes
 
@@ -122,7 +122,7 @@ The following known issues were introduced in this release.
 
 `POST               /_fabric/_system/_api/streams/{stream}/publish`
 
-For more information about running API commands, refer to [APIs](../../api-docs/index.md).
+For more information about running API commands, refer to [APIs](../../developer-hub/api-docs/index.md).
 
 ## Defect Fixes
 

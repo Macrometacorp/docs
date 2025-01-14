@@ -29,7 +29,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric list](../cli/fabrics-cli#gdnsl-fabric-update) CLI command to update fabric metadata.
+Use the [gdnsl fabric list](../developer-hub/cli/fabrics-cli#gdnsl-fabric-update) CLI command to update fabric metadata.
 
 </TabItem>
 </Tabs>

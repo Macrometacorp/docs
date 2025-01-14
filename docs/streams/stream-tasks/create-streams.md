@@ -26,7 +26,7 @@ Create a stream.
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the Python SDK](../../developer-hub/sdks/install-sdks.md) before you can run this code.
 
 ```py
 from operator import concat
@@ -67,7 +67,7 @@ createStream()
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the JavaScript SDK](../../developer-hub/sdks/install-sdks.md) before you can run this code.
 
 ```js
 // Connect to GDN.
@@ -131,7 +131,7 @@ print("\nStream Created: ", resp.text)
 </TabItem>
 <TabItem value="api-js" label="API - JS">
 
-Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream]([Link to API command](https://www.macrometa.com/docs/api#/operations/CreateStream).
+Use our interactive API Reference with code generation in 18 programming languages to [Create a Stream](https://www.macrometa.com/docs/api#/operations/CreateStream).
 
 ```js
 class APIRequest {
@@ -202,7 +202,7 @@ run();
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl streams create](../../cli/streams-cli#gdnsl-streams-create) CLI command to create a document collection.
+Use the [gdnsl streams create](../../developer-hub/cli/streams-cli#gdnsl-streams-create) CLI command to create a document collection.
 
 </TabItem>
 </Tabs>

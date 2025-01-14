@@ -29,7 +29,7 @@ When you view a stream in the console, you will not see a backlog of messages. T
 </TabItem>
 <TabItem value="py" label="Python SDK">
 
-You must [Install the Python SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the Python SDK](../../developer-hub/sdks/install-sdks.md) before you can run this code.
 
 ```py
 import base64
@@ -59,7 +59,7 @@ for i in range(10):
 </TabItem>
 <TabItem value="js" label="JavaScript SDK">
 
-You must [Install the JavaScript SDK](../../sdks/install-sdks.md) before you can run this code.
+You must [Install the JavaScript SDK](../../developer-hub/sdks/install-sdks.md) before you can run this code.
 
 ```js
 const jsc8 = require("jsc8");

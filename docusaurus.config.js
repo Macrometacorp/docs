@@ -151,7 +151,7 @@ const config = {
                 label: "API",
               },
               {
-                href: "/sdks",
+                href: "/developer-hub/sdks",
                 label: "SDK",
               },
             ],

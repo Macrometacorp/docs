@@ -74,14 +74,14 @@ In this example, you'll learn how to create and use a GDN stream reader to proce
 ### Prerequisites
 
 - A [Macrometa account](https://auth-play.macrometa.io/) with sufficient permissions to create streams.
-- jsc8 SDK installed. For more information, refer to [Install SDKs](../../sdks/install-sdks.md).
+- jsc8 SDK installed. For more information, refer to [Install SDKs](../../developer-hub/sdks/install-sdks.md).
 
 ### Create the Stream
 
 To create the stream with messages for this example, you can load and publish the Sample-LogProducer-App stream worker in the Macrometa console.
 
-1. Follow the instructions in [Get Sample Stream Workers](../../cep/stream-worker-tasks/get-sample-stream-workers) to load Sample-LogProducer-App.
-2. [Publish the stream worker](../../cep/stream-worker-tasks/publish-unpublish-stream-workers.md).
+1. Follow the instructions in [Get Sample Stream Workers](../../compute/cep/stream-worker-tasks/get-sample-stream-workers) to load Sample-LogProducer-App.
+2. [Publish the stream worker](../../compute/cep/stream-worker-tasks/publish-unpublish-stream-workers.md).
 
 ### Reader Example Code
 

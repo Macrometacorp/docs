@@ -29,7 +29,7 @@ Use our interactive API Reference with code generation in 18 programming languag
 </TabItem>
 <TabItem value="cli" label="CLI">
 
-Use the [gdnsl fabric list](../cli/fabrics-cli#gdnsl-fabric-list) CLI command to list fabrics and [gdnsl fabric describe](../cli/fabrics-cli#gdnsl-fabric-describe) CLI command to view fabric details.
+Use the [gdnsl fabric list](../developer-hub/cli/fabrics-cli#gdnsl-fabric-list) CLI command to list fabrics and [gdnsl fabric describe](../developer-hub/cli/fabrics-cli#gdnsl-fabric-describe) CLI command to view fabric details.
 
 </TabItem>
 </Tabs>

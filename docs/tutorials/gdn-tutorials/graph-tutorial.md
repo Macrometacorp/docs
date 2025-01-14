@@ -52,11 +52,11 @@ Graph edge example in `groceryOrders` collection (Connection between customer C0
 If you want to try out the example, you can import the data into your Macrometa GDN account.
 Data can be found in the `sample-data` folder of this [repository](https://github.com/Macrometacorp/macrometa-graph-example).
 
-- Create two [document collections](../../collections/documents/index.md) in Macrometa GDN.
+- Create two [document collections](../../database/collections/documents/index.md) in Macrometa GDN.
     - `groceryItems`
     - `groceryCustomers`
 
-- Create one [edge collection](../../collections/graph-edge/index.md) in Macrometa GDN.
+- Create one [edge collection](../../database/collections/graph-edge/index.md) in Macrometa GDN.
     - `groceryOrders`
 
 - Import test data from sample-data folder to created collections using console. Name of the files are the same as the collection names.
@@ -69,7 +69,7 @@ Now that we have the data imported, we can create the graph on Macrometa GDN usi
 
 - A free trial [Macrometa account](https://auth-play.macrometa.io/).
 - A Node.js 14+ installation on your local machine. You can download it from [here](https://nodejs.org/en/download/).
-- Install the Macrometa [javascript SDK](../../sdks/install-sdks.md).
+- Install the Macrometa [javascript SDK](../../developer-hub/sdks/install-sdks.md).
 
 :::note
 To check your Node.js version, run the following command in your terminal:
@@ -151,7 +151,7 @@ The `@name` is a bind variable that can be set to any item name. In this example
 ### Create Query Worker
 
 It is possible to create a Query Worker on Macrometa GDN using console, javascript SDK, CLI or using the REST API.
-You can create [Query Worker](../../queryworkers/index.md) by yourself or you can use the one that is already created for this example.
+You can create [Query Worker](../../compute/queryworkers/index.md) by yourself or you can use the one that is already created for this example.
 Exported Query Worker can be found in the `sample-data` folder of this [repository](https://github.com/Macrometacorp/macrometa-graph-example). It is possible to import the query worker using console. (`import-query.json`)
 
 After we have created the Query Worker, we can start using it using the following code:

@@ -31,7 +31,7 @@ The new parameters are:
 - `batch.size`
 - `batch.flush.time.ms`
 
-[Stream Worker Tables](../../cep/table) was updated as a result of this change.
+[Stream Worker Tables](../../compute/cep/table) was updated as a result of this change.
 
 ### Retrieve API Keys
 
