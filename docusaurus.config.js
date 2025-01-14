@@ -107,6 +107,10 @@ const config = {
                 docId: "gdn",
                 label: "GDN",
               },
+              {
+                label: "Workspaces",
+                href: "/workspaces",
+              },
             ],
           },
           {

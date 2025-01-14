@@ -17,7 +17,7 @@ You have several options for managing Prerender prefetching configurations.
 Follow these instructions to view prefetching jobs in the web console.
 
 1. Log in to your Prerender dashboard.
-2. Click **Prefetching**.
+2. Click **Prefetching** 
 3. Click **Configuration**.
 
 ![Prerendering Prefetching Configuration Tab](/img/prerendering/prefetching-configuration-tab.png)
@@ -32,14 +32,14 @@ Follow these instructions to view prefetching jobs in the web console.
 
 ### Prefetching Configuration Fields
 
-Prerender provides the following prefetching configuration fields. Field names in the web console are different than those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
+Prerender provides the following prefetching configuration fields. Field names in the web console differ from those in the API responses. Refer to the API endpoint documentation for a full explanation of the API response.
 
 - **Status** - Whether the configuration is active or inactive.
 - **Origin URL** - The origin URL.
 - **Sitemaps** - The sitemap path, if the origin has one. Prerender will prefetch all URLs on the sitemap when the configuration is active.
 - **Scheduling** - Cron expression entered to trigger the prefetching job.
-- **Devices** - Icon indicating whether the prefetch was rendered for just desktop or desktop and mobile.
-- **Actions** - Icon that allows you to update.
+- **Devices** -Indicates whether the prefetch was rendered for just desktop or desktop and mobile.
+- **Actions** - Allows you to update your configuration.
 
 ## Configure Prefetching
 
@@ -48,13 +48,13 @@ Prerender provides the following prefetching configuration fields. Field names i
 
 A new prefetch configuration appears in the web console when you add a new origin in the Origin Settings tab. For more information about viewing and adding origins, refer to [Manage Origins](../../07-prerendering-management/manage-origins/manage-origins.md).
 
-The new configuration is inactive and unscheduled. Follow these instructions in order to activate it:
+By default, this new configuration is inactive and unscheduled. Follow these instructions to activate it:
 
 1. Log in to your Prerender dashboard.
 2. Click **Prefetching**.
 3. Click **Configuration**.
 4. Click the **Actions icon**.
-5. In **Cron Expression for Scheduling**, enter the cron expression that will dictate how often the job runs.
+5. In **Cron Expression for Scheduling**, enter the cron expression that will dictate how often the job runs. The cron expression follows the unix-cron string format (* * * * *). 
 6. In **Devices**, select the devices that you want to prefetch pages for.
 7. Click **Add**.
 

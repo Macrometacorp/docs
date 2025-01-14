@@ -981,13 +981,13 @@ html[data-theme="dark"] .card-land {
   border: 1px solid var(--docs-card-border-color);
   border-radius: 0.5rem;
 
-  > h1 > a {
+  > h2 > a {
     color: var(--docs-card-title-color);
   }
-  > h1 {
+  > h2 {
     color: var(--docs-card-title-color);
   }
-  > h1 .help {
+  > h2 .help {
     color: var(--color-primary-500);
   }
 
@@ -1030,4 +1030,15 @@ html[data-theme="dark"] .submitted-message {
 }
 .submitted-message {
   color: #000000;
+}
+.text-disable{
+  @apply !text-gray-400;
+}
+html[data-theme="dark"] .text-disable{
+  @apply !text-gray-600;
+}
+
+html[data-theme="dark"] .custom-nav{
+  background-color: var(--color-neutral-800);
+
 }

@@ -67,7 +67,7 @@ export function GET(request: Request) {
 
 After defining the function, use the `faas build  <function_name>` and `faas run  <function_name>` command to build and run the function on a local server respectively. For more advanced functions, visit [Creating  HTTP requests using functions](creating-http-requests-with-functions.md).
 
-The `photoniq.toml` file  contains the function configuration settings. Refer to [Configuring Functions](configuring-functions.md) for more details.
+The `photoniq.toml` file  contains the function configuration settings. Refer to [Configuring Functions](../configuring-functions.md) for more details.
 
 </TabItem>
 
@@ -90,7 +90,7 @@ functions/
 ```
 
 - `index.js`: Contains the function's code.
-- `photoniq.toml`: Contains the function's configuration settings. Refer to [Configuring Functions](configuring-functions.md) for more details.
+- `photoniq.toml`: Contains the function's configuration settings. Refer to [Configuring Functions](../configuring-functions.md) for more details.
 
 To create your Javascript function in the `index.js` file:
 
@@ -132,7 +132,7 @@ functions/
     └── photoniq.toml
 ```
 - `main.rs`: Contains the function code.
-- `photoniq.toml`: Contains the function configuration settings. Refer to [Configuring Functions](configuring-functions.md) for more details.
+- `photoniq.toml`: Contains the function configuration settings. Refer to [Configuring Functions](../configuring-functions.md) for more details.
 
 Here is the default sample of the `main.rs` file:
 
