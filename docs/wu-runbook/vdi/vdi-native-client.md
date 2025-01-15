@@ -5,7 +5,7 @@ title:  Accessing VDI on the Native Client
 The native client option is only available for users accessing VDI on **Windows**. Using the native client requires you to run the VDI installer for neccessary configurations to access VDI. This guide will explain how to:
 - [**Download the VDI installer**](#download-the-vdi-installer)
 - [**Connect to the VDI**](#connect-to-the-vdi)
-- [**Configure your connection on the RDP client**](#configure-your-connection-on-the-rdp-client)
+- [**Configure your connection in the RDP client**](#configure-your-connection-in-the-rdp-client)
 
 ## **Download the VDI installer**
 
@@ -39,7 +39,7 @@ To **begin using the remote Windows desktop via the native client**:
     ![rdp-powershell](/img/runbook-images/vdi-rdp.png)
 
    :::note
-   To make additional configurations to the connection, go to [Configure your connection on the RDP client](#configure-your-connection-on-the-rdp-client) before you click **Connect**.
+   To make additional configurations to the connection, go to [Configure your connection in the RDP client](#configure-your-connection-in-the-rdp-client) before you click **Connect**.
    :::
 
 4. Enter your VDI password when prompted for login credentials and click **OK** to connect. If needed, click **More choices** to specify a different username and password.
@@ -57,7 +57,7 @@ To **begin using the remote Windows desktop via the native client**:
 2. A prompt will inform you that your remote session will be disconnected. Click **OK** to confirm.
    
 
-## **Configure your connection on the RDP client**
+## **Configure your connection in the RDP client**
 
 To configure your connection in the RDP client, follow these steps before clicking **Connect** on the [VDI connection pop-up](#connect-to-the-vdi):
 
