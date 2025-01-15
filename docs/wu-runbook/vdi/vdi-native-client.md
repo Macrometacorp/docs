@@ -5,6 +5,7 @@ title:  Accessing VDI on the Native Client
 The native client option is only available for users accessing VDI on **Windows**. Using the native client requires you to run the VDI installer for neccessary configurations to access VDI. This guide will explain how to:
 - [**Download the VDI installer**](#download-the-vdi-installer)
 - [**Connect to the VDI**](#connect-to-the-vdi)
+- [**Enable USB access on RDP client**](#enable-usb-access-on-rdp-client)
 
 ## **Download the VDI installer**
 
@@ -35,9 +36,13 @@ To **begin using the remote Windows desktop via the native client**:
 
 3. If prompted, select **Open Windows PowerShell** from the browser pop-up to proceed.
 
-4. A Remote Desktop Connection window will appear. Click **Connect** to initiate the connection.
+4. A Remote Desktop Connection pop-up will appear. Click **Connect** to initiate the connection.
 
     ![rdp-powershell](/img/runbook-images/vdi-rdp.png)
+
+   :::note
+   If you want to enable USB access in your RDP client, go to [Enable USB access on RDP client](#enable-usb-access-on-rdp-client) before you click **Connect**.
+   :::
 
 5. Enter your VDI password when prompted for login credentials and click **OK** to connect. If needed, click **More choices** to specify a different username and password.
 
@@ -52,3 +57,26 @@ To **begin using the remote Windows desktop via the native client**:
 
 1. Click the **X (close)** button from the top of the RDP client screen.
 2. A prompt will inform you that your remote session will be disconnected. Click **OK** to confirm.
+   
+
+## **Enable USB access on RDP client**
+
+To enable USB device access for your remote session, follow these steps in your RDP client before clicking **Connect** on the [VDI connection pop-up](#connect-to-the-vdi):
+
+1. Navigate to **Local Resources > Local Devices and Resources**.
+
+    ![usb](/img/runbook-images/usb.png)
+   
+2. Click **More**, then choose the devices you want to use. By default, most of the devices are selected.
+
+    ![devices](/img/runbook-images/devices.png)
+
+3. Click **OK** , then **Connect** to return to the VDI pop-up and proceed with the [connection](#connect-to-the-vdi).
+
+
+
+
+
+
+
+
