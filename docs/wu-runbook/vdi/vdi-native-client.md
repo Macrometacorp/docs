@@ -59,7 +59,7 @@ To **begin using the remote Windows desktop via the native client**:
 
 ## **Configure your connection in the RDP client**
 
-To configure your connection in the RDP client, follow these steps before clicking **Connect** on the [VDI connection pop-up](#connect-to-the-vdi):
+To make additional configurations to your connection in the RDP client, follow these steps before clicking **Connect** on the [VDI connection pop-up](#connect-to-the-vdi):
 
 1. Navigate to the RDP client and update your desired configurations. Go to  **Local Resources > Local Devices and Resources**.
 
