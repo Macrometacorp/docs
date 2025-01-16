@@ -1,9 +1,11 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 title: Fabrics
 ---
 
-Fabrics enable you to create region-based subsets within your tenants. Each fabric represents a group of collections, processes, and data that cannot be accessed from other fabrics. You must log into the `_system` fabric to create, modify, or delete fabrics. Each fabric has a unique URL that enables access to permitted users.
+Fabrics enable you to create region-based subsets within your tenants. Each fabric represents a group of collections, processes, and data inaccessible by other fabrics. GDN contains a `_system` fabric, which allows you to log in and [create](create-geofabric.md), [modify](update-geofabric.md), or [delete](delete-geofabric.md) fabrics. Each fabric has a unique URL that enables access to permitted users.
+
+You can get started by [creating your first geofabric](create-geofabric.md). 
 
 ## What Are Fabrics?
 
