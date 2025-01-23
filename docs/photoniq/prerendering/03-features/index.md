@@ -1,5 +1,5 @@
 ---
-title: Explore Prerender Features
+title: Features
 ---
 
 Prerender offers numerous features that promote SEO and website performance while ensuring reliability and fault-tolerance.

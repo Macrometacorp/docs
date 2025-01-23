@@ -1,5 +1,5 @@
 ---
-title: Explore the Prerender Dashboard
+title: Explore the Dashboard
 ---
 
 Prerender offers its interactive dashboard, which allows you to view and manage your rendered pages. 
