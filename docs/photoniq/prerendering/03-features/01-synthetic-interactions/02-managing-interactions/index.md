@@ -6,7 +6,7 @@ HTML Selectors are the primary identifier used by Prerender for implementing syn
 
 - **Document Object Model (DOM):** This is the standard model that describes the arrangement of all elements in a web page. The DOM represents the document as a tree of objects, which can be manipulated with languages like JavaScript.
   
-- **Shadow DOM:** This forms a part of the web standards allows developers to create their own encapsulated HTML tags, styles, and scripts, without worrying about them conflicting with other parts of the web page. It effectively shields a part of the page’s HTML from being affected by the main document's CSS and JavaScript. This is particularly useful in complex web applications and components like web components, where you want to keep the component's internal functionality separate and hidden from the rest of the application.
+- **Shadow DOM:** This forms a part of the web standards that allows developers to create their own encapsulated HTML tags, styles, and scripts, without worrying about them conflicting with other parts of the web page. It effectively shields a part of the page’s HTML from being affected by the main document's CSS and JavaScript. This is particularly useful in complex web applications and components like web components, where you want to keep the component's internal functionality separate and hidden from the rest of the application.
 
 For elements encapsulated within a shadow DOM, prepend the selector with `>>>` to ensure Prerender can accurately target and interact with these elements. The `>>>` notation allows the selector to "pierce" through the shadow boundary, enabling interaction with elements that are otherwise encapsulated.
 
@@ -32,8 +32,6 @@ If the element is within a shadow DOM, use `>>>` followed by the specific select
 
 #### Consider Specificity and Efficiency
 
-The automatically generated selector might not always be the most efficient or simplest. It might be overly specific. Simplify the selector if possible, keeping only the parts that are necessary to uniquely identify the element.
+Simplify the selected selector if possible, especially for deeply nested selectors. The goal remains to uniquely identify an element, while maintaining simplicity. 
 
-For example, if the generated selector is `html > body > div:nth-child(3) > div > p > a`, and you know the `div` element has the id `login-container`, you might simplify this to `#login-container > p > a`.
-
-
+For example, a generated selector is `html > body > div:nth-child(3) > div > p > a`, with a `div` element and id `login-container`, can be simplified to `#login-container > p > a`.

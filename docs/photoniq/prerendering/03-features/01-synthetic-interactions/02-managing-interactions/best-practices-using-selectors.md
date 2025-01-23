@@ -14,7 +14,7 @@ Consider using custom data attributes (for example, `data-test-id="submit-button
 
 ### Minimize Dependency on DOM Structure
 
-Avoid selectors that are overly dependent on the DOM hierarchy, such as descendant selectors that traverse multiple layers (such as `div > ul > li > a`). These can break if there are changes in the structure of the DOM. Instead, use direct child selectors (such as `div > a`) or even better, selectors that target elements directly.
+Avoid selectors that are overly dependent on the DOM hierarchy, such as descendant selectors that traverse multiple layers (such as `div > ul > li > a`). These can break if there are changes in the structure of the DOM. Instead, use direct child selectors (such as `div > a`) or even better, selectors that target elements directly, like an ID.
 
 ### Incorporate Robustness to Dynamic Content
 
@@ -42,4 +42,4 @@ Implement mechanisms to capture and review the success rate of interactions trig
 
 ### Accessibility Considerations
 
-Ensure that the elements targeted for synthetic interactions are also accessible. This not only improves the quality of your prerendered pages but also ensures compliance with web accessibility standards.
+Ensure that the elements targeted for synthetic interactions are also accessible. This not only improves the quality of your rendered pages but also ensures compliance with web accessibility standards.
