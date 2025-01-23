@@ -6,7 +6,7 @@ Hover synthetic interactions reveals additional links or content, enhancing cont
 
 ## Objective
 
-This guide will walk you through the steps of creating and implementing your first hover synthetic interaction with the following steps:
+This guide will walk you through the steps of creating and implementing your first hover synthetic interaction:
 
 1. Finding the `htmlSelector`
 1. Testing the `htmlSelector`
@@ -19,7 +19,7 @@ This guide will walk you through the steps of creating and implementing your fir
 
 ### Step 1: Finding the `htmlSelector`
 
-The `htmlSelector` is a unique string for identifying elements on a webpage based on their HTML structure. It is critical for performing synthetic interactions effectively and accurately, ensuring the correct targeting of elements during the automation of interactions in configuring prerender behavior. The `htmlSelector` is contained within the DOM or the shadow DOM of the web page.
+The `htmlSelector` is a unique string for identifying elements on a webpage based on their HTML structure. It is critical for performing synthetic interactions effectively and accurately, ensuring the correct targeting of elements during the automation of interactions in configuring Prerender behavior. Refer to these [recommendations when choosing a selector](../02-managing-interactions/index.md). The `htmlSelector` is contained within the DOM or the shadow DOM of the web page.
 
 To find the `htmlSelector`:
 1. Open Developer tools on your web browser
@@ -27,15 +27,15 @@ To find the `htmlSelector`:
 - For **Chrome, Edge, and Firefox**: Press `Ctrl+Shift+I` (Windows/Linux) or `Cmd+Option+I` (Mac).
 - For **Safari**: Enable Developer menu from the `Advanced` tab from Safari's Preferences and press `Cmd+Option+I`.
 2. Use the  `Elements` tab (named `Inspector` in Firefox) to view the HTML structure of the page. You can hover over different parts of the HTML code, and the corresponding parts of the web page will be highlighted.
-3. Identify and copy the selector. Refer to these [recommendations when choosing a selector](../02-managing-interactions/index.md)
+3. Identify and copy the selector. 
 
 ### Step 2: Testing the `htmlSelector`
 
-After identifying a potential `htmlSelector`, it's important to test its functionality to observe its behavior in prerendering scenarios. To test the selector:
+After identifying a potential `htmlSelector`, it's important to test its functionality to observe its behavior in rendering scenarios. To test the selector:
 
 1. Find and click on the `Console` tab from the Developer Tools. The console helps run Javascript code directly against the current viewing page.
 2. Use the `document.querySelector()` method to test your selector. This method returns the first element within the document that matches the specified selector, or `null` if there are no matches. For example:
-- Type `document.querySelector("yourSelector")` into the console, replacing `"yourSelector"` with the CSS selector you want to test and Press `Enter` to run the command. For instance, If you want to test a selector for an element with the ID `login-button`, you would type:
+- Type `document.querySelector("yourSelector")` into the console, replacing `"yourSelector"` with the CSS selector you want to test and Press `Enter` to run the command. For instance, enter `#login-button` to test a selector for an element with the ID `login-button`:
 
 ```javascript
 document.querySelector("#login-button")

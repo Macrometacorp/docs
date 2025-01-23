@@ -1,5 +1,5 @@
 ---
-title: Prerendering Strategies
+title: Prerender Strategies
 ---
 
 Prerender offers two strategies for rendering web pages to bots and web crawlers: prefetching and on-demand rendering.

@@ -15,24 +15,35 @@ This guide will help you:
 
 ## Preparing your site for Prerender
 
-Before using the service, we recommend doing the following to improve the findability and visibility of your site with Prerender:
+Before using the service, we recommend doing the following:
 
-- **Optimize your site SEO:** Prerender works best with well-structured content, and your website SEO helps you to achieve this. Here’s what you should review:
+- **Optimize your site SEO:** Prerender works best with well-structured content to improve the findability and visibility of your site, and effective SEO helps you to achieve this. Here are some website components you should review:
 
     - **Metadata:** Properly configure your site’s metadata (titles, descriptions, etc.) to improve indexing for bots.
     - **Content Structure:** Use H1-H6 headings and structured content for better SEO crawling.
     - **URL Structure:** Keep URLs clean, concise, and relevant. Avoid lengthy query strings when possible.
     - **Relevant Content:** Ensure your content remains relevant and helpful to your target audience. 
+
 - **Determine your caching strategy:** Prerender's Cache Manager allows you to cache certain pages from your origin. Depending on your business data and how often this data is accessed, decide what pages need caching to reduce render time and costs. 
 
 ## Prerequisites
 
+- **Authentication:** Before using Prerender and its features, you need to authenticate and authorize your account. Prerender uses its Auth service to manage access to the service. This Auth service allows you to create and manage your Prerender Instance and interact with the Prerender API, and offers three classes of users:
+
+    - The Administrator
+    - The Billing Manager
+    - Monitoring and compliance officer
+
 - A Prerender instance. This Instance gives you access to the service and other tools needed to use it. Contact Macrometa engineers to help set up your Prerender Instance.
-- Target domain 
+- Target domain **(yourwebsite.com)**
 
 ### Set Up Origin
 
-Before leveraging the different capabilities of Prerender, you need to define your origin, which is the target site for Prerender. This step is crucial as it enables Prerender to understand the source of the pages and affects the caching strategy for ensuring optimal performance. For example, a regularly-updated products page may require shorter periods between subsequent caches than a contact page. 
+Before leveraging the different capabilities of Prerender, you need to define your origin, which is the target site for Prerender. 
+
+:::info
+This step is crucial as it enables Prerender to understand the source of the pages and affects the caching strategy for ensuring optimal performance. For example, a regularly-updated products page may require shorter periods between subsequent caches than a contact page. 
+:::
 
 To set up your origin:
 
@@ -52,10 +63,10 @@ To set up your origin:
 
 ![setup origin](/img/photoniq/prerendering/set-up-origin.png)
 
-You can further increase the capabilities of Prerendering by configuring the following settings:
+You can further increase the capabilities of Prerender by configuring the following settings:
 
 1. (Optional) If using the web console, you can [add a 404 identifier](../07-prerendering-management/manage-404-identifiers.md) by adding an identifier string. A 404 identifier helps Prerender accurately report 404s. 
-1. (Optional) [Review and update Prerendering settings](../07-prerendering-management/prerendering-settings.md) for your origin. This configuration updates may include customizing the URL block list and adding various types of headers.
+1. (Optional) [Review and update Prerender settings](../07-prerendering-management/prerendering-settings.md) for your origin. This configuration updates may include customizing the URL block list and adding various types of headers.
 1. (Optional) If you are using a prefetching strategy, then [configure prefetching](../04-prerendering-strategies/01-prefetching/configure-prefetching.md).
 1. (Optional) Set up [synthetic interactions](../03-features/01-synthetic-interactions/01-implementing-interaction/index.md).
    1. [Find the HTML selector](../03-features/01-synthetic-interactions/01-implementing-interaction/index.md) that you want to act on.
@@ -76,13 +87,13 @@ Navigate to **Activity** on your Prerender dashboard to view metrics like:
 
 ![Usage highlights](/img/photoniq/prerendering/prerendering-metrics.png)
 
-### Purge the Cache as Needed
+### Purge the Cache
 
-Prerender has a [cache manager](../07-prerendering-management/manage-cache/manage-cache.md), which allows you to view information about the existing caches. 
+Prerender has a [cache manager](../07-prerendering-management/manage-cache/manage-cache.md), which allows you to view information about the existing caches on your configured domains. 
 
-To manage your cache, navigate to the **Cache Manager**. If you need to refresh your cached content, then you can [clear the cache](../07-prerendering-management/manage-cache/manage-cache.md).
+- To manage your cache, navigate to the [**Cache Manager**](../07-prerendering-management/manage-cache/manage-cache.md). If you need to refresh your cached content, you can [clear the cache](../07-prerendering-management/manage-cache/manage-cache.md).
 
-This allows for targeted cache removal, specifying only the URLs you wish to clear. When accessing a URL with a cleared cache using the render endpoint, prerender automatically renders the page and caches it to ensure optimal delivery.
+This allows for targeted cache removal, specifying only the URLs you wish to clear. When accessing a URL with a cleared cache using the render endpoint, Prerender automatically renders the page and caches it for optimal delivery.
 
 ![cache manager](/img/photoniq/prerendering/cache-manager.png)
 
