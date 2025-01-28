@@ -1,12 +1,18 @@
 ---
 sidebar_position: 7
-title:  Accessing VDI on the Native Client
+title:  Access via the Native Client
 ---
-The native client option is only available for users accessing VDI on **Windows**. Using the native client requires you to run the VDI installer for neccessary configurations to access VDI. This guide will explain how to:
-- [**Download the VDI installer**](#download-the-vdi-installer)
-- [**Connect to the VDI**](#connect-to-the-vdi)
 
-## **Download the VDI installer**
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Accessing VDI with the native client is available for Windows and Mac users and follows these steps:
+
+<Tabs groupId="access-vdi">
+<TabItem value="access windows" label="Access on Windows">
+
+
+## **Step 1: Download the VDI installer**
 
 Before accessing remote desktops using the native client, follow these steps:
 
@@ -22,7 +28,7 @@ Before accessing remote desktops using the native client, follow these steps:
     ![vdi-tray.png](/img/runbook-images/vdi-tray.png)
 
 
-## **Connect to the VDI**
+## **Step 2: Connect to the VDI**
 
 To **begin using the remote Windows desktop via the native client**:
 
@@ -47,6 +53,29 @@ To **begin using the remote Windows desktop via the native client**:
 7. Upon successful authentication, the remote Windows desktop launches in your RDP client.
 
     ![windows](/img/runbook-images/windows-vdi.png)
+
+
+</TabItem>
+
+<TabItem value="access mac" label="Access on Mac">
+
+## **Step 1: Download the Windows app**
+
+1. Navigate to **Software Downloads** on the Workspaces homepage.
+1. Click **Download Windows app**. This directs you to then Apple playstoe to download and install the Windows app. 
+
+## **Step 2: Download the VDI installer**
+
+1. Navigate to the **Software Downloads** section of the Workspaces homepage.
+1. Click **Download VDI** 
+1. Follow the onscreen prompts to install the VDI installer.
+
+## **Step 3:Connect to the VDI**
+
+1. 
+
+</TabItem>
+</Tabs>
 
 **To terminate the session,**
 
