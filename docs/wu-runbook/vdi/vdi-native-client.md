@@ -1,20 +1,12 @@
 ---
 sidebar_position: 7
-title:  Access via the Native Client
+title:  Access with the Native Client
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-Accessing VDI with the native client is available for Windows and Mac users and follows these steps:
-
-<Tabs groupId="access-vdi">
-<TabItem value="access windows" label="Access on Windows">
+Accessing and using VDI with the native client is available for Windows and follows these steps:
 
 
-## **Step 1: Download the VDI installer**
-
-Before accessing remote desktops using the native client, follow these steps:
+## **Step 1: Download and install the VDI installer**
 
 1. Go to the **Software Downloads** page and click the **Download** button  for Virtual Desktop Interface to get the VDI installer.
 
@@ -23,7 +15,7 @@ Before accessing remote desktops using the native client, follow these steps:
 2. Run the downloaded file and follow the installation prompts.
 
 3. Once the installation is complete, click **Finish**.
-4. After a succesful installation, you'll see the Macrometa VDI Service icon in the system tray.
+4. After a successful installation, you'll see the Macrometa VDI Service icon in the system tray.
 
     ![vdi-tray.png](/img/runbook-images/vdi-tray.png)
 
@@ -53,29 +45,6 @@ To **begin using the remote Windows desktop via the native client**:
 7. Upon successful authentication, the remote Windows desktop launches in your RDP client.
 
     ![windows](/img/runbook-images/windows-vdi.png)
-
-
-</TabItem>
-
-<TabItem value="access mac" label="Access on Mac">
-
-## **Step 1: Download the Windows app**
-
-1. Navigate to **Software Downloads** on the Workspaces homepage.
-1. Click **Download Windows app**. This directs you to then Apple playstoe to download and install the Windows app. 
-
-## **Step 2: Download the VDI installer**
-
-1. Navigate to the **Software Downloads** section of the Workspaces homepage.
-1. Click **Download VDI** 
-1. Follow the onscreen prompts to install the VDI installer.
-
-## **Step 3:Connect to the VDI**
-
-1. 
-
-</TabItem>
-</Tabs>
 
 **To terminate the session,**
 
