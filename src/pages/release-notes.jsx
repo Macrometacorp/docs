@@ -8,10 +8,19 @@ const App = () => {
 
   const notes = [
     {
+      id: 5, date: "January, 2025", tag: "PhotonIQ", Product: "EDS v2.1", whatsnew: "What's new",
+      whatsNewContents: [ "C8QL Query Support: This new version allows you to query and filter your data using C8QL, an alternative GDN query language to interact with your organizational data", "Additional flag to specify whether or not to return query with the query results ."], 
+      Improvement: "Improvement", improvementContents: [],
+       bugFix: "Bug fixes", bugFixContents: [],
+      deprecation: "Deprecations", deprecationContents: ["Event publishing API no longer supported"],
+       blogPostTitle: "event service quickstart guide", blogPostLink:"https://www.macrometa.com/docs/photoniq/event-delivery/getting-started-event-delivery",
+      },
+    {
       id: 4, date: "December 30, 2024", tag: "Workspaces", Product: "Workspaces v1.1.0",
       whatsnew: "What's new", whatsNewContents: ["User and Host Management in Workspace: Workspace admins can now manage users and hosts(VDIs) more effectively to optimize resource allocation. The new `Users & Hosts` dashboard allows admins to assign or unassign users to specific hosts, reassign VDIs to other users, and filter hosts by assignment status or type.", "Added functionality to ensure each user is assigned a single host."],
       Improvement: "Improvement", improvementContents: ["Enhanced performance on the admin page by adding indexes to the `sessions` and `session_assignments` , enabling faster filtering and query execution."],
       bugFix: "Bug fixes", bugFixContents: [],
+      deprecation: "Deprecations", deprecationContents: [],
       blogPostTitle:"Workspaces Admin guide" , blogPostLink: "https://www.macrometa.com/docs/workspaces/workspace-management",
 
  },
@@ -20,6 +29,7 @@ const App = () => {
       whatsNewContents: [],
       Improvement: "Improvement", improvementContents: [ "Security updates: Enhanced security protocols for better data safety, security and performance."],
       bugFix: "Bug fixes", bugFixContents: [],
+      deprecation: "Deprecations", deprecationContents: [],
       blogPostTitle:" Prerender documentation" , blogPostLink: "https://www.macrometa.com/docs/photoniq/prerendering",
 
  },
@@ -28,6 +38,7 @@ const App = () => {
       whatsNewContents: [ "Connection: use our new Sync service for better connection and fault tolerance. Consolidate multiple Prerender services into a single WebSocket connection with the Sync service to reduce network overhead and improve performance.", "Authentication: Auth service for role-based access control. Manage and control access to the service to improve security and ease future auditing processes.", "Configuration: Editable GUI for better configuration management. This GUI also democratizes access to the service, ensuring technical and non-technical users use and manage their Prerender instance.", "Flexibility: Added Follow Redirect settings to manage redirect behavior. Achieve better flexibility by defining how the Prerender handles your redirects."],
       Improvement: "Improvement", improvementContents: [ "Resource consumption: Improve resource efficiency by reducing the load on the GDN server by aggregating and serving metrics every minute instead of pushing per request.", "Security: Reduce the occurrence of malware and phishing attacks with our newly added URL tags to the URL block list.", "Auditing: Prevent the complete removal of previous renders with the removal of the entire cache purge feature." ],
       bugFix: "Bug fixes", bugFixContents: [],
+      deprecation: "Deprecations", deprecationContents: [],
       blogPostTitle:"Prerender v1.2.1 blog post" , blogPostLink: "https://www.macrometa.com/blog/photoniq-prerender-v1-2-2-update",
 
  },
@@ -37,7 +48,8 @@ const App = () => {
       whatsNewContents: [ "Create collections with strong consistency.", "Improvements to the web console for better management.", "New AWS S4 target for connection", "New API endpoint to Stream workers", "New Global API endpoint to Fabrics" ], 
       Improvement: "Improvement", improvementContents: [ "New Group ID API Endpoints", "Enhanced Error Handling for Stream Workers", "Stream workers support for all collection types.", "Addition of Akamai EdgeWorkers code bundles" ],
        bugFix: "Bug fixes", bugFixContents: ["Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."],
-      blogPostTitle: "GDN v0.18.0 release page", blogPostLink:"https://www.macrometa.com/docs/release-notes/release-notes-0-18-0",
+       deprecation: "Deprecations", deprecationContents: [],
+       blogPostTitle: "GDN v0.18.0 release page", blogPostLink:"https://www.macrometa.com/docs/release-notes/release-notes-0-18-0",
       },
   ];
 
@@ -77,7 +89,7 @@ const App = () => {
           <div className="relative min-h-[600px] w-full">
             <div className="absolute bottom-0 left-0 top-2 w-[2px] bg-[#6767E5] md:left-[25%] after:absolute after:inset-x-0 after:bottom-0 after:h-48 after:bg-gradient-to-b after:from-gray-100 after:to-white"></div>
             {filteredNotes.map((note) => {
-              let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents, blogPostTitle, blogPostLink } = note;
+              let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents, deprecation, deprecationContents, blogPostTitle, blogPostLink } = note;
               return (
                 <div key={id} className="ml-3 grid grid-cols-1 pb-20 md:ml-0 md:grid-cols-4" >
                   <div className="relative col-span-1 mb-4 flex flex-row items-center justify-between md:mb-0 md:flex-col md:items-start md:justify-start">
@@ -135,6 +147,20 @@ const App = () => {
                             <ul key={index} className="ml-3">
                               <li className="relative text-[16px] before:absolute before:-left-6 before:top-2 before:h-2 before:w-2 before:rounded-full before:border-2 before:border-gray-300">
                                 <Markdown>{bugFixContent}</Markdown>
+                              </li>
+                            </ul>
+                          ))}
+                        </div>
+                      </div>
+                      {deprecationContents.length > 0 && (
+                      <div className="font-bold">{deprecation}</div>
+                      )}
+                      <div className="flex flex-col gap-y-3">
+                        <div className="text-base">
+                          {deprecationContents.map((deprecationContent, index) => (
+                            <ul key={index} className="ml-3">
+                              <li className="relative text-[16px] before:absolute before:-left-6 before:top-2 before:h-2 before:w-2 before:rounded-full before:border-2 before:border-gray-300">
+                                <Markdown>{deprecationContent}</Markdown>
                               </li>
                             </ul>
                           ))}
