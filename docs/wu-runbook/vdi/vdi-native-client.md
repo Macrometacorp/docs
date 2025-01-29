@@ -1,15 +1,15 @@
 ---
 sidebar_position: 7
-title:  Accessing VDI on the Native Client
+title:  Access with the Native Client
 ---
+
 The native client option is only available for users accessing VDI on **Windows**. Using the native client requires you to run the VDI installer for neccessary configurations to access VDI. This guide will explain how to:
 - [**Download the VDI installer**](#download-the-vdi-installer)
 - [**Connect to the VDI**](#connect-to-the-vdi)
 - [**Configure your connection in the RDP client**](#configure-your-connection-in-the-rdp-client)
 
-## **Download the VDI installer**
 
-Before accessing remote desktops using the native client, follow these steps:
+## **Step 1: Download and install the VDI installer**
 
 1. Go to the **Software Downloads** page and click the **Download** button  for Virtual Desktop Interface to get the VDI installer.
 
@@ -18,12 +18,12 @@ Before accessing remote desktops using the native client, follow these steps:
 2. Run the downloaded file and follow the installation prompts.
 
 3. Once the installation is complete, click **Finish**.
-4. After a succesful installation, you'll see the Macrometa VDI Service icon in the system tray.
+4. After a successful installation, you'll see the Macrometa VDI Service icon in the system tray.
 
     ![vdi-tray.png](/img/runbook-images/vdi-tray.png)
 
 
-## **Connect to the VDI**
+## **Step 2: Connect to the VDI**
 
 To **begin using the remote Windows desktop via the native client**:
 

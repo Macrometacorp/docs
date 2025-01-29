@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-title:  Accessing VDI on the Universal Client
+title:  Access with the Universal Client
 ---
 
 To **start using the remote Windows desktop on the universal client**, 
