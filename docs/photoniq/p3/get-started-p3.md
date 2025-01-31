@@ -3,7 +3,7 @@ sidebar_position: 20
 title: Get Started with P3
 ---
 
-To get started with Macrometa's PhotonIQ Performance Proxy (P3), you need to configure your Akamai CDN as well as set up the optimization policy for your website using the PhotonIQ Proxy dashboard. This guide explains all the steps in that process.
+To get started with the PhotonIQ Performance Proxy (P3), you need to configure your Akamai CDN as well as set up the optimization policy for your website using the PhotonIQ Proxy dashboard. This guide explains all the steps in that process.
 
 ## High-level Steps
 

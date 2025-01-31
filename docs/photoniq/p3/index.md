@@ -3,24 +3,20 @@ sidebar_position: 1
 title: PhotonIQ Performance Proxy (P3)
 ---
 
-PhotonIQ Performance Proxy (P3) is an AI-driven platform specifically crafted for enterprises focused on optimizing their website performance. P3 uses ML page validation and an AI-native foundation to reorganize and optimizes your CSS and JavaScript. This ensures accelerated load times, lower bounce rates, and a seamless user experience, which results in a higher conversion rate.
+PhotonIQ Performance Proxy (P3) is an AI-driven platform designed for enterprises focused on optimizing their website performance. P3 uses ML page validation and an AI-native foundation to reorganize and optimize the loading of web CSS and JavaScript files, driving accelerated load times, lower bounce rates, and a seamless user experience, resulting in a higher conversion rate.
 
-As a fully-managed service, P3 greatly reduces the need for ongoing technical oversight, thereby conserving your time and resources. P3 addresses technical challenges such as improving mobile and desktop performance parity, reducing high bounce rates, and streamlining the continuous site optimization process.
+Furthermore, by enhancing the core web vitals, P3 improves user engagement and search engine visibility, pivotal in driving organic traffic and elevating revenue opportunities.
 
-Enhancing core web vitals, P3 improves user engagement and search engine visibility, which is pivotal in driving organic traffic and elevating revenue opportunities. With P3, technical teams can confidently future-proof their websites, achieving enduring performance enhancements with streamlined effort.
+As a fully-managed service, P3 significantly reduces the need for ongoing technical management, conserving your time and resources. It also addresses technical challenges such as improving mobile and desktop performance parity, reducing high bounce rates, and streamlining the continuous site optimization process.
 
-## How It Works
-
-P3 leverages advanced machine learning technologies to dynamically update and cache web content, ensuring optimal performance and seamless user experiences.
-
-For a more detailed explanation and architecture diagrams, refer to [How P3 Works](how-p3-works).
+With P3, technical teams can confidently future-proof their websites, achieving enduring performance enhancements with streamlined effort. You can [get started by setting up your first policy](get-started-p3.md). 
 
 ## Benefits of P3
 
 - **Improved User Experience**: Faster loading times and lower bounce rates contribute to an overall enhanced user experience, increasing customer retention and conversion rates.
 - **Improved Performance**: Improve the performance of your website at scale without having to invest in updating thousands of lines of code, CSS, and JavaScript.
 - **Better SEO Ranking**: Faster website performance helps improve SEO rankings, increasing the likelihood of more organic traffic.
-- **Increased Revenue**: Improving SEO, page performance, and user experience leads to increased revenue.
+- **Increased Revenue**: Improving SEO, page performance, and user experience all reduce bounce rates, leading to increased revenue.
 - **Cost Savings**: Efficient resource utilization reduces the need for additional server scaling during high-traffic events, yielding cost savings. Save time because you’re fixing a significant problem (CSS & JS) with relatively little effort.
 - **Reduced Maintenance Time**: P3 continues to adapt and eliminates the need for expert engineering.
 
@@ -28,9 +24,9 @@ For a more detailed explanation and architecture diagrams, refer to [How P3 Work
 
 Key capabilities of P3 include:
 
-- **AI-Driven Website Performance Optimization**: Uses machine learning and AI-native technologies to analyze, reorganize, and optimize your CSS and JavaScript for accelerated load times and improved user experience.
+- **AI-Driven Website Performance Optimization**: P3 uses machine learning and AI-native technologies to analyze, reorganize, and optimize your CSS and JavaScript website files for accelerated load times and improved user experience.
 
-- **Fully-Managed Service**: Reduces the need for continuous technical oversight, conserving resources and allowing your team to focus on core business goals.
+- **Fully-Managed Service**: Reduces the need for continuous technical oversight, conserving resources and allowing your team to focus on other core business goals.
 
 - **Enhanced Core Web Vitals**: Targets key metrics that improve user engagement and search engine visibility, driving more organic traffic and increasing revenue potential.
 
@@ -52,4 +48,4 @@ Key capabilities of P3 include:
 
 - **Performance Proxy Measurement (PPM) Tool**: Facilitates the creation of performance measurement jobs to analyze and compare core web vitals before and after optimization.
 
-- **Comprehensive Metrics and Telemetry**: Delivers detailed usage statistics, including hourly, daily, and monthly telemetry, to track performance improvements and user engagement over time.
+- **Comprehensive reporting: Metrics and Telemetry**: P3 offers Delivers detailed usage statistics, including hourly, daily, and monthly telemetry, to track performance improvements and user engagement over time.
