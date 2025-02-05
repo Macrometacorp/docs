@@ -8,6 +8,14 @@ const App = () => {
 
   const notes = [
     {
+      id: 6, date: "February, 2025", tag: "WorkspacesQ", Product: "Workspaces v1.2", whatsnew: "What's new",
+      whatsNewContents: [ "Analytics for monitoring: This new version offers an analytics dashboard that allows you to track and monitor the performance of your VDIs. By filtering through variables like assigned and unassigned users and used desktops, admin users can now track and optimize the use of their Workspaces tools.", "VDI Native client support for MacOS: Mac users can launch their VDI with the native client. "], 
+      Improvement: "Improvement", improvementContents: ["User reboot button: Our new VDI version offers a reboot button to launch your remote Windows session in case of any interruptions to your sessions." ],
+       bugFix: "Bug fixes", bugFixContents: [],
+      deprecation: "Deprecations", deprecationContents: [],
+       blogPostTitle: "guide to using Cloud Workspaces", blogPostLink:"https://www.macrometa.com/docs/workspaces/workspace-management",
+      },
+    {
       id: 5, date: "January, 2025", tag: "PhotonIQ", Product: "EDS v2.1", whatsnew: "What's new",
       whatsNewContents: [ "C8QL Query Support: This new version allows you to query and filter your data using C8QL, an alternative GDN query language to interact with your organizational data", "Additional flag to specify whether or not to return query with the query results ."], 
       Improvement: "Improvement", improvementContents: [],
