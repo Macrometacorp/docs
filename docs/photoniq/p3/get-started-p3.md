@@ -1,5 +1,5 @@
 ---
-sidebar_position: 20
+sidebar_position: 3
 title: Get Started with P3
 ---
 
@@ -36,9 +36,9 @@ For more information about PPM, refer to [Manage Performance Proxy Metrics Jobs]
 
 ### Create a Policy
 
-A P3 _policy_ is a set of optimization rules applied to one or more origin URLs that you define when you [create a P3 policy](manage-p3-policies#create-a-policy).
+A P3 _policy_ is a set of optimization rules applied to one or more origin URLs that you define when you [create a P3 policy](./management/manage-p3-policies.md#create-a-policy).
 
-For more information about managing policies, refer to [Manage P3 Policies](manage-p3-policies.md).
+For more information about managing policies, refer to [Manage P3 Policies](./management/manage-p3-policies.md).
 
 ## Get Started with P3 on Akamai CDN
 
@@ -130,11 +130,11 @@ curl -I https://yourwebsite.com | grep 'x-photoniq-p3'
 
 The P3 dashboard also provides a number of tools for you to monitor the service. You can:
 
-- [View P3 Metrics](view-p3-metrics.md)
+- [View P3 Metrics](./observation/view-p3-metrics.md)
 - [View P3 Validations](view-p3-validations.md)
 - [View P3 Optimizations](view-p3-optimizations.md)
-- [View P3 Alerts](view-p3-alerts.md)
-- [View P3 Audit Log](view-p3-audit-log.md)
+- [View P3 Alerts](./observation/view-p3-alerts.md)
+- [View P3 Audit Log](./observation/view-p3-audit-log.md)
 
 ## Check Web Vitals for Your Optimized Site
 

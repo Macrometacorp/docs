@@ -72,7 +72,7 @@ Perform the following steps to create a new P3 policy:
      - **Product Detail Page**
      - **Other**
    - **Enable Policy** - Turn the policy on or off. If the policy is enabled, then optimization rules are applied to incoming requests.
-    The remainder of the fields cannot be manually edited. For more information about what each optimization does, refer to [P3 Optimizations](p3-optimizations.md).
+    The remainder of the fields cannot be manually edited. For more information about what each optimization does, refer to [P3 Optimizations](../p3-optimizations.md).
 
 ## Edit a Policy
 

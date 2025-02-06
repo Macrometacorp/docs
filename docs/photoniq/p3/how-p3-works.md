@@ -1,5 +1,5 @@
 ---
-sidebar_position: 10
+sidebar_position: 2
 title: How P3 Works
 ---
 
