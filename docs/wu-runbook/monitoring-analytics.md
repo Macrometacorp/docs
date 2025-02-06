@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: Monitoring and Analytics
 sidebar_label: Monitoring
 ---
