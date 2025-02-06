@@ -2,9 +2,9 @@
 pagination_next: null
 pagination_prev: null
 sidebar_class_name: hidden
-sidebar_label: WU Workspaces Runbook v1.1.0
+sidebar_label: WU Workspaces Runbook
 sidebar_position: 0
-title: Cloud Workspaces Runbook for Western Union v1.1.0
+title: Cloud Workspaces Runbook for Western Union 
 ---
 
 Macrometa Cloud Workspaces is redefining our approach to remote work and productivity. As a cloud-based virtual environment, it enables effective access to your work tools and business-specific applications directly from your browser. The service includes a suite of tools designed for high performance and security, including remote browser access and remote desktops on the edge.
@@ -33,11 +33,11 @@ Ignore steps 1 and 2 if you are already logged into Cloud Workspaces.
    
      - For first-time users, the **Software Downloads** screen is displayed for you to download the appropriate installer for the service you want to use. Refer to the respective guides for more details on the [VDI](./vdi/index.md) and [RBA](./rba/index.md) installers. Click **Homepage** to proceed to the Workspaces homepage.
    
-        ![onboarding-page](/img/runbook-images/onboarding.png)
+        ![onboarding-page](/img/runbook-images/download-windows.png)
 
      - If you're a returning user, you are automatically redirected to the homepage. The services displayed in your homepage is based on your [user subscription](#workspaces-subscriptions). The homepage below is for users subscribed to RBA and VDI.
 
-        ![vdi-rba-user](/img/runbook-images/rba-vdi-mac.png)
+        ![vdi-rba-user](/img/runbook-images/new-homepage.png)
 
 :::note
 - VDI users with only [Universal Client](./vdi/index.md#accessing-vdi) won't see **Software Downloads** and will be redirected to the homepage instead. See [Workspace subscriptions](#workspaces-subscriptions) for more details.

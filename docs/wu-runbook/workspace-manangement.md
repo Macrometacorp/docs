@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Workspace Management Admin Guide
-sidebar_label: Workspace Management
+sidebar_label: Workspaces Management
 ---
 
 
