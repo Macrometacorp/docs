@@ -20,7 +20,7 @@ Regular users won't find the management dashboard as it is only available for ad
 
 The **Active Directory Domain** tab allows admins to configure the Active Directory for the workspace. This setup is a one-time process that links your organization's user directory to the workspace, enabling effective user authentication and access management.
 
-![add-dashboard](/img/runbook-images/management-dashboard.png)
+![add-dashboard](/img/runbook-images/active-dir-page.png)
 
 
 To configure the Active Directory for your workspace:
