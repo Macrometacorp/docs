@@ -3,20 +3,22 @@ sidebar_position: 3
 title: Get Started with P3
 ---
 
-To get started with the PhotonIQ Performance Proxy (P3), you need to configure your Akamai CDN as well as set up the optimization policy for your website using the PhotonIQ Proxy dashboard. This guide explains all the steps in that process.
+To get started with the PhotonIQ Performance Proxy (P3), you need to configure your Akamai CDN as well as [set up the optimization policy](./management/manage-p3-policies.md) for your website using the PhotonIQ Proxy dashboard. 
+
+This guide explains all the steps in that process.
 
 ## High-level Steps
 
 At the simplest level, there are steps to setting up P3:
 
-1. Create a P3 policy to define what optimizations are applied to which website. You can create a policy for each group of websites that share a similar structure. For example, some sites might need light optimization, others might need aggressive optimization.
-2. Configure Akamai to route some or all traffic to the P3 servers.
-3. Test that P3 is configuring the pages.
-4. Validate and monitor the service.
+1. [Create a P3 policy](#create-a-policy): A P3 policy defines what optimizations are applied to a website. Sites with a similar structure can share a policy, for example, some sites might need light optimization, others might need aggressive optimization.
+2. [Configure Akamai to route traffic to the P3 servers](#get-started-with-p3-on-akamai-cdn).
+3. [Test the P3 page configuration](#check-web-vitals-for-your-optimized-site)
+4. [Validate and monitor the service](#validate-that-p3-is-optimizing-your-site).
 
 ## Prerequisites
 
-Before you start, make sure you have:
+Before you start, ensure you have:
 
 - An active Akamai account.
 - Rights to edit and activate configurations on Akamai properties.
