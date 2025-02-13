@@ -9,7 +9,7 @@ const App = () => {
   const notes = [
     {
       id: 7, date: "February, 2025", tag: "Workspaces", Product: "Workspaces v1.2.2", whatsnew: "What's new",
-      whatsNewContents: ["Workspaces Assistant: Maximize Workspaces with help from Workspaces Assistant, a guide that answers all your questions and helps you navigate the Workspace toolbox."], 
+      whatsNewContents: ["Workspaces Assistant: Maximize Workspaces with help from Workspaces Assistant, an AI-powered chatbot that answers all your questions and helps you navigate the Workspaces toolbox."], 
       Improvement: "Improvement", improvementContents: ["Mac Native Client: MacOS users can launch their virtual desktops with the VDI native client, offering them more options for using the Workspaces environment"],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
