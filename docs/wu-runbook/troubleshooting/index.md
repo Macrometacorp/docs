@@ -1,5 +1,6 @@
 ---
 sidebar_position: 6
+sidebar_label: Troubleshooting
 title:  Troubleshooting and FAQs
 ---
 Here are some common issues and steps to resolve them.
@@ -12,7 +13,7 @@ This error can have different causes depending on the service you are trying to 
 - **Non-Persistent VDI and RBA users**: This error typically occurs when all available sessions are in use. Wait for a session to free up and try again later.
 
 ### Why am I unable to use my peripheral devices (printer card reader, e.t.c)?
-Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](./rba/validating-peripherals.md) before use.
+Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](../rba/validating-peripherals.md) before use.
 
 ### Why can't I launch VDI from my Windows 11?
 Some antiviruses like BitDefender might prevent the execution of the Windows PowerShell script. To fix this, follow any of these solutions:

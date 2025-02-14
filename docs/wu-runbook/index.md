@@ -2,7 +2,7 @@
 pagination_next: null
 pagination_prev: null
 sidebar_class_name: hidden
-sidebar_label: WU Workspaces Runbook
+sidebar_label: Introduction
 sidebar_position: 0
 title: Cloud Workspaces Runbook for Western Union 
 ---
@@ -16,7 +16,7 @@ For Western Union, Cloud Workspaces provides the following key services:
 
 ## **Objective**
 
-This runbook provides a comprehensive guide on how to use the Western Union App and remote desktops from Cloud Workspaces efficiently. It includes steps for accessing the services and [troubleshooting common issues](troubleshooting.md).
+This runbook provides a comprehensive guide on how to use the Western Union App and remote desktops from Cloud Workspaces efficiently. It includes steps for accessing the services and [troubleshooting common issues](./troubleshooting/index.md).
 
 ## **Connecting to Workspaces**
 
@@ -80,7 +80,8 @@ The Client available for your VDI may differ. Visit the [VDI documentation](./vd
 ![vdi-rba-user](/img/runbook-images/rba-vdi.png)
 
 **Next steps:**
-- For admins, visit the [Workspace Management guide](workspace-manangement.md) to configure your domain.
+- For admins, visit the [Workspace Management guide](workspace-management.md) to configure your domain.
 - For WUPOS users, continue with the steps highlighted in [ Using RBA to access the Western Union App](./rba/index.md).
 - VDI users can continue with the [setup process](./vdi/index.md) to start using remote desktops.
+- Get more information about your Workspaces environment with our AI chatbot.
 

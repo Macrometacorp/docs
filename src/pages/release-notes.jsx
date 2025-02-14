@@ -10,7 +10,7 @@ const App = () => {
     {
       id: 7, date: "February, 2025", tag: "Workspaces", Product: "Workspaces v1.2.2", whatsnew: "What's new",
       whatsNewContents: ["Workspaces Assistant: Maximize Workspaces with help from Workspaces Assistant, an AI-powered chatbot that answers all your questions and helps you navigate the Workspaces toolbox."], 
-      Improvement: "Improvement", improvementContents: ["Mac Native Client: MacOS users can launch their virtual desktops with the VDI native client, offering them more options for using the Workspaces environment"],
+      Improvement: "Improvement", improvementContents: ["Mac Native Client: MacOS users can launch their virtual desktops with the VDI native client, offering them more options for using the Workspaces environment. While this feature works seamlessly for Chrome and Firefox browsers, Safari users may encounter an issue and are advised to use other browsers while we work on a fix which will be available in a subsequent release."],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
        blogPostTitle: "guide to using Cloud Workspaces", blogPostLink:"https://www.macrometa.com/docs/workspaces/workspace-management",

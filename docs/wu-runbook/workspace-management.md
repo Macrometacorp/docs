@@ -20,7 +20,7 @@ Regular users won't find the management dashboard as it is only available for ad
 
 The **Active Directory Domain** tab allows admins to configure the Active Directory for the workspace. This setup is a one-time process that links your organization's user directory to the workspace, enabling effective user authentication and access management.
 
-![add-dashboard](/img/runbook-images/active-dir-page.png)
+![add-dashboard](/img/runbook-images/active-dir.png)
 
 
 To configure the Active Directory for your workspace:
@@ -35,7 +35,7 @@ Only qualified admins with expertise in Active Directory should perform this tas
 ## Managing Desktops and Users
 
 The **Desktops and users** tab enables admins to configure and manage desktop assignments in [VDI](./vdi/index.md). 
-![desktop and users tab](/img/runbook-images/desktop-users.png)
+![desktop and users tab](/img/runbook-images/desktop-and-users.png)
 
 Admins can assign users to hosts, change assignments, or unassign users as needed. Additionally, they can search for users or hosts and filter hosts based on their assignment status or host type.
 
