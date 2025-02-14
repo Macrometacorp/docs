@@ -22,7 +22,7 @@ Before getting started, ensure to do the following:
 
 1. Go to the **Software Downloads** page and click **Download VDI Client** to download the VDI installer.
 
-    ![software downloads](/img/runbook-images/download-vdi-client.png)
+    ![software downloads](/img/runbook-images/software-downloads.png)
   
 2. Run the downloaded file and follow the installation prompts.
 
@@ -37,7 +37,7 @@ To **begin using the remote Windows desktop via the native client**:
 
 1. Open the Workspaces homepage and click the **Native Client** button for **Windows**.
 
-    ![vdi-user](/img/runbook-images/native-client-new-edited.png)
+    ![vdi-user](/img/runbook-images/vdi-macs.png)
 
 2. If the installer is not already downloaded, it will prompt you to [download and install the VDI client](#download-the-vdi-installer).
 
@@ -77,29 +77,30 @@ To make additional configurations to your connection in the RDP client, follow t
 </TabItem>
 <TabItem value="access mac" label="Access on Mac">
 
-- [**Download the Windows app**](#download-the-vdi-installer)
-- [**Download the VDI Client**](#download-the-vdi-installer)
+:::important
+While the Mac Native Client runs smoothly on Firefox and Chrome browsers, Safari users may encounter a minor issue and a fix will be released in a subsequent release.
+:::
 
 ### **Step 1: Download the Windows app**
 
 1. Navigate to **Software Downloads** and click **Download Windows App**.
 
-    ![software downloads](/img/runbook-images/download-windows.png). 
+    ![software downloads](/img/runbook-images/software-downloads.png). 
 
-1. Follow the onscreen prompts to download and install the Windows app.
+Follow the onscreen prompts to download and install the Windows app.
 
 ### **Step 2: Download and install the VDI client**
 
 1.  Navigate to **Software Downloads** and click **Download VDI Client**
 
-    ![software downloads](/img/runbook-images/download-vdi-client.png).
+    ![software downloads](/img/runbook-images/software-downloads.png)
 
 2. Double-click on the newly downloaded VDI installer.
 
     ![vdi message](/img/runbook-images/vdi-install-message.png).
 
 :::tip
-If this screen pops up, [follow these steps](https://support.apple.com/en-gb/guide/mac-help/mh40616/mac) to resolve it.
+If the above screen pops up, [follow these steps](https://support.apple.com/en-gb/guide/mac-help/mh40616/mac) to resolve it.
 :::
 
 3. Follow the onscreen prompts to successfully install the VDI client.
@@ -108,7 +109,7 @@ If this screen pops up, [follow these steps](https://support.apple.com/en-gb/gui
 
 1. Click **Native Client** from your Workspaces homepage.
 
-    ![vdi-user](/img/runbook-images/native-client-new-edited.png)
+    ![vdi-user](/img/runbook-images/vdi-macs.png)
 
     This initiates the RDP Launcher.
 

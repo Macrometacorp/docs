@@ -7,7 +7,7 @@ To **start using the remote Windows desktop on the universal client**,
 
 1. Navigate to the **Workspaces** homepage and click the **Universal Client** button for Windows. 
 
-   ![universal-login.jpg](/img/runbook-images/vdi-mac.png)
+   ![universal-login.jpg](/img/runbook-images/vdi-macs.png)
 
 2. It opens up the VDI in another browser tab as shown below:
 
