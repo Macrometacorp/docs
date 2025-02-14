@@ -93,7 +93,7 @@ Follow the onscreen prompts to download and install the Windows app.
 
 1.  Navigate to **Software Downloads** and click **Download VDI Client**
 
-    ![software downloads](/img/runbook-images/download-vdi-client.png).
+    ![software downloads](/img/runbook-images/software-downloads.png)
 
 2. Double-click on the newly downloaded VDI installer.
 
