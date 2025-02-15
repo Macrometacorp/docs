@@ -17,8 +17,8 @@ const App = () => {
       },
     {
       id: 7, date: "February, 2025", tag: "Workspaces", Product: "Workspaces v1.2.1", whatsnew: "What's new",
-      whatsNewContents: ["User Feedback Form: Use this feedback survey to provide feedback on your experience using Cloud Workspaces to help improve your experience "], 
-      Improvement: "Improvement", improvementContents: ["Analytics reporting: More VDI metrics for granular level reporting"],
+      whatsNewContents: ["User Feedback: Use this feedback survey to provide feedback on your experience using Cloud Workspaces to help improve your experience "], 
+      Improvement: "Improvement", improvementContents: ["Analytics reporting: Addition of VDI User metrics for granular-level reporting. Admin users can find this data under the `Users` section of the `Desktop and Users` tab in Admin management. "],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
        blogPostTitle: "guide to using Cloud Workspaces", blogPostLink:"https://www.macrometa.com/docs/workspaces/workspace-management",
