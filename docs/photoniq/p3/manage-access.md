@@ -1,13 +1,24 @@
 ---
-sidebar_position: 90
-title: Manage P3 API Keys
+title: Manage P3 Access
+sidebar_label: Manage access
+sidebar_position: 20
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
-This page provides information to help you manage your P3 API keys.
+Managing access to the P3 service ensures secure operations
 
-## Create New API Key
+## Change Password
+
+1. Log in to your PhotonIQ Performance Proxy dashboard.
+2. Click your user icon in the upper right corner, then click **Settings**.
+3. In the **Current Password** field, enter your current password.
+4. In the **New Password** field, enter your new password.
+5. Click **Change Password**.
+
+## Manage API keys
+
+API keys help you to manage and interact with the P3 REST APIs.
+
+### Create New API Key
 
 Perform the following steps to create a new API key.
 
@@ -20,7 +31,7 @@ Perform the following steps to create a new API key.
 
    Your API key is displayed. Be sure to save it somewhere safe, because it will not be visible again after the window is closed.
 
-## Delete API Keys
+### Delete API Keys
 
 Perform the following steps to delete an API key.
 

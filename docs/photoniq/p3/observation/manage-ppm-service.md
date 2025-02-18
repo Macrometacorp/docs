@@ -1,6 +1,7 @@
 ---
 sidebar_position: 55
 title: Manage Performance Proxy Metrics Jobs
+sidebar_label: Manage PPM Jobs
 ---
 
 import Tabs from '@theme/Tabs';
