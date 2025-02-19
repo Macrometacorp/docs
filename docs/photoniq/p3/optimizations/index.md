@@ -29,5 +29,6 @@ For slow networks, P3 also applies these optimizations to serve content effectiv
 
 ## Outline web files
 
-For CSS files: This moves non-essential CSS and Javascript to external files, prioritizing essential style loading and making content visually ready faster for the user. This technique ensures that only the styles necessary for the initial viewport are loaded first, deferring the rest. It streamlines the critical rendering path, which can significantly enhance the user's experience on page load.
-For JS files: Moving non-essential JS files reduces initial load parsing and execution, improving page performance. Loading non-critical JavaScript asynchronously ensures that these scripts do not affect the initial page load performance. This technique is especially beneficial for interactive elements below the fold or when not immediately necessary.
+- **For CSS files:** This moves non-essential CSS and Javascript to external files, prioritizing essential style loading and making content visually ready faster for the user. This technique ensures that only the styles necessary for the initial viewport are loaded first, deferring the rest. It streamlines the critical rendering path, which can significantly enhance the user's experience on page load.
+
+- **For JS files:** Moving non-essential JS files reduces initial load parsing and execution, improving page performance. Loading non-critical JavaScript asynchronously ensures that these scripts do not affect the initial page load performance. This technique is especially beneficial for interactive elements below the fold or when not immediately necessary.
