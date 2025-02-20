@@ -1,6 +1,6 @@
 ---
 sidebar_position: 40
-title: Manage Hover Interaction Policies
+title: Hover
 ---
 
 import Tabs from '@theme/Tabs';

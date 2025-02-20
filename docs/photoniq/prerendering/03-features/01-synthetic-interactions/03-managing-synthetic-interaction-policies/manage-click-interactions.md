@@ -1,6 +1,6 @@
 ---
 sidebar_position: 30
-title: Manage Click Interaction Policies
+title: Click
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 90
-title: Prerender Best Practices
+title: Best Practices
 ---
 
 Prerender generates static HTML pages from dynamic content to make your site content more available to web crawlers (good bots). The following best practices help you get the most out of Prerender to ensure maximum visibility and discoverability of your web content.

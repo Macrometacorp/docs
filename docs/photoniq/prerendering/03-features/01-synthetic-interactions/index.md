@@ -22,6 +22,9 @@ Click events, such as tab switching, can be defined by the user to reveal additi
 
 Hovering is especially useful for menu bars as it reveals additional links or content for bots to find and index. By simulating these hover actions during rendering, these hidden content becomes findable and accessible for indexing by search engines.
 
+### Manipulate JS Variable
+
+JS variables allows you to add dynamic content to your web pages.
 
 ## Importance of Synthetic Interactions
 

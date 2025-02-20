@@ -1,6 +1,6 @@
 ---
 sidebar_position: 20
-title: Manage Scroll Interaction Policies
+title: Scroll
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
