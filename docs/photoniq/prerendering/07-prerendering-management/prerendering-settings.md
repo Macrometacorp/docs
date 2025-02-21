@@ -1,6 +1,6 @@
 ---
 sidebar_position: 80
-title: Managing Prerender Advanced Settings
+title: Manage Advanced Settings
 ---
 
 import Tabs from '@theme/Tabs';

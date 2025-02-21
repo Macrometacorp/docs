@@ -1,6 +1,6 @@
 ---
 sidebar_position: 60
-title: View P3 Alerts
+title: Manage alerts
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

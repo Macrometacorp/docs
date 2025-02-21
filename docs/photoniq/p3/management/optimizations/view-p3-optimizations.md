@@ -1,6 +1,7 @@
 ---
 sidebar_position: 40
 title: View P3 Optimizations
+sidebar_label: Manage optimizations
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -14,8 +15,6 @@ Perform the following steps to view P3 policy optimizations:
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Optimizations**.
 
-For more information about each optimization, refer to [P3 Optimizations](p3-optimizations.md).
-
 ![View P3 Optimizations](/img/photoniq/p3/p3-view-optimizations.png)
 
 ## Optimization Fields
@@ -25,7 +24,7 @@ For more information about each optimization, refer to [P3 Optimizations](p3-opt
 - **URL** - Specific URL being optimized.
 - **Progress** - Shows where in the optimization process the optimization is.
   - **A** - Analyzer status. P3 is analyzing the page.
-  - **V** - Validator status. P3 is validating the page. For more information about validation, refer to [View P3 Validations](view-p3-validations.md).
+  - **V** - Validator status. P3 is validating the page. 
   - **R** - Rewriter status. Optimizations are all applied.
   The color of the letter indicates its status:
   - Green indicates the stage has successfully completed.

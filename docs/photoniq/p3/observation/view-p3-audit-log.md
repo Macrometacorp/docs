@@ -1,6 +1,6 @@
 ---
 sidebar_position: 60
-title: View P3 Audit Log
+title: View Audit Logs
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
