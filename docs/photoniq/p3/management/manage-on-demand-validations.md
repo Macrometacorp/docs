@@ -1,6 +1,6 @@
 ---
 sidebar_position: 45
-title: Manage On-demand Validations
+title: On-demand validations
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

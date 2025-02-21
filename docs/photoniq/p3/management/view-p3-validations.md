@@ -1,15 +1,17 @@
 ---
 sidebar_position: 43
-title: View P3 Validations
+title: Validations
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-After you create a policy and PhotonIQ Performance Proxy (P3) gets a request for an optimized page, P3 validates the page by running visual and functional tests. You can view these validations in the PhotonIQ Performance Proxy dashboard.
+After creating a policy and the P3 service receives a request for an optimized page, P3 runs visual and functional tests to validate the page. 
+
+You can view these validations in the PhotonIQ Performance Proxy dashboard.
 
 ## View Validations
 
-Perform the following steps to view P3 validations:
+To view these validations:
 
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Validations**.
@@ -36,15 +38,17 @@ Visual validation validates how closely the optimized page matches the appearanc
 
 After you click **Visual**, the dashboard displays a Visual Comparison page with a number of fields and a side-by-side visual comparison of the original and optimized versions.
 
+![visuals](/img/photoniq/p3/visuals-compare.png)
+
 ### Analysis
 
 The following fields are displayed:
 
 - **Total Pixels** - The total number of pixels analyzed in the visual comparison between the optimized and original versions of the page.
 
-- **Pixels Matched** - The number of pixels that were found to be identical in both the optimized and original versions of the page during the visual comparison.
+- **Pixels Matched** - The number of pixels found to be identical in the optimized and original versions of the page during the visual comparison.
 
-- **Pixels Mismatched** - The count of pixels that did not match between the optimized and original page versions in the visual comparison.
+- **Pixels Mismatched** - The count of unmatched pixels between the optimized and original page versions in the visual comparison.
 
 - **Layout Analysis** - An assessment of changes in the page layout by analyzing spatial arrangement differences between the optimized and original versions.
 
@@ -56,9 +60,9 @@ The following fields are displayed:
 
 - **Pixel Intensity Distribution** - This metric evaluates the similarity in the distribution of pixel intensities (lightness or darkness) between the optimized and original page versions.
 
-- **Contour Similarity** - A measure of how closely the contours (edges defining shapes) in the optimized page match those in the original page version.
-
 - **Template Matching** - Compares specific template patterns found in the original page to those in the optimized version to check for alterations.
+
+- **Contour Similarity** - A measure of how closely the contours (edges defining shapes) in the optimized page match those in the original page version.
 
 - **Gradient Magnitude Similarity** - A comparison of the gradient magnitudes (rate of change in brightness) between images of the optimized and original pages to evaluate detail preservation.
 
@@ -70,14 +74,14 @@ The following fields are displayed:
 
 ### Highlighted Missing Pixels and Optimized
 
-The original and optimized versions are shown side by side. You can scroll down to see both pages. Any discrepancies, such as missing pixels, are highlighted in red on the original screenshot
+This shows the original and optimized side by side. You can scroll down to see both pages. Any discrepancies, such as missing pixels, are highlighted in red on the original screenshot
 
 ## Functional Validation
 
-Functional validation measures how the optimized page functions compared to the original page. It views the network requests sent by the original, takes a random subset of those, and then checks to see if the optimized page is performing the same requests. It also, checks other aspects of web functionality, such as new errors and that elements such as links, buttons, and navigation are working as expected.
+Functional validation measures the difference in functionality between the optimized and original page. It views the network requests sent by the original, takes a random subset of those, and checks if the optimized page responds to the same requests. It also reviews if other aspects of web functionality, such as new errors and web elements like links, buttons, and navigation work as expected.
 
 - **Total Elements** - Number of requests detected.
 - **Selected Elements** - Number of requests selected to measure from the original, unoptimized page.
 - **Matched Elements** - Number of requests matched by the optimized page.
 
-If all is working well, then the number of selected elements and matched elements will be identical.
+If everything proceeds fine, the number of selected elements and matched elements will be identical.

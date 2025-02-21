@@ -1,15 +1,17 @@
 ---
-sidebar_position: 40
-title: Manage P3 Cache
+sidebar_position: 46
+title: Set up and manage cache
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-You can manage the PhotonIQ Performance Proxy (P3) cache in the PhotonIQ Performance Proxy dashboard.
+Manage how P3 caches and serves your pages with the cache tab in the P3 dashboard. 
 
 ## View Purge Cache Requests
 
-Perform the following steps to view P3 cache purge requests:
+Purging the cache removes old content to make room for more relevant and updated content. This cache clearing also helps with troubleshooting and improves performance and page loading time.
+
+To view P3 cache purge requests:
 
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Cache**.
@@ -29,12 +31,10 @@ Perform the following steps to view P3 cache purge requests:
 
 ## Purge the Cache
 
-Perform the following steps to purge your P3 cache:
-
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Cache**.
 3. Click **Purge Cache**.
-4. Click **Add** and then enter the URL, including `https://`, that you want to purge the cache for. Click **Add** and then repeat this step for each URL you want to include in the purge request.
-5. (Optional) If you want to purge your CDN cache as well, then click the **Yes, I want to purge CDN cache too.** checkbox.
-6. If purging the CDN, then click the arrow to expand the **CDN Purge Params** and then enter information in the fields. For more information about these fields, refer to Akamai's [Welcome to Purge Cache](https://techdocs.akamai.com/purge-cache/docs/welcome-purge).
+4. Click **Add** and enter the URL, including `https://`, that you want to purge the cache for. Click **Add** and then repeat this step for each URL you want to include in the purge request.
+5. (Optional) Click the **Yes, I want to purge CDN cache too.** checkbox if you want to purge your CDN cache as well.
+6. When purging the CDN, click the arrow to expand the **CDN Purge Params** and enter information in the fields. For more information about these fields, refer to Akamai's [Welcome to Purge Cache](https://techdocs.akamai.com/purge-cache/docs/welcome-purge).
 7. Click **Submit**.

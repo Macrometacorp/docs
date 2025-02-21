@@ -1,40 +1,37 @@
 ---
 sidebar_position: 40
-title: Manage P3 Policies
+title: Work with P3 policies
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A PhotonIQ Performance Proxy (P3) _policy_ is a set of optimization rules applied to a set of origin URLs. This page explains how to perform tasks pertaining to P3 policies.
+A P3 policy is a set of optimization rules applied to a set of origin URLs. You can create different policies depending on your optimization needs.
 
 ## Policy Fields
 
-P3 provides the following policy fields:
+P3 provides the following fields for configuring your policies:
 
 - **Policy Name** - The name of the policy.
-- **Device Type** - Icons indicate whether the policy applies to mobile devices, desktop devices, or both.
+- **Device Type** - Icons indicating whether the policy applies to mobile devices, desktop devices, or both.
 - **Optimization Level** - The selected optimization level: **Light**, **Moderate**, or **Aggressive**.
 - **Page Type** - Whether the type of optimization is for page type **Home**, **Category**, or **Product Detail Page**.
 - **Last Updated** - The day and time this policy was last updated.
 
 ![P3 Policy Fields](/img/photoniq/p3/p3-view-policies.png)
 
-## View Policies
-
-Perform the following steps to view existing P3 policies on your account:
-
-1. Log in to your PhotonIQ Performance Proxy dashboard.
-2. Click **Policies**.
-3. (Optional) To view details of a policy, click the stacked dots next to the policy that you want to view and then click **Edit**.
-
 ## Create a Policy
 
-Perform the following steps to create a new P3 policy:
+To create a new P3 policy:
 
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Policies**.
 3. Click **New Policy**.
+
+![click new policy](/img/photoniq/p3/click-new-policy.png)
+
 4. Enter information in the following fields. All fields are required.
+
+![create policy](/img/photoniq/p3/create-p3-policy.png)
 
    - **Name** - The name of the policy.
    - **Domain Name** - The name of the domain.
@@ -71,12 +68,17 @@ Perform the following steps to create a new P3 policy:
      - **Category**
      - **Product Detail Page**
      - **Other**
-   - **Enable Policy** - Turn the policy on or off. If the policy is enabled, then optimization rules are applied to incoming requests.
-    The remainder of the fields cannot be manually edited. For more information about what each optimization does, refer to [P3 Optimizations](../p3-optimizations.md).
+   - **Enable Policy** - Turn the policy on or off. Enabling the policy applies the optimization rules to incoming requests.
+    The remaining fields cannot be manually edited. Visit [optimizations](./optimizations/) to learn more about these optimizations.
+5. Click **Submit**
+
+## View Policies
+
+1. Log in to your PhotonIQ Performance Proxy dashboard.
+2. Click **Policies**.
+3. (Optional) To view details of a policy, click the stacked dots next to the policy that you want to view and then click **Edit**.
 
 ## Edit a Policy
-
-Perform the following steps to edit a P3 policy:
 
 1. Log in to your PhotonIQ Performance Proxy dashboard.
 2. Click **Policies**.

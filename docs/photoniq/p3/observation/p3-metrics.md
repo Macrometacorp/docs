@@ -1,6 +1,6 @@
 ---
 sidebar_position: 45
-title: P3 Metrics
+title: Understand P3 metrics
 ---
 
 P3 offers a comprehensive suite of metrics designed to provide insights such as:

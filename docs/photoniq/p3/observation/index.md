@@ -1,6 +1,7 @@
 ---
 title: Monitoring P3
-sidebar_label: Monitoring
+sidebar_label: Monitor P3
+sidebar_position: 70
 ---
 
 Constant observation and monitoring of the P3 service helps you identify, fix, and improve optimizations. P3 offers numerous ways to monitor this service with:

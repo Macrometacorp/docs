@@ -1,12 +1,12 @@
 ---
 sidebar_position: 3
-title: Get Started with P3
+title: Get started with P3
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To get started with the PhotonIQ Performance Proxy (P3), you need to configure your Akamai CDN as well as [set up the optimization policy](./management/manage-p3-policies.md) for your website using the PhotonIQ Proxy dashboard. 
+To get started with the PhotonIQ Performance Proxy (P3), you need to [configure your Akamai CDN](https://techdocs.akamai.com/cloud-wrapper/docs/add-a-cloud-wrapper-configuration) and [set up the optimization policy](./management/manage-p3-policies.md) for your website using the P3 dashboard. 
 
 This guide walks you through using the P3 service. 
 
@@ -35,10 +35,10 @@ As stated earlier, you need to set up a new policy in the P3 dashboard to tell P
 
 ### (Optional) Create PPM Job
 
-A [Performance Proxy Metrics (PPM)](./manage-ppm-service.md) job logs your web vitals before and after P3 optimizations, which can help you track the performance of your P3 optimizations. 
+A [Performance Proxy Metrics (PPM)](./management/manage-ppm-service.md) job logs your web vitals before and after P3 optimizations, which can help you track the performance of your P3 optimizations. 
 
-- Start by [creating a PPM job](manage-ppm-service.md#create-a-ppm-job) before you begin. 
-- [View the web vitals metrics](manage-ppm-service.md#view-web-vital-metrics) before and after sites optimization.
+- Start by [creating a PPM job](./management/manage-ppm-service.md#create-a-ppm-job) before you begin. 
+- [View the web vitals metrics](./management/manage-ppm-service.md#view-web-vital-metrics) before and after sites optimization.
 
 ### Step 1: Create a Policy
 
@@ -149,12 +149,12 @@ curl -I https://yourwebsite.com | grep 'x-photoniq-p3'
 
 Apart from configuring and managing policies, the P3 dashboard also provides a number of tools monitoring the service:
 
-- [View P3 Metrics](./observation/view-p3-metrics.md)
-- [View P3 Validations](view-p3-validations.md)
-- [View P3 Optimizations](view-p3-optimizations.md)
+- [View P3 Metrics](./observation/p3-metrics.md)
+- [View P3 Validations](./management/view-p3-validations.md)
+- [View P3 Optimizations](./management/optimizations/view-p3-optimizations.md)
 - [View P3 Alerts](./observation/view-p3-alerts.md)
 - [View P3 Audit Log](./observation/view-p3-audit-log.md)
 
 ### Step 4: Check Web Vitals for Your Optimized Site
 
-If you previously created a PPM job to check web vitals before site optimization, you can [view the web vitals metrics](manage-ppm-service.md#view-web-vital-metrics) and compare the before and after stats.
+If you previously created a PPM job to check web vitals before site optimization, you can [view the web vitals metrics](./management/manage-ppm-service.md#view-web-vital-metrics) and compare the before and after stats.
