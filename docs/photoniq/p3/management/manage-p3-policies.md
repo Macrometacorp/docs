@@ -36,7 +36,7 @@ To create a new P3 policy:
    - **Name** - The name of the policy.
    - **Domain Name** - The name of the domain.
    - **Origin** - The URL the policy should be applied to.
-   - **URL Pattern** - Provide an absolute URL or a regex pattern in order to group pages that have the same structure.
+   - **URL Pattern** - Provide an absolute URL or a regex pattern in order to group pages that have the same structure. Click the **?** icon next to **Matching rule** to learn how to match patterns.
      - For example, you could list each page:
         - /us/category/boys
         - /us/category/girls
@@ -63,11 +63,11 @@ To create a new P3 policy:
      - **Light** (default)
      - **Moderate**
      - **Aggressive**
-   - **Page Type** - Select what type of pages are being optimized. This affects which optimization rules that P3 applies:
-     - **Home**
-     - **Category**
-     - **Product Detail Page**
-     - **Other**
+   - **Enable Prefetch** - Enable/disable prefetching to load web resources or pages ahead of time
+     -  **URL Regex** - URL pattern for pages who need prefetching
+     -  **Mode**
+     -  **Dynamic Resources URL** 
+   - **Enable Resource Versioning**
    - **Enable Policy** - Turn the policy on or off. Enabling the policy applies the optimization rules to incoming requests.
     The remaining fields cannot be manually edited. Visit [optimizations](./optimizations/) to learn more about these optimizations.
 5. Click **Submit**

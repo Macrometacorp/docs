@@ -1,7 +1,7 @@
 ---
 title: Manage P3
 sidebar_label: Manage features
-sidebar_position: 75
+sidebar_position: 70
 ---
 P3 offers its comprehensive nav bar, which contains features designed to help you manage and maximize the service. It includes:
 
