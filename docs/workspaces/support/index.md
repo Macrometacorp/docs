@@ -1,5 +1,6 @@
 ---
 title: Troubleshooting
+sidebar_label: Support
 ---
 
 This section is designed to help you quickly resolve common issues that you might encounter while using Workspaces. If your problem isn't listed here, feel free to [reach out to our support team](https://support.macrometa.com/hc/en-us/requests/new) for more assistance.
@@ -31,4 +32,4 @@ This error can have different causes depending on the service you are trying to 
 - **Non-Persistent VDI and RBA users**: This error typically occurs when all available sessions are in use. Wait for a session to free up and try again later.
 
 ## Why am I unable to use my peripheral devices (printer card reader, e.t.c)?
-Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](./remote-browser-accelerator/rba-peripheral-validator.md) before use.
+Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](../remote-browser-accelerator/rba-peripheral-validator.md) before use.

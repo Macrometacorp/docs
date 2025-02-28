@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Workspace Management Admin Guide
-sidebar_label: Workspace Management
+sidebar_label: Manage Workspaces
 ---
 
 
@@ -30,7 +30,7 @@ Only qualified admins with expertise in Active Directory should perform this tas
 
 ## Desktops & Users
 
-The **Desktops & Users** tab enables admins to manage user-to-host assignments in [VDI](./remote-desktop-enviroment/index.md). Hosts in the workspace are displayed with the following details:
+The **Desktops & Users** tab enables admins to manage user-to-host assignments in [VDI](./solutions/remote-desktop-enviroment/index.md). Hosts in the workspace are displayed with the following details:
 - **Desktop Name**
 - **Region**: Desktop region
 - **Username**: Username of the assigned user (if applicable)
