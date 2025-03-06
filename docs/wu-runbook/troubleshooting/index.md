@@ -13,7 +13,7 @@ This error can have different causes depending on the service you are trying to 
 - **Non-Persistent VDI and RBA users**: This error typically occurs when all available sessions are in use. Wait for a session to free up and try again later.
 
 ### Why am I unable to use my peripheral devices (printer card reader, e.t.c)?
-Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](../rba/validating-peripherals.md) before use.
+Configure your peripheral devices using the Peripheral Validator for it to be automatically detected and functional for use in RBA. Ensure to [validate your devices](../solutions/rba/validating-peripherals.md) before use.
 
 ### Why can't I launch VDI from my Windows 11?
 Some antiviruses like BitDefender might prevent the execution of the Windows PowerShell script. To fix this, follow any of these solutions:
@@ -21,14 +21,14 @@ Some antiviruses like BitDefender might prevent the execution of the Windows Pow
 - Temporarily turn off this antivirus and retry launching VDI.
 - Whitelist the powershell script - `RDPLauncher.ps1`
 
-### Why do I see an error screen when reconnecting to WUPOS after being disconnected from an RBA session?
+### Why do I see an error screen when reconnecting to my apps after being disconnected from an RBA session?
 
 If you are disconnected from an RBA session and reconnect right away, you might be assigned the same session while the pod is still restarting. This will result in an error screen like this:
 
 ![rba-login-error](/img/runbook-images/rba-login-error.png)
 
 
-To fix this, reload the page to successfully launch the WUPOS RBA pod in your local browser.
+To fix this, reload the page to successfully launch the app in your local browser.
 
 
 ### Why am I getting an error whenever I try to initiate a remote windows VDI session?
