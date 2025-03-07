@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title:  Using VDI on Cloud Workspaces
+title:  Using VDI
 ---
 
 
@@ -29,11 +29,12 @@ These remote desktops support the following key peripherals:
 You can access VDI on Cloud Workspaces through two methods:
 
 1. **[Universal Client](vdi-universal-client.md):** The universal client provides access to the remote Windows desktop directly through a web browser. This method is accessible to all users, regardless of their operating system.
-2. **[Native Client](vdi-native-client.md):** The native client allows you to connect to the remote Windows desktop using RDP client on your Windows machine. This option is exclusively available for Windows devices.  
+2. **[Native Client](vdi-native-client.md):** The native client allows you to connect to the remote Windows desktop using RDP client on your Windows and Mac operating systems.
 
-    ![vdi-user](/img/runbook-images/vdi-windows.png)
+ Accessing VDI via the native client offers you more functionality and flexibility than the universal client. For example, the native client allows you to access more peripheral devices, enabling a smoother and flexible user experience.
 
-:::tip
-On Windows devices, both the Universal Client and Native Client buttons are available. On Linux and Mac devices, only the Universal Client button is displayed.
-::: 
+   ![vdi-user](/img/runbook-images/just-vdi-users.png)
+
+## Next
+
 The next sections will guide you on how to connect to the VDI via [Universal Client](vdi-universal-client.md) or [Native Client](vdi-native-client.md).

@@ -34,7 +34,7 @@ Only qualified admins with expertise in Active Directory should perform this tas
 
 ## Managing Desktops and Users
 
-The **Desktops and users** tab enables admins to configure and manage desktop assignments in [VDI](./vdi/index.md). 
+The **Desktops and users** tab enables admins to configure and manage desktop assignments in [VDI](./solutions/vdi/index.md). 
 ![desktop and users tab](/img/runbook-images/desktop-and-users.png)
 
 Admins can assign users to hosts, change assignments, or unassign users as needed. Additionally, they can search for users or hosts and filter hosts based on their assignment status or host type.
