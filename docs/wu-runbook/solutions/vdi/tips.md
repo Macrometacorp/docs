@@ -20,3 +20,10 @@ Chrome offers numerous performance controls to proactively detect and fix issues
 
 1. Type **chrome://settings/performance** in the Chrome address bar
 2. Enable **"Memory Saver,"** which suspends inactive tabs. This memory saver offers three savings levels, with the maximum level labeling tabs inactive after a shorter period.
+
+## Disable background processes
+
+Processes running in the background can slow processing speed and negatively impact the performance of your VDI browser. To disable this:
+
+1. Type **chrome://settings/system** in the address bar
+1. Disable **"Continue running background apps when Google Chrome is closed"**
