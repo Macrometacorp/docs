@@ -8,12 +8,21 @@ const App = () => {
 
   const notes = [
     {
+      id: 8, date: "March, 2025", tag: "Workspaces", Product: "Workspaces v1.2.3", whatsnew: "What's new",
+      whatsNewContents: [], 
+      Improvement: "Improvement", improvementContents: ["Cloud Workspaces Client: Improve the Workspaces Client to allow users to launch the Native VDI client externally.", "VDI Networking: Update VDI networking to improve file downloading for large projects."],
+       bugFix: "Bug fixes", bugFixContents: [],
+      deprecation: "Deprecations", deprecationContents: [],
+       blogPostTitle1: "download the latest MAC", blogPostLink1:"https://d1fmld87hoi9ya.cloudfront.net/installers/release/mac/vdi/MacrometaVDIInstaller-v1.2.3.pkg",
+       blogPostTitle2: "Windows native client installer", blogPostLink2: "https://d1fmld87hoi9ya.cloudfront.net/installers/release/win/vdi/MacrometaVDIInstaller-v1.2.3.exe"
+      },
+    {
       id: 7, date: "February, 2025", tag: "Workspaces", Product: "Workspaces v1.2.2", whatsnew: "What's new",
       whatsNewContents: ["Workspaces Assistant: Maximize Workspaces with help from Workspaces Assistant, an AI-powered chatbot that answers all your questions and helps you navigate the Workspaces toolbox."], 
       Improvement: "Improvement", improvementContents: ["Mac Native Client: MacOS users can launch their virtual desktops with the VDI native client, offering them more options for using the Workspaces environment. While this feature works seamlessly for Chrome and Firefox browsers, Safari users may encounter an issue and are advised to use other browsers while we work on a fix which will be available in a subsequent release."],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-       blogPostTitle: "guide to using Cloud Workspaces", blogPostLink:"https://www.macrometa.com/docs/workspaces/workspace-management",
+       blogPostTitle1: "view guide to using Cloud Workspaces", blogPostLink1:"https://www.macrometa.com/docs/workspaces/workspace-management",
       },
     {
       id: 7, date: "February, 2025", tag: "Workspaces", Product: "Workspaces v1.2.1", whatsnew: "What's new",
@@ -21,7 +30,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: ["Analytics reporting: Addition of VDI User metrics for granular-level reporting. Admin users can find this data under the `Users` section of the `Desktop and Users` tab in Admin management. "],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-       blogPostTitle: "guide to using Cloud Workspaces", blogPostLink:"https://www.macrometa.com/docs/workspaces/workspace-management",
+       blogPostTitle1: "see guide to using Cloud Workspaces", blogPostLink1:"https://www.macrometa.com/docs/workspaces/workspace-management",
       },
     {
       id: 6, date: "February, 2025", tag: "Workspaces", Product: "Workspaces v1.2.0", whatsnew: "What's new",
@@ -29,7 +38,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: ["User reboot button: Reboot your VDI sessions with the new reboot button in case of any interruptions.", "Faster performance and improved user experience: Upload large files to your virtual desktops without worrying about performance lags or interruptions to your current session. " ],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-       blogPostTitle: "guide to using Cloud Workspaces", blogPostLink:"https://www.macrometa.com/docs/workspaces/workspace-management",
+       blogPostTitle1: "check out our guide to using Cloud Workspaces", blogPostLink1:"https://www.macrometa.com/docs/workspaces/workspace-management",
       },
     {
       id: 5, date: "January, 2025", tag: "PhotonIQ", Product: "EDS v2.1", whatsnew: "What's new",
@@ -37,7 +46,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: [],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: ["Event publishing API no longer supported"],
-       blogPostTitle: "event service quickstart guide", blogPostLink:"https://www.macrometa.com/docs/photoniq/event-delivery/getting-started-event-delivery",
+       blogPostTitle1: "check out the event service quickstart guide", blogPostLink1:"https://www.macrometa.com/docs/photoniq/event-delivery/getting-started-event-delivery",
       },
     {
       id: 4, date: "December 30, 2024", tag: "Workspaces", Product: "Workspaces v1.1.0",
@@ -45,7 +54,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: ["Enhanced performance on the admin page by adding indexes to the `sessions` and `session_assignments` , enabling faster filtering and query execution."],
       bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-      blogPostTitle:"Workspaces Admin guide" , blogPostLink: "https://www.macrometa.com/docs/workspaces/workspace-management",
+      blogPostTitle1:"view our Workspaces Admin guide" , blogPostLink1: "https://www.macrometa.com/docs/workspaces/workspace-management",
 
  },
     {
@@ -54,7 +63,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: [ "Security updates: Enhanced security protocols for better data safety, security and performance."],
       bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-      blogPostTitle:" Prerender documentation" , blogPostLink: "https://www.macrometa.com/docs/photoniq/prerendering",
+      blogPostTitle1:" see the Prerender documentation" , blogPostLink1: "https://www.macrometa.com/docs/photoniq/prerendering",
 
  },
     {
@@ -63,7 +72,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: [ "Resource consumption: Improve resource efficiency by reducing the load on the GDN server by aggregating and serving metrics every minute instead of pushing per request.", "Security: Reduce the occurrence of malware and phishing attacks with our newly added URL tags to the URL block list.", "Auditing: Prevent the complete removal of previous renders with the removal of the entire cache purge feature." ],
       bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-      blogPostTitle:"Prerender v1.2.1 blog post" , blogPostLink: "https://www.macrometa.com/blog/photoniq-prerender-v1-2-2-update",
+      blogPostTitle1:"read our latest Prerender v1.2.1 blog post" , blogPostLink1: "https://www.macrometa.com/blog/photoniq-prerender-v1-2-2-update",
 
  },
 
@@ -73,7 +82,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: [ "New Group ID API Endpoints", "Enhanced Error Handling for Stream Workers", "Stream workers support for all collection types.", "Addition of Akamai EdgeWorkers code bundles" ],
        bugFix: "Bug fixes", bugFixContents: ["Corrected field order and capitalization on the Invite User signup page.", "Delete subscriptions only at stream worker deletion, not unpublish.", "Fixed Regex for http.status.code in http-call-response function."],
        deprecation: "Deprecations", deprecationContents: [],
-       blogPostTitle: "GDN v0.18.0 release page", blogPostLink:"https://www.macrometa.com/docs/release-notes/release-notes-0-18-0",
+       blogPostTitle1: "see our GDN v0.18.0 release page", blogPostLink1:"https://www.macrometa.com/docs/release-notes/release-notes-0-18-0",
       },
   ];
 
@@ -113,7 +122,7 @@ const App = () => {
           <div className="relative min-h-[600px] w-full">
             <div className="absolute bottom-0 left-0 top-2 w-[2px] bg-[#6767E5] md:left-[25%] after:absolute after:inset-x-0 after:bottom-0 after:h-48 after:bg-gradient-to-b after:from-gray-100 after:to-white"></div>
             {filteredNotes.map((note) => {
-              let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents, deprecation, deprecationContents, blogPostTitle, blogPostLink } = note;
+              let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents, deprecation, deprecationContents, blogPostTitle1, blogPostLink1, blogPostTitle2, blogPostLink2 } = note;
               return (
                 <div key={id} className="ml-3 grid grid-cols-1 pb-20 md:ml-0 md:grid-cols-4" >
                   <div className="relative col-span-1 mb-4 flex flex-row items-center justify-between md:mb-0 md:flex-col md:items-start md:justify-start">
@@ -193,9 +202,22 @@ const App = () => {
                     </div>
 
 
-                    {blogPostLink != "" && (
-                    <p> For more detailed information, check out our <a href={blogPostLink}>{blogPostTitle}</a>.</p>                 
+                    {(blogPostLink1 || blogPostLink2) && (
+                      <p>
+                  For more detailed information, {" "}
+                    {blogPostLink1 && (
+                    <>
+                        <a href={blogPostLink1}>{blogPostTitle1}</a>
+                    </>
                     )}
+                    {blogPostLink1 && blogPostLink2 && " and "}
+                    {blogPostLink2 && (
+                    <>
+                    <a href={blogPostLink2}>{blogPostTitle2}</a>.
+                    </>
+        )}
+    </p>
+)}
                   </div>
                 </div>
               );
