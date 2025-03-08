@@ -204,7 +204,7 @@ const App = () => {
 
                     {(blogPostLink1 || blogPostLink2) && (
                       <p>
-                  See the below link to , {" "}
+                  See the link to {" "}
                     {blogPostLink1 && (
                     <>
                         <a href={blogPostLink1}>{blogPostTitle1}</a>
