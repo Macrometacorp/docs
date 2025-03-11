@@ -1,6 +1,6 @@
 ---
 sidebar_position: 80
-title: Monitor and Validate Prerendering
+title: Monitor and Validate Prerender
 ---
 
 In order to confirm Prerender is running, Prerendering allows you to view a rendered page from a bot standpoint to understand what a web crawler sees when it visits your site, thus allowing you to optimize rendering behavior. 

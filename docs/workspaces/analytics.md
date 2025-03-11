@@ -1,7 +1,7 @@
 ---
-sidebar_position: 6
-title: Monitoring and Analytics
-sidebar_label: Monitoring
+sidebar_position: 5
+title: Workspace Monitoring
+sidebar_label: Analytics
 ---
 
 Workspaces provides its comprehensive analytics center to collate usage levels across your virtual desktops, allowing admin users to track and monitor the performance of their Workspace tools in real-time. 

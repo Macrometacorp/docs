@@ -1,12 +1,12 @@
 ---
-title: Explore the Dashboard
+title: Explore Prerender
 ---
 
-Prerender offers its interactive dashboard, which allows you to view and manage your rendered pages. 
+Prerender offers its interactive nav bar, which allows you to view and manage your rendered pages. 
 
 ![Prerendering dashboard](/img/prerendering/prerendering-dashboard.png)
 
-This dashboard lets you perform the following tasks:
+This nav bar offers features which allows you to perform the following tasks:
 
 - [View and manage Prerender activity with the Activity Tab](../06-monitor-prerendering/view-prerendering-activity.md)
 - [Manage your origin(s) with Origin Settings](./manage-origins/)

@@ -20,7 +20,7 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
     href="/quickstart"
   />
    <card
-    heading="Remote Browser Accelerator"
+    heading="Remote Browser Acceleration"
     description="Access your web apps at the edge for better performance"
     href="/workspaces/remote-browser-accelerator"
   />
@@ -35,7 +35,6 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
 
 At its core, Cloud Workspaces integrates the following advanced technologies:
 
-- **Remote Browser Isolation (RBI)**: RBI offers a powerful approach to web security by executing all web browsing activities within isolated cloud environments. This isolation ensures that any potential threats from web content are contained and kept away from the user's local device, significantly reducing the risk of malware and other web-based attacks.
 - **[Remote Browser Acceleration (RBA)](./remote-browser-accelerator/index.md)**: RBA enhances the performance of specific web applications by deploying them directly at the network edge. It extends remote browser isolation by allowing users to interact with web apps as if running locally on their devices, ensuring optimal speed and responsiveness. By accelerating the delivery of these applications, RBA guarantees a better user experience and improved work efficiency. 
 - **[Remote Desktop Environments (RDE)](./remote-desktop-enviroment/index.md)**: RDE provides full-featured Windows and Linux remote desktop environments accessible from any device with an internet connection. These desktops are hosted in the cloud and are powerful, enabling users to perform intensive workloads with less powerful machines. VDI ensures consistency and flexibility, enabling users to maintain productivity regardless of location.
 

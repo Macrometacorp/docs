@@ -13,7 +13,7 @@ const App = () => {
       Improvement: "Improvement", improvementContents: ["Cloud Workspaces Client: Improve the Workspaces Client to allow users to launch the Native VDI client externally.", "VDI Networking: Update VDI networking to improve file downloading for large projects."],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-      dynamicText: "See the links to",
+      dynamicText: "See these links to",
        blogPostTitle1: "download the latest MAC", blogPostLink1:"https://d1fmld87hoi9ya.cloudfront.net/installers/release/mac/vdi/MacrometaVDIInstaller-v1.2.3.pkg",
        blogPostTitle2: "Windows native client installer", blogPostLink2: "https://d1fmld87hoi9ya.cloudfront.net/installers/release/win/vdi/MacrometaVDIInstaller-v1.2.3.exe"
       },
@@ -41,8 +41,9 @@ const App = () => {
       Improvement: "Improvement", improvementContents: ["User reboot button: Reboot your VDI sessions with the new reboot button in case of any interruptions.", "Faster performance and improved user experience: Upload large files to your virtual desktops without worrying about performance lags or interruptions to your current session. " ],
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
-      dynamicText: "",
-       blogPostTitle1: "Check out our guide to using Cloud Workspaces", blogPostLink1:"https://www.macrometa.com/docs/workspaces/workspace-management",
+      dynamicText: "To begin,",
+       blogPostTitle1: "Check out our Workspaces guide", blogPostLink1:"https://www.macrometa.com/docs/workspaces/workspace-management",
+
       },
     {
       id: 5, date: "January, 2025", tag: "PhotonIQ", Product: "EDS v2.1", whatsnew: "What's new",
@@ -51,7 +52,7 @@ const App = () => {
        bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: ["Event publishing API no longer supported"],
       dynamicText: "",
-       blogPostTitle1: "Follow the event service quickstart guide to begin", blogPostLink1:"https://www.macrometa.com/docs/photoniq/event-delivery/getting-started-event-delivery",
+       blogPostTitle1: "Follow the event service quickstart guide to begin", blogPostLink1:"https://www.macrometa.com/docs/photoniq/event-delivery/getting-started-event-delivery"
       },
     {
       id: 4, date: "December 30, 2024", tag: "Workspaces", Product: "Workspaces v1.1.0",
@@ -80,7 +81,7 @@ const App = () => {
       bugFix: "Bug fixes", bugFixContents: [],
       deprecation: "Deprecations", deprecationContents: [],
       dynamicText: "See our",
-      blogPostTitle1:"latest Prerender v1.2.1 blog post for more information on the benefits" , blogPostLink1: "https://www.macrometa.com/blog/photoniq-prerender-v1-2-2-update",
+      blogPostTitle1:"latest Prerender v1.2.1 blog post for more information on the benefits." , blogPostLink1: "https://www.macrometa.com/blog/photoniq-prerender-v1-2-2-update",
 
  },
 
@@ -132,6 +133,7 @@ const App = () => {
             <div className="absolute bottom-0 left-0 top-2 w-[2px] bg-[#6767E5] md:left-[25%] after:absolute after:inset-x-0 after:bottom-0 after:h-48 after:bg-gradient-to-b after:from-gray-100 after:to-white"></div>
             {filteredNotes.map((note) => {
               let { id, date, tag, Product, whatsnew, whatsNewContents, Improvement, improvementContents, bugFix, bugFixContents, deprecation, deprecationContents, blogPostTitle1, blogPostLink1, blogPostTitle2, blogPostLink2, dynamicText } = note;
+
               return (
                 <div key={id} className="ml-3 grid grid-cols-1 pb-20 md:ml-0 md:grid-cols-4" >
                   <div className="relative col-span-1 mb-4 flex flex-row items-center justify-between md:mb-0 md:flex-col md:items-start md:justify-start">
@@ -224,6 +226,7 @@ const App = () => {
             <>
                 <a href={blogPostLink2}>{blogPostTitle2}</a>.
             </>
+
         )}
     </p>
 )}
