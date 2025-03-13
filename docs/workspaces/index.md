@@ -17,7 +17,7 @@ Macrometa Cloud Workspaces redefines the digital workplace by delivering secure,
  <card
     heading="Quickstart"
     description="Install the prerequisites to start using Cloud Workspaces"
-    href="/quickstart"
+    href="/workspaces/quickstart"
   />
    <card
     heading="Remote Browser Acceleration"
