@@ -3,7 +3,7 @@ title: Use cases for Workspaces
 sidebar_label: 10
 ---
 
-Workspaces provides a comprehensive set of tools that are useful across a wide range of industries, some of which include:
+Workspaces provides a comprehensive set of tools that are applicable for a wide range of tasks, including:
 
 ## Secure remote access and data control
 Distributed teams with team members outside data-compliant locations can utilize the [Workspaces Remote Browser Access (RBA)](https://www.macrometa.com/docs/wu-runbook/solutions/rba/) to access and use their work apps without breaking data privacy and complaint laws. This isolated browser access improves remote teams' work productivity and efficiency. 
