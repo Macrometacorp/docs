@@ -3,7 +3,9 @@ sidebar_position: 1
 title: Functions
 ---
 
-PhotonIQ Functions is an edge-computing service that allows you to run your serverless applications smoothly, eliminating the need for manual infrastructure management. It leverages the distributed [Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to ensure low-latency and high performance by deploying functions at the nearest point of presence (PoP) to users. Additionally, PhotonIQ Functions is designed to handle complex integrations with third-party services via API requests, making it a versatile solution for diverse operational requirements. It allows you to implement your system's logic using event-driven, ready-to-use blocks of code called "functions".
+PhotonIQ Functions is an edge-computing service that allows you to run your serverless applications smoothly, eliminating the need for manual infrastructure management. It leverages the distributed [Macrometa Global Data Mesh](https://www.macrometa.com/platform/global-data-mesh) to ensure low-latency and high performance by deploying functions at the nearest point of presence (PoP) to users. 
+
+Additionally, PhotonIQ Functions is designed to handle complex integrations with third-party services via API requests, making it a versatile solution for diverse operational requirements. It allows you to implement your system's logic using event-driven, ready-to-use blocks of code called "functions".
 
 <grid cols={3}>
  <card
@@ -32,6 +34,8 @@ PhotonIQ Functions leverages the  [CLI tool](functions-cli.md) and [API](https:/
 - **Local to regional to global auto-scaling**: Automatically scales function instances based on workload demands, supporting both zero-to-N and 1-to-N scaling modes. This ensures optimal resource utilization and responsiveness to user and traffic pattern changes.
 
 - **HTTP endpoint and static asset serving integration**: Executes functions in response to HTTP requests, enabling developers to build serverless web applications and APIs. It also supports serving static files alongside functions, streamlining the deployment of comprehensive serverless applications.
+
+- **Third-party integration**:
 
 - **Geo-replication**: Distributes function instances across global locations to minimize response times and maximize availability.
 
