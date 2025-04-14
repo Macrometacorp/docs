@@ -1,22 +1,22 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "PhotonIQ FaaS API",
-    "description": "API documentation for the PhotonIQ FaaS Service",
+    "title": "PhotonIQ Functions API Reference",
+    "description": "Learn how to manage PhotonIQ Functions via API. To use the Functions CLI, refer to the [**PhotonIQ Functions user guide**](https://www.macrometa.com/docs/photoniq/faas). Before proceeding, [**contact Macrometa**](https://www.macrometa.com/contact/sales) to obtain the `API_KEY` and `URL` required for accessing the PhotonIQ remote server.",
     "version": "1.0.0"
   },
   "paths": {
     "/api/faas/v1/health": {
       "get": {
         "tags": [
-          "System"
+          "Health & Metrics"
         ],
         "summary": "Check the health of the service",
-        "description": "Gets the health of the FaaS service. This API returns HTTP status 200 OK if the service is running, otherwise it returns a 500 Internal Server Error.",
+        "description": "Gets the health of the functions service. ",
         "operationId": "handle_mm_health",
         "responses": {
           "200": {
-            "description": "Successfully fetched the health probe of the service."
+            "description": "The PhotonIQ Functions is running"
           },
           "500": {
             "description": "Internal server error."
@@ -50,8 +50,8 @@
         "tags": [
           "System"
         ],
-        "summary": "Version of the service",
-        "description": "Gets the current version of the service.",
+        "summary": "Get the current version of the functions service",
+        "description": "Retrieve the current version of the functions service",
         "operationId": "handle_mm_version",
         "responses": {
           "200": {
@@ -80,8 +80,7 @@
           "Function"
         ],
         "summary": "Deploy the function",
-        "description": "This endpoint allows you to deploy a function by specifying its unique function name. Unique Function name is defined in `.toml`.\nThe function code and configuration details are required to complete the deployment.\nThe function code should be provided as a `.js` or `.wasm` file, and the configuration details should be in a `.toml` file format.\nBoth files should be included in the multipart form data.",
-        "operationId": "handle_mm_deploy",
+        "description": "Deploy a function to the PhotonIQ remote server by specifying a unique function name. The deployment requires the function code as a `.js` or `.wasm` file and the configuration details in a `.toml` file. \n\nEnsure the function name is defined in the `.toml` file. \nFor more information, refer to the guide on Using Functions.",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -96,6 +95,9 @@
           "200": {
             "description": "The function was successfully deployed."
           },
+          "400": {
+            "description": "There is an existing function with this version number. Update the version number in the photoniq.toml file"
+          },          
           "401": {
             "description": "Authorization failure due to invalid authentication credentials."
           },
@@ -124,8 +126,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Download the latest version of a function",
-        "description": "Download the latest version of a function for the specified function name. The downloaded file will be either a `.js` or `.wasm` file, depending on the function's implementation.",
+        "summary": "Download the function",
+        "description": "Download the latest version of a function. The downloaded file will be either a `.js` or `.wasm` file, depending on the function's implementation.",
         "operationId": "handle_latest_mm_download",
         "parameters": [
           {
@@ -140,7 +142,7 @@
           {
             "name": "metaOnly",
             "in": "query",
-            "description": "If true, only the metadata will be downloaded. If false, only the function file (either `.js` or `.wasm`) will be downloaded.",
+            "description": "If true, only the metadata is downloaded. If false, only the function file (either `.js` or `.wasm`) is downloaded.",
             "required": true,
             "schema": {
               "type": "boolean"
@@ -179,8 +181,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Download the function",
-        "description": "Download the function for the specified version and function name. The downloaded file will be either a `.js` or `.wasm` file, depending on the function's implementation.",
+        "summary": "Download a specific version of the function",
+        "description": "Download a specific version of the function. The downloaded file will be either a `.js` or `.wasm` file, depending on the function's implementation.",
         "operationId": "handle_mm_download",
         "parameters": [
           {
@@ -195,7 +197,7 @@
           {
             "name": "version",
             "in": "path",
-            "description": "The unique name of the function to download",
+            "description": "The version of the function to be downloaded",
             "required": true,
             "schema": {
               "type": "string"
@@ -204,7 +206,7 @@
           {
             "name": "metaOnly",
             "in": "query",
-            "description": "If true, only the metadata will be downloaded. If false, only the function file (either `.js` or `.wasm`) will be downloaded.",
+            "description": "If true, only the metadata is downloaded. If false, only the function file (either `.js` or `.wasm`) is downloaded.",
             "required": true,
             "schema": {
               "type": "boolean"
@@ -243,8 +245,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Delete All Versions",
-        "description": "Delete all versions of the specified function name. This operation removes every version of the function, effectively erasing all its deployment history.",
+        "summary": "Delete a function",
+        "description": "Delete all versions of a function, effectively erasing all its deployment history.",
         "operationId": "handle_all_mm_delete_function",
         "parameters": [
           {
@@ -289,8 +291,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Delete a Specific Version of a Function",
-        "description": "Delete the specified version of a function identified by its unique function name and version number. This operation removes only the specified version, leaving other versions intact.",
+        "summary": "Delete a specific version of the function",
+        "description": "Delete a specific version of the function while keeping other versions intact.",
         "operationId": "handle_mm_delete_function",
         "parameters": [
           {
@@ -305,7 +307,7 @@
           {
             "name": "version",
             "in": "path",
-            "description": "The unique name of the function to download",
+            "description": "The version of the function to be deleted",
             "required": true,
             "schema": {
               "type": "string"
@@ -344,8 +346,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Retrieve Function Names",
-        "description": "Retrieve the names of all functions available in the system. This endpoint returns a list of function names that can be used for further operations such as deploying or deleting functions.",
+        "summary": "List all functions",
+        "description": "List the names of all functions in the server.",
         "operationId": "handle_mm_functions",
         "responses": {
           "200": {
@@ -379,8 +381,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Retrieve Function Versions",
-        "description": "Retrieve all versions of the specified function identified by its unique function name. This endpoint returns a list of versions, providing details about each version of the function that is available in the system.",
+        "summary": "Retrieve function versions",
+        "description": "Retrieve all versions of a function.",
         "operationId": "handle_mm_versions",
         "parameters": [
           {
@@ -422,8 +424,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Execute the Latest Version of a Function",
-        "description": "Execute the latest version of a function identified by its unique function name. The function is executed with the provided JSON body, which contains the necessary input for the function.",
+        "summary": "Execute the function",
+        "description": "Execute the latest version of a function. The function is executed with the provided JSON body, which contains the necessary input for the function.",
         "operationId": "handle_latest_mm_execute",
         "parameters": [
           {
@@ -475,8 +477,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Execute the Function with Alias or Version Parameter",
-        "description": "Execute the specified version or alias of a function identified by its unique function name. The version or alias is provided as a path parameter, allowing the execution of different versions or named aliases of the function. The function is executed with the provided JSON body, which contains the necessary input for the function.",
+        "summary": "Execute a specific alias or version of the function",
+        "description": "Execute a specific version or alias of the function. The function is executed with the provided JSON body, which contains the necessary input for the function.",
         "operationId": "handle_mm_execute",
         "parameters": [
           {
@@ -536,8 +538,8 @@
         "tags": [
           "Function"
         ],
-        "summary": "Update the Alias",
-        "description": "Update the alias for the specified function name. This endpoint allows you to change the alias configuration, associating it with different versions of the function and specifying their weights. The alias configuration is provided as an array of objects, each containing a valid version and a corresponding weight.",
+        "summary": "Update the alias of the function",
+        "description": "Update the alias of the function. This endpoint allows you to change the alias configuration, associating it with different versions of the function and specifying their weights. The alias configuration is provided as an array of objects, each containing a valid version and a corresponding weight.",
         "operationId": "handle_mm_alias_update",
         "parameters": [
           {
@@ -662,7 +664,7 @@
         "tags": [
           "Function"
         ],
-        "summary": "Retrieve All Aliases",
+        "summary": "Retrieve all aliases of the function",
         "description": "Retrieve all aliases associated with the specified function name. This endpoint returns a list of all alias configurations for the function, providing details about the versions and weights associated with each alias.",
         "operationId": "handle_mm_aliases",
         "parameters": [
@@ -709,7 +711,7 @@
           "Logs"
         ],
         "summary": "Retrieve the function logs",
-        "description": "Retrieve the function logs in the specified period. If no period is specified it will return the last hour logs.",
+        "description": "Retrieve the function logs for a specific period. If no period is specified, the logs from the last hour is returned.",
         "operationId": "handle_mm_logs",
         "parameters": [
           {
@@ -830,6 +832,201 @@
           }
         ]
       }
+    },
+    "/api/faas/v1/usage/{aggregationType}": {
+      "get": {
+        "tags": [
+          "Health & Metrics"
+        ],
+        "summary": "Retrieve the usage metrics",
+        "description": "Retrieve the usage metrics for the period request in an aggregated way.",
+        "operationId": "handle_mm_metrics",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "The start of the period requested. Example: \"2024-01-01T00:00:00\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "The end of the period requested. Example: \"2024-01-02T00:00:00\".",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "allowReserved": true
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "nullable": true,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "aggregationType",
+            "in": "path",
+            "description": "The aggregation interval for the metric counters",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MetricPeriod"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved the usage metrics.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "error": {
+                      "type": "boolean"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "timestamp": {
+                            "type": "integer"
+                          },
+                          "period": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "metrics": {
+                            "type": "object",
+                            "properties": {
+                              "bytes_downloaded": {
+                                "type": "integer"
+                              },
+                              "bytes_downloaded_per_second": {
+                                "type": "integer"
+                              },
+                              "bytes_uploaded": {
+                                "type": "integer"
+                              },
+                              "bytes_uploaded_per_second": {
+                                "type": "integer"
+                              },
+                              "errors_count": {
+                                "type": "integer"
+                              },
+                              "errors_count_per_second": {
+                                "type": "integer"
+                              },
+                              "requests_count_per_second": {
+                                "type": "integer"
+                              },
+                              "requests_count": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "Usage Metrics": {
+                    "value": {
+                      "code": 200,
+                      "error": false,
+                      "result": [
+                        {
+                          "timestamp": 1726714740,
+                          "period": "min",
+                          "type": "metric",
+                          "metrics": {
+                            "bytes_downloaded": 70,
+                            "bytes_downloaded_per_second": 1,
+                            "bytes_uploaded": 2,
+                            "bytes_uploaded_per_second": 0,
+                            "errors_count": 0,
+                            "errors_count_per_second": 0,
+                            "requests_count_per_second": 0,
+                            "requests_count": 1
+                          }
+                        },
+                        {
+                          "timestamp": 1726715100,
+                          "period": "min",
+                          "type": "metric",
+                          "metrics": {
+                            "bytes_downloaded": 70,
+                            "bytes_downloaded_per_second": 1,
+                            "bytes_uploaded": 2,
+                            "bytes_uploaded_per_second": 0,
+                            "errors_count": 0,
+                            "errors_count_per_second": 0,
+                            "requests_count_per_second": 0,
+                            "requests_count": 1
+                          }
+                        },
+                        {
+                          "timestamp": 1726716360,
+                          "period": "min",
+                          "type": "metric",
+                          "metrics": {
+                            "bytes_downloaded": 70,
+                            "bytes_downloaded_per_second": 1,
+                            "bytes_uploaded": 2,
+                            "bytes_uploaded_per_second": 0,
+                            "errors_count": 0,
+                            "errors_count_per_second": 0,
+                            "requests_count_per_second": 0,
+                            "requests_count": 1
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "Service unavailable."
+          }
+        },
+        "security": [
+          {
+            "apikey": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -877,12 +1074,12 @@
           "functionFile": {
             "type": "string",
             "format": "binary",
-            "description": "The code of the function to be deployed, provided as a `.js` or `.wasm` file."
+            "description": "The function code to be deployed, provided as a `.js` or `.wasm` file."
           },
           "photoniqToml": {
             "type": "string",
             "format": "binary",
-            "description": "The configuration file for the function, provided in `.toml` format. This file includes settings such as allowed methods, allowed hosts, environment variables, etc."
+            "description": "The configuration settings file for the function, provided as a `.toml` file. This file includes settings such as allowed methods, allowed hosts, environment variables, and more."
           }
         }
       },
@@ -944,6 +1141,18 @@
             }
           }
         }
+      },
+      "MetricPeriod": {
+        "type": "string",
+        "enum": [
+          "min",
+          "hour",
+          "day",
+          "week",
+          "month",
+          "year"
+        ],
+        "example": "min"
       },
       "PeriodFilterQuery": {
         "type": "object",
