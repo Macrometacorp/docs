@@ -1,0 +1,1153 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "0.1",
+      "title": "C8 Object Store"
+    },
+    "servers": [
+      {
+        "url": "#REGION_URL"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Buckets",
+        "description": "Operations related to buckets"
+      },
+      {
+        "name": "Objects",
+        "description": "Operations related to objects"
+      },
+      {
+        "name": "Regions",
+        "description": "Operations related to regions"
+      },
+      {
+        "name": "Remote Clusters",
+        "description": "Operations related to remote clusters"
+      },
+      {
+        "name": "Storage",
+        "description": "Operations related to storage"
+      },
+      {
+        "name": "Jobs",
+        "description": "Operations related to jobs"
+      }
+    ],
+    "paths": {
+      "/api/os/v1/buckets": {
+        "get": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "List buckets",
+          "responses": {
+            "200": {
+              "description": "Successfully list all buckets."
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Create buckets",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "bucket-name"
+                    }, 
+                    "provider": {
+                      "type": "string",
+                      "enum": ["ptq", "aws"],
+                      "description": "The type of provider."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully created bucket."
+            },
+            "400": {
+              "description": "Failed due to missing or malformed data. Verify that all parameters are complete."
+            },
+            "409": {
+              "description": "Bucket with same name already exists."
+            }
+          }
+        }
+      },
+      "/api/os/v1/buckets/{provider}/{bucket-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "delete": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Remove bucket",
+          "responses": {
+            "200": {
+              "description": "Successfully removed bucket."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Get bucket information",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched bucket."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        }
+      },
+      "/api/os/v1/buckets/metadata/{provider}/{bucket-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "List bucket properties",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched a list of buckets properties."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Set bucket properties",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully fetched a list of modified buckets properties."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Reset bucket properties",
+          "responses": {
+            "200": {
+              "description": "Successfully fetched a list of resetted buckets properties."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        }
+      },
+      "/api/os/v1/buckets/copy/{from-provider}/{from-bucket-name}/{to-provider}/{to-bucket-name}": {
+        "parameters": [
+          {
+            "name": "from-provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "from-bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to-provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "to-bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "post": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Copy bucket",
+          "responses": {
+            "200": {
+              "description": "Successfully copied bucket."
+            },
+            "404": {
+              "description": "Failed to find the source bucket."
+            },
+            "409": {
+              "description": "Bucket with same name already exists."
+            }
+          }
+        }
+      },
+      "/api/os/v1/buckets/rename/{from-provider}/{from-bucket-name}/{to-provider}/{to-bucket-name}": {
+        "parameters": [
+          {
+            "name": "from-provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "from-bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to-provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "to-bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "post": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Rename bucket",
+          "responses": {
+            "200": {
+              "description": "Successfully renamed bucket."
+            },
+            "404": {
+              "description": "Failed to find the source bucket."
+            },
+            "409": {
+              "description": "Bucket with same name already exists."
+            }
+          }
+        }
+      },
+      "/api/os/v1/buckets/evict/{provider}/{bucket-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "delete": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Evict remote bucket",
+          "responses": {
+            "200": {
+              "description": "Successfully evicted the remote bucket."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        }
+      },
+      
+      "/api/os/v1/buckets/replication/{provider}/{bucket-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Get bucket replication policy",
+          "responses": {
+            "200": {
+              "description": "Successfully get bucket replication policy."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Create bucket replication policy",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "policy": {
+                      "type": "string",
+                      "enum": ["local", "global", "specified"],
+                      "description": "The type of policy."
+                    },
+                    "regions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "The regions where the policy is applied."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully created bucket replication policy."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            },
+            "409": {
+              "description": "Bucket policy already exists."
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Buckets"
+          ],
+          "summary": "Delete bucket replication policy",
+          "responses": {
+            "200": {
+              "description": "Successfully deleted bucket replication policy."
+            },
+            "404": {
+              "description": "Failed to find specified bucket."
+            }
+          }
+        }
+      },
+  
+  
+      "/api/os/v1/objects/{provider}/{bucket-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "List objects",
+          "responses": {
+            "200": {
+              "description": "A list of objects."
+            }
+          }
+        }
+      },
+      "/api/os/v1/objects/{provider}/{bucket-name}/{object-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object-name",
+            "in": "path",
+            "description": "Name of the object",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Get object",
+          "responses": {
+            "200": {
+              "description": "Object name."
+            },
+            "404": {
+              "description": "Failed to find the bucket."
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Create object",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string",
+                      "format": "binary",
+                      "description": "The file to upload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully created object."
+            },
+            "404": {
+              "description": "Failed to find the bucket."
+            },
+            "409": {
+              "description": "Object with same name already exists."
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Remove object",
+          "responses": {
+            "200": {
+              "description": "Successfully removed object."
+            },
+            "404": {
+              "description": "Failed to find the bucket."
+            }
+          }
+        }
+      },
+      "/api/os/v1/objects/copy/{from-provider}/{from-bucket-name}/{from-object-name}": {
+        "parameters": [
+          {
+            "name": "from-provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "from-bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from-object-name",
+            "in": "path",
+            "description": "Name of the object",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "post": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Copy object",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "to-provider": {
+                      "type": "string",
+                      "enum": ["ptq", "aws"],
+                      "description": "The type of destination provider."
+                    },
+                    "to-bucket-name": {
+                      "type": "string",
+                      "example": "bucket-name"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully copied object."
+            },
+            "404": {
+              "description": "Failed to find the bucket."
+            },
+            "409": {
+              "description": "Object with same name already exists."
+            }
+          }
+        }
+      },
+      "/api/os/v1/objects/rename/{from-provider}/{from-bucket-name}/{from-object-name}": {
+        "parameters": [
+          {
+            "name": "from-provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "from-bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from-object-name",
+            "in": "path",
+            "description": "Old name of the object",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "post": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Rename object",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "to-object-name": {
+                      "type": "string",
+                      "example": "new-object-name"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully renamed object."
+            },
+            "404": {
+              "description": "Failed to find the bucket."
+            },
+            "409": {
+              "description": "Object with same name already exists."
+            }
+          }
+        }
+      },
+      "/api/os/v1/objects/metadata/{provider}/{bucket-name}/{object-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["ptq", "aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object-name",
+            "in": "path",
+            "description": "Name of the object",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "List all object properties",
+          "responses": {
+            "200": {
+              "description": "A list of object properties."
+            },
+            "404": {
+              "description": "Failed to find the bucket."
+            }
+  
+          }
+        },
+        "patch": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Set custom object properties",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "A list of object properties."
+            },
+            "404": {
+              "description": "Failed to find the bucket."
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Delete custom object properties",
+          "responses": {
+            "200": {
+              "description": "A list of object properties."
+            }
+          }
+        }
+      },
+      "/api/os/v1/objects/evict/{provider}/{bucket-name}/{object-name}": {
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "The type of provider.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["aws"]
+            }
+          },
+          {
+            "name": "bucket-name",
+            "in": "path",
+            "description": "Name of the bucket",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "object-name",
+            "in": "path",
+            "description": "Name of the object",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "delete": {
+          "tags": [
+            "Objects"
+          ],
+          "summary": "Evict remote object",
+          "responses": {
+            "200": {
+              "description": "Successfully evicted the remote object."
+            },
+            "404": {
+              "description": "Failed to find the remote object."
+            }
+          }
+        }
+      },    
+      "/api/os/v1/regions": {
+        "get": {
+          "tags": [
+            "Regions"
+          ],
+          "summary": "List all regions",
+          "responses": {
+            "200": {
+              "description": "A list of regions."
+            }
+          }
+        }
+      },
+      "/api/os/v1/regions/current": {
+        "get": {
+          "tags": [
+            "Regions"
+          ],
+          "summary": "Get the name of the current region",
+          "responses": {
+            "200": {
+              "description": "Name of the current region."
+            }
+          }
+        }
+      },
+      "/api/os/v1/remote-clusters": {
+        "get": {
+          "tags": [
+            "Remote Clusters"
+          ],
+          "summary": "List all remote clusters",
+          "responses": {
+            "200": {
+              "description": "A list of remote clusters."
+            }
+          }
+        },
+        "post":{
+          "tags": [
+            "Remote Clusters"
+          ],
+          "summary": "Add remote clusters",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the remote cluster."
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": ["aws", "gcp", "azure"],
+                      "description": "The type of remote cluster."
+                    },
+                    "credentials": {
+                      "type": "object",
+                      "description": "The remote cluster credentials.",
+                      "example": { 
+                        "accessKey": "access-key",
+                        "accessKeyId": "access-key-id",
+                        "region": "region"}
+                    },
+                    "buckets": {
+                      "type": "array",
+                      "description": "The remote cluster buckets.",
+                      "example": ["bucket-name-1", "bucket-name-2"]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully added remote cluster."
+            },
+            "400": {
+              "description": "Failed due to missing or malformed data. Verify that all parameters are complete."
+            },
+            "409": {
+              "description": "Remote cluster with same name already exists."
+            }
+          }
+        }
+      },
+      "/api/os/v1/remote-clusters/{remote-cluster-name}": {
+        "parameters": [
+          {
+            "name": "remote-cluster-name",
+            "in": "path",
+            "description": "Name of the remote cluster",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "Remote Clusters"
+          ],
+          "summary": "Get remote cluster information",
+          "responses": {
+            "200": {
+              "description": "A remote cluster information."
+            },
+            "404": {
+              "description": "Failed to find the remote cluster."
+            }
+          }
+        },
+        "patch":{
+          "tags": [
+            "Remote Clusters"
+          ],
+          "summary": "Update remote clusters",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": ["aws", "gcp", "azure"],
+                      "description": "The type of remote cluster."
+                    },
+                    "credentials": {
+                      "type": "object",
+                      "description": "The remote cluster credentials."
+                    },
+                    "buckets": {
+                      "type": "array",
+                      "description": "The remote cluster buckets."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successfully updated remote cluster."
+            },
+            "400": {
+              "description": "Failed due to missing or malformed data. Verify that all parameters are complete."
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Remote Clusters"
+          ],
+          "summary": "Remove remote cluster",
+          "responses": {
+            "200": {
+              "description": "Successfully removed remote cluster."
+            },
+            "404": {
+              "description": "Failed to find the remote cluster."
+            }
+          }
+        }
+      },
+      "/api/os/v1/storage": {
+        "get": {
+          "tags": [
+            "Storage"
+          ],
+          "summary": "Get storage disks usage and utilization",
+          "responses": {
+            "200": {
+              "description": "Storage disks usage and utilization"
+            }
+          }
+        }
+      },
+      "/api/os/v1/storage/summary": {
+        "get": {
+          "tags": [
+            "Storage"
+          ],
+          "summary": "Get buckets sizes and percent of used capacity on a per-bucket basis",
+          "responses": {
+            "200": {
+              "description": "Buckets sizes and percent of used capacity on a per-bucket basis."
+            }
+          }
+        }
+      },
+      "/api/os/v1/storage/validate": {
+        "post": {
+          "tags": [
+            "Storage"
+          ],
+          "summary": "Validate buckets for misplaced objects and objects that have insufficient numbers of copies or EC slices",
+          "responses": {
+            "200": {
+              "description": "Buckets misplaced objects and objects that have insufficient numbers of copies or EC slices."
+            }
+          }
+        }
+      },
+      "/api/os/v1/storage/cleanup": {
+        "delete": {
+          "tags": [
+            "Storage"
+          ],
+          "summary": "Perform storage cleanup",
+          "responses": {
+            "200": {
+              "description": "Storage cleanup action was successfully started."
+            }
+          }
+        }
+      },
+      "/api/os/v1/jobs/{job-id}": {
+        "parameters": [
+          {
+            "name": "job-id",
+            "in": "path",
+            "description": "Job ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "get": {
+          "tags": [
+            "Jobs"
+          ],
+          "summary": "Get job information",
+          "responses": {
+            "200": {
+              "description": "Job information."
+            },
+            "404": {
+              "description": "Failed to find the job."
+            }
+          }
+        }
+      },
+      "/api/os/v1/jobs/stop/{job-id}": {
+        "parameters": [
+          {
+            "name": "job-id",
+            "in": "path",
+            "description": "Job ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "post": {
+          "tags": [
+            "Jobs"
+          ],
+          "summary": "Stop job",
+          "responses": {
+            "200": {
+              "description": "Job was successfully stopped."
+            },
+            "404": {
+              "description": "Failed to find the job."
+            },
+            "410": {
+              "description": "job is already finished, nothing to do."
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "ApiKeyAuth": {
+          "type": "apiKey",
+          "in": "header",
+          "name": "Authorization"
+        }
+      }
+    },
+    "security": [
+      {
+        "ApiKeyAuth": []
+      }
+    ]
+  }
